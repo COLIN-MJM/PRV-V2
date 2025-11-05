@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour
     public float closestZoom = 5f;
     public float furthestZoom = 15f;
     public GameObject specificFocus = null;
+    public  Vector3 velocity = new Vector3(0,0,2);
 
     private void Start()
     {
@@ -28,8 +29,10 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            transform.position = specificFocus.transform.position;
+            // transform.position = specificFocus.transform.position;
+            transform.position = Vector3.SmoothDamp(transform.position, specificFocus.transform.position, ref velocity, 0.5f );
         }
+        
         cam.orthographicSize += inputReader.Zoom * zoomSensibility;
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, closestZoom, furthestZoom);
     }

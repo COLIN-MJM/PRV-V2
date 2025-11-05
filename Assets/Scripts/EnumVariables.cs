@@ -23,10 +23,10 @@ public enum State
     
 public enum Season
     {
-        Winter,
         Spring,
         Summer,
-        Autumn
+        Autumn,
+        Winter
     }    
         
     

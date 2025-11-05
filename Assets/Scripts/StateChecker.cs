@@ -8,6 +8,9 @@ public class StateChecker : MonoBehaviour
 {
     public EntityIdentity entityID;
     public EntityFOV entityFOV;
+
+    public IfMatingSeason ifMatingSeason;
+    
     public GameObject gm;
     public List<GameObject> targetObjects;
     public Vector3 targetPos;
@@ -15,9 +18,10 @@ public class StateChecker : MonoBehaviour
 
     private void Start()
     {
+        gm = GameObject.FindGameObjectWithTag("GM");
         entityID = GetComponent<EntityIdentity>();
         entityFOV = GetComponent<EntityFOV>();
-        gm = GameObject.FindGameObjectWithTag("GM");
+        ifMatingSeason = GetComponent<IfMatingSeason>();
         InvokeRepeating(nameof(StateChecking), 0f, 0.2f);
     }
 

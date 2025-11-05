@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 8215292432018668404}
   - component: {fileID: 2481497131247717496}
   - component: {fileID: 1807384345425678954}
+  - component: {fileID: -3459470235525536708}
   m_Layer: 0
   m_Name: Species3
   m_TagString: Species
@@ -328,3 +329,15 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &-3459470235525536708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2384495371635827893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3a10e1a51c6a64a9ed48d11d6a4a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
