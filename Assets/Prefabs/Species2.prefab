@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   species: 1
-  matingSeason: 0
+  matingSeason: 1
   state: 0
   strengthAgainst: 0200000003000000
   weaknessAgainst: 0000000005000000
@@ -169,7 +169,7 @@ MonoBehaviour:
   recoveryTime: 2
   reproductionCooldown: 0
   fovRadius: 5
-  fightingRadius: 1.3
+  interactingRadius: 1.3
   reproducingRadius: 0
   refreshPathRate: 30
 --- !u!114 &3145378884874384820
@@ -220,6 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityID: {fileID: 0}
   entityFOV: {fileID: 0}
+  ifMatingSeason: {fileID: 0}
   gm: {fileID: 0}
   targetObjects: []
   targetPos: {x: 0, y: 0, z: 0}
@@ -238,6 +239,7 @@ MonoBehaviour:
   entityID: {fileID: 0}
   entityFOV: {fileID: 0}
   fightingRangeEntities: []
+  child: {fileID: 5387480836745986218}
 --- !u!114 &5283459561861816456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,3 +343,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3a10e1a51c6a64a9ed48d11d6a4a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSeason: 0
+  gm: {fileID: 0}

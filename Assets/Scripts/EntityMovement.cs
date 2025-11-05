@@ -13,6 +13,8 @@ public class EntityMovement : MonoBehaviour
     public GameObject ground;
     private Vector3 targetPos;
     private float t;
+    private float timer;
+    private bool recalculating;
     
     private void Start()
     {
@@ -23,6 +25,16 @@ public class EntityMovement : MonoBehaviour
         InvokeRepeating(nameof(RefreshPath), 0f, 0.2f);
     }
 
+    private void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (timer >= 2f)
+        {
+            recalculating = true;
+        }
+    }
+
     private void RefreshPath()
     {
         if (agent.isOnNavMesh)
@@ -31,11 +43,13 @@ public class EntityMovement : MonoBehaviour
             {
                 case State.Idle:
                     agent.speed = entityID.nativeSpeed;
-                    if(agent.pathPending != true && agent.remainingDistance < 0.5f)
+                    if((agent.pathPending != true && agent.remainingDistance < 0.5f) || recalculating)
                     {
                         targetPos = new Vector3(Random.insideUnitCircle.x, 0, Random.insideUnitCircle.y).normalized * entityID.refreshPathRate;
                         ClampingOnGround(targetPos);
                         agent.SetDestination(targetPos);
+                        timer = 0;
+                        recalculating = false;
                     }
                     break;
                 case State.Chasing:
@@ -57,11 +71,13 @@ public class EntityMovement : MonoBehaviour
                     break;
                 default:
                     agent.speed = entityID.nativeSpeed;
-                    if(agent.pathPending != true && agent.remainingDistance < 0.5f)
+                    if((agent.pathPending != true && agent.remainingDistance < 0.5f) || recalculating)
                     {
                         targetPos = new Vector3(Random.insideUnitCircle.x, 0, Random.insideUnitCircle.y).normalized * entityID.refreshPathRate;
                         ClampingOnGround(targetPos);
                         agent.SetDestination(targetPos);
+                        timer = 0;
+                        recalculating = false;
                     }
                     break;
             }

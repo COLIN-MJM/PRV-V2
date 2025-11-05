@@ -74,7 +74,7 @@ public class EntityFOV : MonoBehaviour
             }
             else if (_nearbyObjects[i].CompareTag("Food"))
             {
-                foodWithinFOV.Add(_nearbyObjects[i].gameObject);
+                preysWithinFOV.Add(_nearbyObjects[i].gameObject);
             }
         }
     }

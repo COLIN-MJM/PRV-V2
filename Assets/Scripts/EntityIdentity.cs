@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EntityIdentity : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class EntityIdentity : MonoBehaviour
 
     //Action Radii
     public float fovRadius;
-    public float fightingRadius;
+    [FormerlySerializedAs("fightingRadius")] public float interactingRadius;
     public float reproducingRadius;
     
     public float refreshPathRate;
