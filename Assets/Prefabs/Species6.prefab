@@ -238,8 +238,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityID: {fileID: 0}
   entityFOV: {fileID: 0}
-  fightingRangeEntities: []
+  interactingRangeEntities: []
   child: {fileID: 4258745890326616887}
+  isInCollision: 0
 --- !u!114 &7496125661772721817
 MonoBehaviour:
   m_ObjectHideFlags: 0

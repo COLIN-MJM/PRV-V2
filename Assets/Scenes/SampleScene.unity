@@ -229,6 +229,7 @@ MonoBehaviour:
   closestZoom: 5
   furthestZoom: 15
   specificFocus: {fileID: 0}
+  velocity: {x: 0, y: 0, z: 2}
 --- !u!114 &238302022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1206,7 +1207,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649ae5dae2ade164fb9622d9c3b3dabb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSeason: 1
+  currentSeason: 0
+  timer: 5
+  seasonCount: 0
+  maxTimer: 5
 --- !u!114 &1255855947
 MonoBehaviour:
   m_ObjectHideFlags: 0

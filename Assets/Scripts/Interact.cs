@@ -7,7 +7,7 @@ public class Interact : MonoBehaviour
 {
     public EntityIdentity entityID;
     public EntityFOV entityFOV;
-    public Collider[] fightingRangeEntities;
+    public Collider[] interactingRangeEntities;
     public GameObject child;
     public bool isInCollision;
 
@@ -21,9 +21,9 @@ public class Interact : MonoBehaviour
 
     private void InteractCheck()
     {
-        fightingRangeEntities = Physics.OverlapSphere(transform.position, entityID.interactingRadius);
+        interactingRangeEntities = Physics.OverlapSphere(transform.position, entityID.interactingRadius);
         
-        foreach (var entity in fightingRangeEntities)
+        foreach (var entity in interactingRangeEntities)
         {
             if (entity.CompareTag("Species"))
             {
@@ -42,11 +42,10 @@ public class Interact : MonoBehaviour
             }
             else if (entity.CompareTag("Food"))
             {
-                Vector3 rdPos = UnityEngine.Random.insideUnitCircle * 4f;
+                entity.GetComponent<FoodEating>().eater = this.gameObject;
                 
                 entityFOV.foodWithinFOV.Remove(entity.gameObject);
-                Instantiate(child, entity.transform.position + rdPos, Quaternion.identity);
-                Destroy(entity.gameObject);
+                
             }
         }
     }

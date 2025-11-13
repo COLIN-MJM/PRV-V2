@@ -29,7 +29,7 @@ public class EntityMovement : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= 2f)
+        if (timer >= entityID.refreshPathRate / 15)
         {
             recalculating = true;
         }
