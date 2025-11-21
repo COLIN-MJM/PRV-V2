@@ -15,6 +15,7 @@ public class EntityMovement : MonoBehaviour
     private float t;
     private float timer;
     private bool recalculating;
+    private Vector2 randomVect;
     
     private void Start()
     {
@@ -45,8 +46,7 @@ public class EntityMovement : MonoBehaviour
                     agent.speed = entityID.nativeSpeed;
                     if((agent.pathPending != true && agent.remainingDistance < 0.5f) || recalculating)
                     {
-                        targetPos = new Vector3(Random.insideUnitCircle.x, 0, Random.insideUnitCircle.y).normalized * entityID.refreshPathRate;
-                        ClampingOnGround(targetPos);
+                        FindNewPos();
                         agent.SetDestination(targetPos);
                         timer = 0;
                         recalculating = false;
@@ -73,8 +73,7 @@ public class EntityMovement : MonoBehaviour
                     agent.speed = entityID.nativeSpeed;
                     if((agent.pathPending != true && agent.remainingDistance < 0.5f) || recalculating)
                     {
-                        targetPos = new Vector3(Random.insideUnitCircle.x, 0, Random.insideUnitCircle.y).normalized * entityID.refreshPathRate;
-                        ClampingOnGround(targetPos);
+                        FindNewPos();
                         agent.SetDestination(targetPos);
                         timer = 0;
                         recalculating = false;
@@ -109,10 +108,20 @@ public class EntityMovement : MonoBehaviour
         }
     }
 
-    private void ClampingOnGround(Vector3 pos)
+    private Vector3 ClampingOnGround(Vector3 pos)
     {
         pos.x = Mathf.Clamp(pos.x, -ground.transform.localScale.x * 5f, ground.transform.localScale.x * 5f);
         pos.z = Mathf.Clamp(pos.z, -ground.transform.localScale.z * 5f, ground.transform.localScale.z * 5f);
+        return new Vector3(pos.x, 0, pos.z);
+    }
+
+    private void FindNewPos()
+    {
+        randomVect = Random.insideUnitCircle.normalized;
+        targetPos = new Vector3(randomVect.x, 0, randomVect.y) * entityID.refreshPathRate;
+        targetPos.x += transform.position.x;
+        targetPos.z += transform.position.z;
+        ClampingOnGround(targetPos);
     }
 
     private void OnDrawGizmos()

@@ -164,9 +164,9 @@ MonoBehaviour:
   speedModifierWhenChasing: 1.7
   speedModifierWhenFleeing: 1.5
   speedModifierWhenFatigued: 0.8
-  enduranceWhenChasing: 2.5
-  enduranceWhenFleeing: 3
-  recoveryTime: 2
+  enduranceWhenChasing: 10
+  enduranceWhenFleeing: 10
+  recoveryTime: 0.1
   reproductionCooldown: 0
   fovRadius: 5
   interactingRadius: 1.3

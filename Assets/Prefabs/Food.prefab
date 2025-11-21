@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawningNumber: 1
-  percentageSpawningVariance: 5
+  percentageSpawningVariance: 0
   spawnables:
   - {fileID: 6797965953060153057, guid: 78cfd335221a32c4786459e5a5c5de01, type: 3}
   - {fileID: 5387480836745986218, guid: 7704c93569596a74cb850071a8aa5b54, type: 3}
