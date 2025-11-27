@@ -5,9 +5,8 @@ public class SeasonManager : MonoBehaviour
 {
     public Season currentSeason;
     public float timer = 5f;
-    public int seasonCount;
+    public float seasonCount;
     public float maxTimer = 5f;
-
 
     private void Start()
     {
@@ -63,7 +62,4 @@ public class SeasonManager : MonoBehaviour
             timer = maxTimer;
         }
     }
-
-    
-    
 }

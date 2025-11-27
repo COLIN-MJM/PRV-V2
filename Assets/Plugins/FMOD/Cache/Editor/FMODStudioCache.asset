@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: ../../../../../../Music/Build FMOD/PRV/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638998499167378619
+  lastModified: 638998666209851056
   FileSizes: []
   Exists: 1
 --- !u!114 &-7230055562678366274
@@ -33,11 +33,115 @@ MonoBehaviour:
   Path: ../../../../../../Music/Build FMOD/PRV/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638998503497936095
+  lastModified: 638998664382956491
   FileSizes:
   - Name: 
-    Value: 956
+    Value: 1072
   Exists: 1
+--- !u!114 &-3584247366591000431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EntitySpawning
+  m_EditorClassIdentifier: 
+  Path: event:/EntitySpawning
+  Guid:
+    Data1: -1029131929
+    Data2: 1080534547
+    Data3: -1362477689
+    Data4: 136471438
+  Banks:
+  - {fileID: -7854393594939702754}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -3147289242733751124}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3147289242733751124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/EntitySpawning/SpawnSoundIsEnabled
+  m_EditorClassIdentifier: 
+  Name: SpawnSoundIsEnabled
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 2345231970
+    data2: 812973164
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-2831980541630152805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambiance/SeasonState
+  m_EditorClassIdentifier: 
+  Name: SeasonState
+  StudioPath: 
+  Min: 0
+  Max: 4
+  Default: 0
+  ID:
+    data1: 1883347013
+    data2: 3224599161
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-184190851994484701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambiance
+  m_EditorClassIdentifier: 
+  Path: event:/Ambiance
+  Guid:
+    Data1: -343618676
+    Data2: 1116460305
+    Data3: 603158965
+    Data4: 850118505
+  Banks:
+  - {fileID: 2218737043465229521}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -2831980541630152805}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,46 +160,23 @@ MonoBehaviour:
   - {fileID: -7854393594939702754}
   - {fileID: 2218737043465229521}
   EditorEvents:
-  - {fileID: 248429460400243929}
-  - {fileID: 6214053249330219761}
+  - {fileID: -184190851994484701}
+  - {fileID: -3584247366591000431}
+  - {fileID: 2231028216087552973}
   EditorParameters: []
   MasterBanks:
   - {fileID: 8343882520097605548}
   StringsBanks:
   - {fileID: -7230055562678366274}
   cacheVersion: 131857
-  cacheTime: 638998503497961937
+  cacheTime: 638998796424597484
   SerializableEventsDict:
-  - key: event:/Pop
+  - key: event:/Ambiance
     index: 0
---- !u!114 &248429460400243929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Pop
-  m_EditorClassIdentifier: 
-  Path: event:/Pop
-  Guid:
-    Data1: 1417607394
-    Data2: 1225251536
-    Data3: -880515157
-    Data4: 1843303712
-  Banks:
-  - {fileID: -7854393594939702754}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters:
-  - {fileID: 5892245982761521045}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  - key: event:/EntitySpawning
+    index: 1
+  - key: event:/FoodPlacing
+    index: 2
 --- !u!114 &2218737043465229521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,34 +192,10 @@ MonoBehaviour:
   Path: ../../../../../../Music/Build FMOD/PRV/Environnement.bank
   Name: Environnement
   StudioPath: bank:/Environnement
-  lastModified: 638998503497961937
+  lastModified: 638998796424597484
   FileSizes: []
   Exists: 1
---- !u!114 &5892245982761521045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Pop/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 2854174061
-    data2: 4087472865
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &6214053249330219761
+--- !u!114 &2231028216087552973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,16 +205,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Neige
+  m_Name: event:/FoodPlacing
   m_EditorClassIdentifier: 
-  Path: event:/Neige
+  Path: event:/FoodPlacing
   Guid:
-    Data1: 1964635066
-    Data2: 1220728046
-    Data3: 1896142982
-    Data4: -2075084936
+    Data1: 1959848469
+    Data2: 1211362155
+    Data3: 269603221
+    Data4: 590782797
   Banks:
-  - {fileID: 2218737043465229521}
+  - {fileID: -7854393594939702754}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -180,6 +237,6 @@ MonoBehaviour:
   Path: ../../../../../../Music/Build FMOD/PRV/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638998503497926098
+  lastModified: 638998664382941417
   FileSizes: []
   Exists: 1

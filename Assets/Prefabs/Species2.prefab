@@ -20,8 +20,8 @@ GameObject:
   - component: {fileID: 4076226203226505197}
   - component: {fileID: 5283459561861816456}
   - component: {fileID: 8604654339696575618}
-  - component: {fileID: 6791589443676760791}
   - component: {fileID: -2901477280905652816}
+  - component: {fileID: 6791589443676760791}
   m_Layer: 0
   m_Name: Species2
   m_TagString: Species
@@ -267,6 +267,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camFocus: {fileID: 0}
+--- !u!114 &-2901477280905652816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5387480836745986218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3a10e1a51c6a64a9ed48d11d6a4a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSeason: 0
+  gm: {fileID: 0}
 --- !u!108 &6791589443676760791
 Light:
   m_ObjectHideFlags: 0
@@ -332,17 +346,3 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!114 &-2901477280905652816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5387480836745986218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d3a10e1a51c6a64a9ed48d11d6a4a4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentSeason: 0
-  gm: {fileID: 0}
