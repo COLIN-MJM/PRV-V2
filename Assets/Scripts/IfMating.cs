@@ -1,29 +1,39 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class FoodEating : MonoBehaviour
+
+public class IfMating : MonoBehaviour
 {
+    private EntityIdentity entityID;
+    private StateChecker stateChecker;
     public GameObject[] spawnables;
-    public GameObject eater = null;
-    public IfMating ifMating;
+    public GameObject actualMate;
+    public bool hasPriority = false;
+    private GameObject spawningSpecies = null;
 
     private void Start()
     {
-        ifMating = GetComponent<IfMating>();
+        entityID = GetComponent<EntityIdentity>();
+        entityID.gender = (Gender)Random.Range(0, 2);
+        stateChecker = GetComponent<StateChecker>();
     }
 
     private void Update()
     {
-        if (eater)
+        if (hasPriority)
         {
-            SpawnFood(eater, spawnables, eater.GetComponent<EntityIdentity>().spawningNumber, eater.GetComponent<EntityIdentity>().percentageSpawningVariance);
-            Destroy(gameObject);
+            Spawn(actualMate, spawnables, entityID.spawningNumber, entityID.percentageSpawningVariance);
+            actualMate.GetComponent<IfMating>().actualMate = null;
+            actualMate.GetComponent<EntityIdentity>().state = State.Fatigued;
+            actualMate.GetComponent<StateChecker>().timeToStayFatigued = entityID.reproductionCooldown;
+            actualMate = null;
+            entityID.state = State.Fatigued;
+            stateChecker.timeToStayFatigued = entityID.reproductionCooldown;
+            hasPriority = false;
         }
     }
     
-    public void SpawnFood(GameObject spawner, GameObject[] spawnables, int spawningNumber, int percentageSpawningVariance)
+    public void Spawn(GameObject spawner, GameObject[] spawnables, int spawningNumber, int percentageSpawningVariance)
     {
         for (int j = 0; j < spawningNumber; j++)
         {

@@ -7,6 +7,7 @@ public class Interact : MonoBehaviour
 {
     public EntityIdentity entityID;
     public EntityFOV entityFOV;
+    public IfMating ifMating;
     public Collider[] interactingRangeEntities;
     public GameObject child;
     public bool isInCollision;
@@ -15,6 +16,7 @@ public class Interact : MonoBehaviour
     {
         entityID = GetComponent<EntityIdentity>();
         entityFOV = GetComponent<EntityFOV>();
+        ifMating = GetComponent<IfMating>();
         InvokeRepeating(nameof(InteractCheck), 0f, 0.2f);
         isInCollision = false;
     }
@@ -33,11 +35,27 @@ public class Interact : MonoBehaviour
                     {
                         entityFOV.preysWithinFOV.Remove(entity.gameObject);
                         Destroy(entity.gameObject);
+                        entityID.numberOfAllowedChildren++;
                     }
                     else
                     {
                         isInCollision = true;
                     }
+                }
+
+                if (entityID.gender == Gender.Female &&
+                    entityID.state == State.Reproducing &&
+                    entity.GetComponent<EntityIdentity>().species == entityID.species &&
+                    entity.GetComponent<EntityIdentity>().gender != entityID.gender &&
+                    ifMating.actualMate == null &&
+                    entity.GetComponent<EntityIdentity>().numberOfAllowedChildren > 0 &&
+                    entityID.numberOfAllowedChildren > 0)
+                {
+                    entity.GetComponent<IfMating>().actualMate = this.gameObject;
+                    ifMating.actualMate = entity.gameObject;
+                    entity.GetComponent<EntityIdentity>().numberOfAllowedChildren--;
+                    entityID.numberOfAllowedChildren--;
+                    ifMating.hasPriority = true;
                 }
             }
             else if (entity.CompareTag("Food"))

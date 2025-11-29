@@ -28,6 +28,12 @@ public enum Season
         Autumn,
         Winter
     }    
+
+public enum Gender
+    {
+        Male,
+        Female
+    }
         
     
     

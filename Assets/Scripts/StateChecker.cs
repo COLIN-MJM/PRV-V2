@@ -9,19 +9,23 @@ public class StateChecker : MonoBehaviour
     public EntityIdentity entityID;
     public EntityFOV entityFOV;
 
-    public IfMatingSeason ifMatingSeason;
+    public IfMating ifMating;
+    public Season currentSeason;
     
     public GameObject gm;
     public List<GameObject> targetObjects;
     public Vector3 targetPos;
     private float t;
+    public float timeToStayFatigued;
 
     private void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM");
         entityID = GetComponent<EntityIdentity>();
         entityFOV = GetComponent<EntityFOV>();
-        ifMatingSeason = GetComponent<IfMatingSeason>();
+        ifMating = GetComponent<IfMating>();
+        currentSeason = gm.GetComponent<SeasonManager>().currentSeason;
+        timeToStayFatigued = entityID.recoveryTime;
         InvokeRepeating(nameof(StateChecking), 0f, 0.2f);
     }
 
@@ -44,7 +48,9 @@ public class StateChecker : MonoBehaviour
                 entityID.state = State.Fighting;
                 targetObjects = entityFOV.fightsWithinFOV;
             }
-            else if (entityFOV.matesWithinFOV.Count > 0 && gm.GetComponent<SeasonManager>().currentSeason == entityID.matingSeason)
+            else if (entityFOV.matesWithinFOV.Count > 0 && 
+                     currentSeason == entityID.matingSeason && 
+                     entityID.numberOfAllowedChildren > 0)
             {
                 entityID.state = State.Reproducing;
                 targetObjects = entityFOV.matesWithinFOV;
@@ -79,6 +85,7 @@ public class StateChecker : MonoBehaviour
             {
                 t = 0;
                 targetPos = transform.position;
+                timeToStayFatigued = entityID.recoveryTime;
                 entityID.state = State.Fatigued;
             }
         }
@@ -110,13 +117,40 @@ public class StateChecker : MonoBehaviour
             {
                 t = 0;
                 targetPos = transform.position;
+                timeToStayFatigued = entityID.recoveryTime;
                 entityID.state = State.Fatigued;
             }
         }
 
         if (entityID.state == State.Reproducing)
         {
-            //todo
+            if (currentSeason != entityID.matingSeason)
+            {
+                targetPos = transform.position;
+                entityID.state = State.Idle;
+                return;
+            }
+            
+            if (entityFOV.matesWithinFOV.Count > 0)
+            {
+                targetObjects = entityFOV.matesWithinFOV;
+                Vector3 targetToChase = new Vector3(1000f, 0f, 1000f);
+                foreach (var mate in targetObjects)
+                {
+                    if (mate.gameObject != null && 
+                        (mate.gameObject.transform.position - transform.position).magnitude < (targetToChase - transform.position).magnitude &&
+                        mate.GetComponent<EntityIdentity>().gender != entityID.gender)
+                    {
+                        targetToChase = mate.gameObject.transform.position;
+                    }
+                }
+                targetPos = targetToChase;
+            }
+            else
+            {
+                targetPos = transform.position;
+                entityID.state = State.Idle;
+            }
         }
 
         if (entityID.state == State.Fighting)
@@ -128,7 +162,7 @@ public class StateChecker : MonoBehaviour
         {
             t += 0.2f;
 
-            if (t > entityID.recoveryTime)
+            if (t > timeToStayFatigued)
             {
                 t = 0;
                 entityID.state = State.Idle;

@@ -66,8 +66,7 @@ public class EntityMovement : MonoBehaviour
                     //todo
                     break;
                 case State.Reproducing:
-                    agent.speed = 0f;
-                    //todo
+                    SearchingMate();
                     break;
                 default:
                     agent.speed = entityID.nativeSpeed;
@@ -93,6 +92,12 @@ public class EntityMovement : MonoBehaviour
     private void Chase()
     {
         agent.speed = entityID.nativeSpeed * entityID.speedModifierWhenChasing;
+        targetPos = stateChecker.targetPos; 
+        agent.SetDestination(targetPos);
+    }
+
+    private void SearchingMate()
+    {
         targetPos = stateChecker.targetPos; 
         agent.SetDestination(targetPos);
     }

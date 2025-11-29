@@ -5,6 +5,7 @@ public class EntityIdentity : MonoBehaviour
 {
     //Status
     public Species species;
+    public Gender gender;
     public Season matingSeason;
     public State state = State.Idle;
     
@@ -25,6 +26,11 @@ public class EntityIdentity : MonoBehaviour
     public float enduranceWhenFleeing;
     public float recoveryTime;
     public float reproductionCooldown;
+    
+    //Spawn Variables
+    public int spawningNumber = 1;
+    public int percentageSpawningVariance = 5;
+    public int numberOfAllowedChildren = 0;
 
     //Action Radii
     public float fovRadius;
