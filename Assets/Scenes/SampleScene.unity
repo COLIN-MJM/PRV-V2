@@ -1160,7 +1160,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 0}
-  objectToSpawn: {fileID: 0}
+  inputReader: {fileID: 0}
+  choices:
+  - {fileID: 1568366197890041967, guid: 18eb8c5c45d87fb4c87a278157e05ea4, type: 3}
+  - {fileID: 6797965953060153057, guid: 78cfd335221a32c4786459e5a5c5de01, type: 3}
+  - {fileID: 5387480836745986218, guid: 7704c93569596a74cb850071a8aa5b54, type: 3}
+  - {fileID: 2384495371635827893, guid: 02d24028600336340baa48c0f2ed8061, type: 3}
+  - {fileID: 5686148549985477031, guid: fb53bdc01d7a8ff45bee66725b10b01c, type: 3}
+  - {fileID: 3923028635199669355, guid: 278f451a796240f48a47b1469a5a4352, type: 3}
+  - {fileID: 4258745890326616887, guid: 1a0c46d28859c4d40ae466b6edd4d880, type: 3}
+  currentChoice: {fileID: 0}
 --- !u!1 &1255855944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,7 +1180,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1255855945}
   - component: {fileID: 1255855946}
-  - component: {fileID: 1255855947}
   - component: {fileID: 1255855948}
   m_Layer: 0
   m_Name: GM
@@ -1211,29 +1219,6 @@ MonoBehaviour:
   timer: 5
   seasonCount: 0
   maxTimer: 5
---- !u!114 &1255855947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255855944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db12a78fff32044eb5d4e6461dffa75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputReader: {fileID: 0}
-  spawnByPlayer: {fileID: 0}
-  choices:
-  - {fileID: 1568366197890041967, guid: 18eb8c5c45d87fb4c87a278157e05ea4, type: 3}
-  - {fileID: 6797965953060153057, guid: 78cfd335221a32c4786459e5a5c5de01, type: 3}
-  - {fileID: 5387480836745986218, guid: 7704c93569596a74cb850071a8aa5b54, type: 3}
-  - {fileID: 2384495371635827893, guid: 02d24028600336340baa48c0f2ed8061, type: 3}
-  - {fileID: 5686148549985477031, guid: fb53bdc01d7a8ff45bee66725b10b01c, type: 3}
-  - {fileID: 3923028635199669355, guid: 278f451a796240f48a47b1469a5a4352, type: 3}
-  - {fileID: 4258745890326616887, guid: 1a0c46d28859c4d40ae466b6edd4d880, type: 3}
-  currentChoice: {fileID: 0}
 --- !u!114 &1255855948
 MonoBehaviour:
   m_ObjectHideFlags: 0

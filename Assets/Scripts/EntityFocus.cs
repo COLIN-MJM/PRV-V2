@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class EntityFocus : MonoBehaviour
+public class EntityFocus : MonoBehaviour, IPointerClickHandler
 {
     public GameObject camFocus;
     private CameraController camController;
@@ -23,6 +24,24 @@ public class EntityFocus : MonoBehaviour
         else
         {
             _light.enabled = false;
+        }
+    }
+    
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        //Debug.Log(gameObject.name);
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (camFocus.GetComponent<CameraController>().specificFocus != this.gameObject)
+            {
+                camFocus.GetComponent<CameraController>().specificFocus = this.gameObject;
+                GetComponent<Light>().enabled = true;
+            }
+            else
+            {
+                camFocus.GetComponent<CameraController>().specificFocus = null;
+                GetComponent<Light>().enabled = false;
+            }
         }
     }
 }

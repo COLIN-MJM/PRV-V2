@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 7145459163666287722}
   - component: {fileID: 7474607936871299500}
   - component: {fileID: 6621217704157475124}
-  - component: {fileID: 391746096032421094}
   - component: {fileID: 8443290671234176311}
   - component: {fileID: 7383804249519447177}
   - component: {fileID: 4857579746916892683}
@@ -241,19 +240,6 @@ MonoBehaviour:
   interactingRangeEntities: []
   child: {fileID: 3923028635199669355}
   isInCollision: 0
---- !u!114 &391746096032421094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3923028635199669355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70662ef28147d954ca8eb88f4a41b97c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camFocus: {fileID: 0}
 --- !u!114 &8443290671234176311
 MonoBehaviour:
   m_ObjectHideFlags: 0

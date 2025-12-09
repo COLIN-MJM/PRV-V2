@@ -6,12 +6,14 @@ using UnityEngine.AI;
 [RequireComponent(typeof(EntityFOV))]
 public class StateChecker : MonoBehaviour
 {
+    public GameObject gm;
+    
+    [Header("Entity Self Comps")]
     public EntityIdentity entityID;
     public EntityFOV entityFOV;
-
     public IfMatingSeason ifMatingSeason;
     
-    public GameObject gm;
+    [Header("Entity Targets")]
     public List<GameObject> targetObjects;
     public Vector3 targetPos;
     private float t;

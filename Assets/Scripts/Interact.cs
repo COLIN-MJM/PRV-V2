@@ -5,8 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(EntityIdentity))]
 public class Interact : MonoBehaviour
 {
+    [Header("Entity Self Comps")]
     public EntityIdentity entityID;
     public EntityFOV entityFOV;
+    
+    [Header("Interacting Entities")]
     public Collider[] interactingRangeEntities;
     public GameObject child;
     public bool isInCollision;
