@@ -4,44 +4,56 @@ using UnityEngine;
 using Input = UnityEngine.Input;
 using Random = UnityEngine.Random;
 
-public class RB_Movement : MonoBehaviour
+public class Movement_01 : MonoBehaviour
 {
     private EntityIdentity identity;
     private Vector3 randomDir;
     
     private float clock;
-    private Rigidbody rb;
+    private float waitClock;
+    public float coolDown;
 
+    private bool isRotating;
+    private bool isWaiting;
+    
+    private Rigidbody rb;
+    
     void Start()
     {
         identity = GetComponent<EntityIdentity>();
         rb = GetComponent<Rigidbody>();
-
-        rb.maxLinearVelocity = identity.nativeSpeed;
+        
         clock = 0;
     }
 
     void Update()
     {
-        clock += Time.deltaTime;
+        if (!isWaiting && !isRotating)
+            clock += Time.deltaTime;
+        
+        if (isWaiting)
+            waitClock += Time.deltaTime;
+
+        if (isRotating)
+        {
+            transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.deltaTime * identity.rotationSpeed);
+        }
+            
     }
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = transform.forward.normalized * identity.nativeSpeed;
-        transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * identity.rotationSpeed);
-        
         if (clock >= identity.refreshPathRate)
         {
             clock = 0;
-
+            rb.linearVelocity = Vector3.zero;
+            rb.isKinematic = true;
+            
+            
             float sectorAngle = identity.fovAngle;  // tranche = FOV angle
             float halfAngle = sectorAngle / 2f; // Gauche Droite
-            
             float randomAngle = Random.Range(-halfAngle, halfAngle);   // Angle Random
-
             float distance = identity.fovRadius;
-            
             float worldAngle = Vector3.Angle(Vector3.forward, transform.forward);
             
             if (transform.forward.x < 0)
@@ -54,6 +66,22 @@ public class RB_Movement : MonoBehaviour
             float z = distance * Mathf.Cos((randomAngle + worldAngle) * Mathf.Deg2Rad);
             
             randomDir = new Vector3(x, 0f, z).normalized * distance;
+            
+            // transform.forward = randomDir;  // l'appeler dans une Coroutine, puis add la force
+            rb.isKinematic = false;
+            isRotating = true;
+            // isRotating = false;
+            isWaiting = true;
         }
+
+        // COROUTINES FDP
+        if (waitClock >= coolDown)
+        {
+            waitClock = 0;
+            isRotating = false;
+            rb.AddForce(transform.forward.normalized * identity.nativeSpeed, ForceMode.Impulse);
+            isWaiting = false;
+        }
+        
     }
 }

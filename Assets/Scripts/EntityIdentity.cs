@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEditor;
 
 public class EntityIdentity : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class EntityIdentity : MonoBehaviour
     
     [Header("Movement Variables")]
     public float nativeSpeed;
+    public float rotationSpeed;
+    public float refreshPathRate;
     public float speedModifierWhenChasing;
     public float speedModifierWhenFleeing;
     public float speedModifierWhenFatigued;
@@ -28,8 +31,16 @@ public class EntityIdentity : MonoBehaviour
 
     [Header("Action Radius")]
     public float fovRadius;
-    [FormerlySerializedAs("fightingRadius")] public float interactingRadius;
+    public float fovAngle;
+    public float interactingRadius;
     public float reproducingRadius;
     
-    public float refreshPathRate;
+    private void OnDrawGizmos()
+    {
+        // Faudra l'enlever c'est pour éviter dde l'appeller à chaque DrawGizmo dans un autre script
+        Handles.color = new Color(0,1,0,0.5f);
+        Handles.DrawSolidArc(transform.position, transform.up, Quaternion.AngleAxis(-fovAngle/2f, transform.up) * transform.forward, fovAngle, fovRadius);
+        Handles.color = new Color(0,1,0,0.5f);
+        fovRadius = Handles.ScaleValueHandle(fovRadius, transform.position + transform.forward * fovRadius, transform.rotation, 3, Handles.SphereHandleCap, 1);
+    }
 }

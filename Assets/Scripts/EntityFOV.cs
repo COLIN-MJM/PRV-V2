@@ -12,11 +12,13 @@ public class EntityFOV : MonoBehaviour
     public List<GameObject> fightsWithinFOV;
     public List<GameObject> matesWithinFOV;
     public List<GameObject> foodWithinFOV;
+    private Collider selfCollider;
     private Collider[] _nearbyObjects;
 
     private void Start()
     {
         entityID = gameObject.GetComponent<EntityIdentity>();
+        selfCollider = GetComponent<Collider>();
         InvokeRepeating(nameof(CheckingSurroundings), 0f, 0.2f); //Optimisation?
     }
 
@@ -31,50 +33,54 @@ public class EntityFOV : MonoBehaviour
         
         for (int i = 0; i < _nearbyObjects.Length; i++)
         {
-            //Debug.Log(_nearbyObjects[i].name);
-            if (_nearbyObjects[i].CompareTag("Species"))
+            float signedAngle = Vector3.Angle(transform.forward, _nearbyObjects[i].transform.position - transform.position);
+            if (Mathf.Abs(signedAngle) < entityID.fovAngle / 2f && _nearbyObjects[i] != selfCollider)
             {
-                foreach (var species in entityID.strengthAgainst)
+                // Debug.Log(_nearbyObjects[i].name);
+                if (_nearbyObjects[i].CompareTag("Species"))
                 {
-                    if (species == _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species)
+                    foreach (var species in entityID.strengthAgainst)
                     {
-                        preysWithinFOV.Add(_nearbyObjects[i].gameObject);
+                        if (species == _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species)
+                        {
+                            preysWithinFOV.Add(_nearbyObjects[i].gameObject);
+                        }
                     }
-                }
                 
-                foreach (var species in entityID.weaknessAgainst)
-                {
-                    if (species == _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species)
+                    foreach (var species in entityID.weaknessAgainst)
                     {
-                        predatorsWithinFOV.Add(_nearbyObjects[i].gameObject);
-                        //Debug.Log(_nearbyObjects[i].name);
+                        if (species == _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species)
+                        {
+                            predatorsWithinFOV.Add(_nearbyObjects[i].gameObject);
+                            // Debug.Log(_nearbyObjects[i].name);
+                        }
                     }
-                }
                 
-                foreach (var species in entityID.fightingUpperHandAgainst)
-                {
-                    if (species == _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species)
+                    foreach (var species in entityID.fightingUpperHandAgainst)
                     {
-                        fightsWithinFOV.Add(_nearbyObjects[i].gameObject);
+                        if (species == _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species)
+                        {
+                            fightsWithinFOV.Add(_nearbyObjects[i].gameObject);
+                        }
                     }
-                }
                 
-                foreach (var species in entityID.fightingLowerHandAgainst)
-                {
-                    if (species == _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species)
+                    foreach (var species in entityID.fightingLowerHandAgainst)
                     {
-                        fightsWithinFOV.Add(_nearbyObjects[i].gameObject);
+                        if (species == _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species)
+                        {
+                            fightsWithinFOV.Add(_nearbyObjects[i].gameObject);
+                        }
                     }
-                }
 
-                if (_nearbyObjects[i].gameObject != this.gameObject && _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species == entityID.species)
-                {
-                    matesWithinFOV.Add(_nearbyObjects[i].gameObject);
+                    if (_nearbyObjects[i].gameObject != this.gameObject && _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species == entityID.species)
+                    {
+                        matesWithinFOV.Add(_nearbyObjects[i].gameObject);
+                    }
                 }
-            }
-            else if (_nearbyObjects[i].CompareTag("Food"))
-            {
-                preysWithinFOV.Add(_nearbyObjects[i].gameObject);
+                else if (_nearbyObjects[i].CompareTag("Food"))
+                {
+                    preysWithinFOV.Add(_nearbyObjects[i].gameObject);
+                }
             }
         }
     }
