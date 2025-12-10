@@ -13,6 +13,8 @@ public class RB_Movement : MonoBehaviour
     private Collider selfCollider;
     public Collider[] colliderInFOV;
     private Rigidbody rb;
+    public Vector3 randomDir;
+    public float rotateSpeed;
 
     private float clock;
     public float timer;
@@ -44,12 +46,35 @@ public class RB_Movement : MonoBehaviour
     {
         if (!something)
         {
-            rb.AddForce(transform.forward * speed, ForceMode.Acceleration);
+            // rb.AddForce(transform.forward.normalized * speed, ForceMode.Acceleration);
+            rb.linearVelocity = transform.forward.normalized * speed;
+            transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * rotateSpeed);
         }
         
         if (clock >= timer)
         {
-            // Rotation aléatoire
+            clock = 0;
+            // rb.linearVelocity = Vector3.zero;
+
+            float sectorAngle = angleFOV;  // tranche = FOV angle
+            float halfAngle = sectorAngle / 2f; // Gauche Droite
+            
+            float randomAngle = Random.Range(-halfAngle, halfAngle);   // Angle Random
+
+            float distance = FOV;
+            
+            float worldAngle = Vector3.Angle(Vector3.forward, transform.forward);
+            
+            if (transform.forward.x < 0)
+            {
+                worldAngle = 180 + (180 - worldAngle);
+            }
+            
+            // Maths (randomAngle, randomDistance) to Cartesian (x, z)
+            float x = distance * Mathf.Sin((randomAngle + worldAngle) * Mathf.Deg2Rad);
+            float z = distance * Mathf.Cos((randomAngle + worldAngle) * Mathf.Deg2Rad);
+            
+            randomDir = new Vector3(x, 0f, z).normalized * distance;
         }
         
         foreach (Collider collide in colliderInFOV)
@@ -62,8 +87,6 @@ public class RB_Movement : MonoBehaviour
                     something = true;
                     
                     rb.linearVelocity = Vector3.zero;
-                    
-                    // éviter l'obstacle
 
                     something = false;
                 }
