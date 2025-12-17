@@ -9,103 +9,100 @@ public class EntityMovement : MonoBehaviour
 {
     public EntityIdentity entityID;
     public StateChecker stateChecker;
-    public NavMeshAgent agent;
+    public Rigidbody rb;
     public GameObject ground;
     private Vector3 targetPos;
     private float t;
     private float timer;
-    private bool recalculating;
     private Vector2 randomVect;
+    private Vector3 randomDir;
     
     private void Start()
     {
         entityID = GetComponent<EntityIdentity>();
         stateChecker = GetComponent<StateChecker>();
-        agent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
         ground = GameObject.FindGameObjectWithTag("Ground");
-        InvokeRepeating(nameof(RefreshPath), 0f, 0.2f);
+        
+        //Rotation aléatoire au start
+        Vector2 randPos = Random.insideUnitCircle;
+        Vector3 initialDir = new Vector3(randPos.x + transform.position.x, transform.position.y, randPos.y + transform.position.z);
+        transform.forward = (initialDir - transform.position).normalized;
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
-
-        if (timer >= entityID.refreshPathRate / 15)
-        {
-            recalculating = true;
-        }
     }
 
-    private void RefreshPath()
+    private void FixedUpdate()
     {
-        if (agent.isOnNavMesh)
+        if (rb != null)
         {
             switch (entityID.state)
             {
                 case State.Idle:
-                    agent.speed = entityID.nativeSpeed;
-                    if((agent.pathPending != true && agent.remainingDistance < 0.5f) || recalculating)
-                    {
-                        FindNewPos();
-                        agent.SetDestination(targetPos);
-                        timer = 0;
-                        recalculating = false;
-                    }
+                    RandomMovement(1f);
                     break;
                 case State.Chasing:
-                    Chase();
+                    StateCheckedMovement(entityID.speedModifierWhenChasing);
                     break;
                 case State.Fleeing:
-                    Flee();
+                    StateCheckedMovement(entityID.speedModifierWhenFleeing);
                     break;
                 case State.Fatigued:
-                    Fatigue();
+                    RandomMovement(entityID.speedModifierWhenFatigued);
                     break;
                 case State.Fighting:
-                    agent.speed = 0f;
                     //todo
                     break;
                 case State.Reproducing:
-                    agent.speed = 0f;
                     //todo
                     break;
                 default:
-                    agent.speed = entityID.nativeSpeed;
-                    if((agent.pathPending != true && agent.remainingDistance < 0.5f) || recalculating)
-                    {
-                        FindNewPos();
-                        agent.SetDestination(targetPos);
-                        timer = 0;
-                        recalculating = false;
-                    }
+                    RandomMovement(1f);
                     break;
             }
         }
     }
 
-    private void Flee()
+    private void StateCheckedMovement(float speedMult)
     {
-        agent.speed = entityID.nativeSpeed * entityID.speedModifierWhenFleeing;
-        targetPos = stateChecker.targetPos; 
-        agent.SetDestination(targetPos);
+        rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
+        targetPos = stateChecker.targetPos;
+        targetPos = ClampingOnGround(targetPos);
+        transform.forward = Vector3.Lerp(transform.forward, targetPos - transform.position, Time.fixedDeltaTime * entityID.rotationSpeed);
     }
 
-    private void Chase()
+    private void RandomMovement(float speedMult)
     {
-        agent.speed = entityID.nativeSpeed * entityID.speedModifierWhenChasing;
-        targetPos = stateChecker.targetPos; 
-        agent.SetDestination(targetPos);
-    }
-
-    private void Fatigue()
-    {
-        agent.speed = entityID.nativeSpeed * entityID.speedModifierWhenFatigued;
-        if(agent.pathPending != true && agent.remainingDistance < 0.5f)
+        if (timer >= entityID.refreshPathRate)
         {
-            targetPos = new Vector3(Random.insideUnitCircle.x, 0, Random.insideUnitCircle.y).normalized * entityID.refreshPathRate;
-            ClampingOnGround(targetPos);
-            agent.SetDestination(targetPos);
+            timer = 0;
+
+            float sectorAngle = entityID.fovAngle;  // tranche = FOV angle
+            float halfAngle = sectorAngle / 2f; // Gauche Droite
+            
+            float randomAngle = Random.Range(-halfAngle, halfAngle);   // Angle Random
+
+            float distance = entityID.fovRadius;
+            
+            float worldAngle = Vector3.Angle(Vector3.forward, transform.forward);
+            
+            if (transform.forward.x < 0)
+            {
+                worldAngle = 360 - worldAngle;
+            }
+            
+            // transformation radian de l'enfer
+            float x = distance * Mathf.Sin((randomAngle + worldAngle) * Mathf.Deg2Rad);
+            float z = distance * Mathf.Cos((randomAngle + worldAngle) * Mathf.Deg2Rad);
+            
+            randomDir = new Vector3(x, 0f, z).normalized * distance;
+            //targetPos = ClampingOnGround(transform.position + randomDir);
         }
+        rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
+        transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * entityID.rotationSpeed);
     }
 
     private Vector3 ClampingOnGround(Vector3 pos)
@@ -126,21 +123,25 @@ public class EntityMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (agent.isOnNavMesh)
+        if (rb)
         {
             switch (entityID.state)
             {
                 case State.Idle:
                     Gizmos.color = Color.green;
+                    Gizmos.DrawRay(transform.position, randomDir);
                     break;
                 case State.Chasing:
                     Gizmos.color = Color.red;
+                    Gizmos.DrawLine(transform.position, targetPos);
                     break;
                 case State.Fleeing:
                     Gizmos.color = Color.yellow;
+                    Gizmos.DrawLine(transform.position, targetPos);
                     break;
                 case State.Fatigued:
                     Gizmos.color = Color.blue;
+                    Gizmos.DrawRay(transform.position, randomDir);
                     break;
                 case State.Fighting:
                     Gizmos.color = Color.black;
@@ -149,7 +150,7 @@ public class EntityMovement : MonoBehaviour
                     Gizmos.color = Color.magenta;
                     break;
             }
-            Gizmos.DrawLine(transform.position, targetPos);
+            //Gizmos.DrawLine(transform.position, targetPos);
         }
     }
 }

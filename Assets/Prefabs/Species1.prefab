@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4173460013106403022}
   - component: {fileID: 6378986312588673064}
   - component: {fileID: -2045406052066068269}
+  - component: {fileID: 8604668278478979759}
   m_Layer: 0
   m_Name: Species1
   m_TagString: Species
@@ -125,7 +126,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6797965953060153057}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5000001
   m_Speed: 3.5
@@ -160,6 +161,8 @@ MonoBehaviour:
   fightingUpperHandAgainst: 
   fightingLowerHandAgainst: 
   nativeSpeed: 5
+  rotationSpeed: 5
+  refreshPathRate: 1
   speedModifierWhenChasing: 1.7
   speedModifierWhenFleeing: 1.5
   speedModifierWhenFatigued: 0.8
@@ -168,9 +171,9 @@ MonoBehaviour:
   recoveryTime: 0.1
   reproductionCooldown: 0
   fovRadius: 5
+  fovAngle: 180
   interactingRadius: 1.3
   reproducingRadius: 0
-  refreshPathRate: 30
 --- !u!114 &6042399292146129416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityID: {fileID: 0}
   stateChecker: {fileID: 0}
-  agent: {fileID: 3988920255111223504}
+  rb: {fileID: 0}
   ground: {fileID: 0}
 --- !u!114 &8614927263629562624
 MonoBehaviour:
@@ -217,10 +220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4276f74b4fbbf47b0b314295727ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
   entityID: {fileID: 0}
   entityFOV: {fileID: 0}
   ifMatingSeason: {fileID: 0}
-  gm: {fileID: 0}
   targetObjects: []
   targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &108697452457354769
@@ -332,3 +335,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSeason: 0
   gm: {fileID: 0}
+--- !u!54 &8604668278478979759
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6797965953060153057}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 1

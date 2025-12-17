@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class RB_Movement : MonoBehaviour
 {
-    private EntityIdentity identity;
+    private EntityIdentity entityID;
     private Vector3 randomDir;
     
     private float clock;
@@ -14,10 +14,10 @@ public class RB_Movement : MonoBehaviour
 
     void Start()
     {
-        identity = GetComponent<EntityIdentity>();
+        entityID = GetComponent<EntityIdentity>();
         rb = GetComponent<Rigidbody>();
 
-        rb.maxLinearVelocity = identity.nativeSpeed;
+        rb.maxLinearVelocity = entityID.nativeSpeed;
         clock = 0;
     }
 
@@ -28,25 +28,25 @@ public class RB_Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = transform.forward.normalized * identity.nativeSpeed;
-        transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * identity.rotationSpeed);
+        rb.linearVelocity = transform.forward.normalized * entityID.nativeSpeed;
+        transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * entityID.rotationSpeed);
         
-        if (clock >= identity.refreshPathRate)
+        if (clock >= entityID.refreshPathRate)
         {
             clock = 0;
 
-            float sectorAngle = identity.fovAngle;  // tranche = FOV angle
+            float sectorAngle = entityID.fovAngle;  // tranche = FOV angle
             float halfAngle = sectorAngle / 2f; // Gauche Droite
             
             float randomAngle = Random.Range(-halfAngle, halfAngle);   // Angle Random
 
-            float distance = identity.fovRadius;
+            float distance = entityID.fovRadius;
             
             float worldAngle = Vector3.Angle(Vector3.forward, transform.forward);
             
             if (transform.forward.x < 0)
             {
-                worldAngle = 180 + (180 - worldAngle);
+                worldAngle = 360 - worldAngle;
             }
             
             // transformation radian de l'enfer

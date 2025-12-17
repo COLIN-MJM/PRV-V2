@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 1809577594}
   - component: {fileID: 1809577593}
   - component: {fileID: 1809577592}
+  - component: {fileID: 1809577602}
   - component: {fileID: 1809577601}
   - component: {fileID: 1809577597}
   - component: {fileID: 1809577598}
@@ -371,7 +372,7 @@ MonoBehaviour:
   weaknessAgainst: 01000000
   fightingUpperHandAgainst: 
   fightingLowerHandAgainst: 
-  nativeSpeed: 15
+  nativeSpeed: 5
   rotationSpeed: 0.5
   refreshPathRate: 2
   speedModifierWhenChasing: 0
@@ -445,12 +446,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809577590}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b79f812b36a5014e8b52248ef18af2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 0.5
+--- !u!114 &1809577602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809577590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504b9b348d246124cae9431403b69f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2034793156
 GameObject:
   m_ObjectHideFlags: 0
