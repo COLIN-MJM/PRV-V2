@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5018231079427153305}
   - component: {fileID: 8741501087006904367}
   - component: {fileID: 8199687792275330927}
-  - component: {fileID: 6613681490862159812}
   - component: {fileID: 6532458070976520784}
   - component: {fileID: 7606340037761595855}
   - component: {fileID: 7635573061697730617}
@@ -119,28 +118,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!195 &6613681490862159812
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2384495371635827893}
-  m_Enabled: 0
-  m_AgentTypeID: 0
-  m_Radius: 0.5000001
-  m_Speed: 3.5
-  m_Acceleration: 50
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &6532458070976520784
 MonoBehaviour:
   m_ObjectHideFlags: 0

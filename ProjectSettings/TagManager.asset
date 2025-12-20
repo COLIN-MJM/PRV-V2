@@ -8,6 +8,7 @@ TagManager:
   - Species
   - Food
   - GM
+  - Wall
   layers:
   - Default
   - TransparentFX

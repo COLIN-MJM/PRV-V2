@@ -1,25 +1,30 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(EntityIdentity))]
 public class EntityFOV : MonoBehaviour
 {
+    // private Rigidbody rb;
     public EntityIdentity entityID;
     public List<GameObject> predatorsWithinFOV;
     public List<GameObject> preysWithinFOV;
     public List<GameObject> fightsWithinFOV;
     public List<GameObject> matesWithinFOV;
     public List<GameObject> foodWithinFOV;
+    public List<Vector3> wallsWithinFOV;
     private Collider selfCollider;
     private Collider[] _nearbyObjects;
 
     private void Start()
     {
+        // rb = GetComponent<Rigidbody>();
         entityID = gameObject.GetComponent<EntityIdentity>();
         selfCollider = GetComponent<Collider>();
         InvokeRepeating(nameof(CheckingSurroundings), 0f, 0.2f); //Optimisation?
+        wallsWithinFOV = new List<Vector3>();
     }
 
     private void CheckingSurroundings()
@@ -29,6 +34,10 @@ public class EntityFOV : MonoBehaviour
         fightsWithinFOV = new List<GameObject>();
         matesWithinFOV = new List<GameObject>();
         foodWithinFOV = new List<GameObject>();
+        wallsWithinFOV.Clear();
+        
+        
+        
         _nearbyObjects = Physics.OverlapSphere(transform.position, entityID.fovRadius);
         
         for (int i = 0; i < _nearbyObjects.Length; i++)
@@ -36,7 +45,6 @@ public class EntityFOV : MonoBehaviour
             float signedAngle = Vector3.Angle(transform.forward, _nearbyObjects[i].transform.position - transform.position);
             if (Mathf.Abs(signedAngle) < entityID.fovAngle / 2f && _nearbyObjects[i] != selfCollider)
             {
-                // Debug.Log(_nearbyObjects[i].name);
                 if (_nearbyObjects[i].CompareTag("Species"))
                 {
                     foreach (var species in entityID.strengthAgainst)
@@ -84,4 +92,11 @@ public class EntityFOV : MonoBehaviour
             }
         }
     }
+
+    // private Vector3 WallRaycast()
+    // {
+    //     
+    //
+    //     else return Vector3.zero;
+    // }
 }

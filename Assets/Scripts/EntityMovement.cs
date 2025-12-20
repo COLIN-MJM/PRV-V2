@@ -9,6 +9,7 @@ public class EntityMovement : MonoBehaviour
 {
     public EntityIdentity entityID;
     public StateChecker stateChecker;
+    public EntityFOV entityFOV;
     public Rigidbody rb;
     public GameObject ground;
     private Vector3 targetPos;
@@ -16,11 +17,14 @@ public class EntityMovement : MonoBehaviour
     private float timer;
     private Vector2 randomVect;
     private Vector3 randomDir;
+    private bool isSkippingWall;
+    private int test;
     
     private void Start()
     {
         entityID = GetComponent<EntityIdentity>();
         stateChecker = GetComponent<StateChecker>();
+        entityFOV = GetComponent<EntityFOV>();
         rb = GetComponent<Rigidbody>();
         ground = GameObject.FindGameObjectWithTag("Ground");
         
@@ -70,7 +74,6 @@ public class EntityMovement : MonoBehaviour
     {
         rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
         targetPos = stateChecker.targetPos;
-        targetPos = ClampingOnGround(targetPos);
         transform.forward = Vector3.Lerp(transform.forward, targetPos - transform.position, Time.fixedDeltaTime * entityID.rotationSpeed);
     }
 
@@ -99,17 +102,36 @@ public class EntityMovement : MonoBehaviour
             float z = distance * Mathf.Cos((randomAngle + worldAngle) * Mathf.Deg2Rad);
             
             randomDir = new Vector3(x, 0f, z).normalized * distance;
-            //targetPos = ClampingOnGround(transform.position + randomDir);
         }
         rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
-        transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * entityID.rotationSpeed);
+
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, entityID.fovRadius))
+            isSkippingWall = true;
+
+        else
+            isSkippingWall = false;
+        
+            
+
+        if (isSkippingWall) 
+            // randomDir = hit.normal;
+            randomDir = transform.right;
+            
+        
+        transform.forward = Vector3.Lerp(transform.forward, randomDir.normalized, Time.fixedDeltaTime * entityID.rotationSpeed);
     }
 
-    private Vector3 ClampingOnGround(Vector3 pos)
+    private Vector3 ClampingOnGround()
     {
-        pos.x = Mathf.Clamp(pos.x, -ground.transform.localScale.x * 5f, ground.transform.localScale.x * 5f);
-        pos.z = Mathf.Clamp(pos.z, -ground.transform.localScale.z * 5f, ground.transform.localScale.z * 5f);
-        return new Vector3(pos.x, 0, pos.z);
+        Vector3 totalNormals = Vector3.zero;
+        
+        foreach (Vector3 wall in entityFOV.wallsWithinFOV)
+        {
+            totalNormals += wall;
+        }
+        
+
+        return totalNormals;
     }
 
     private void FindNewPos()
@@ -118,7 +140,7 @@ public class EntityMovement : MonoBehaviour
         targetPos = new Vector3(randomVect.x, 0, randomVect.y) * entityID.refreshPathRate;
         targetPos.x += transform.position.x;
         targetPos.z += transform.position.z;
-        ClampingOnGround(targetPos);
+        //ClampingOnGround();
     }
 
     private void OnDrawGizmos()
