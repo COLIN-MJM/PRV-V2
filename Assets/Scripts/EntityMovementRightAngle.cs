@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(EntityIdentity))]
-public class EntityMovement : MonoBehaviour
+public class EntityMovementRightAngle : MonoBehaviour
 {
     public EntityIdentity entityID;
     public StateChecker stateChecker;
@@ -79,46 +79,76 @@ public class EntityMovement : MonoBehaviour
 
     private void RandomMovement(float speedMult)
     {
+        float worldAngle = 0;
         if (timer >= entityID.refreshPathRate)
         {
             timer = 0;
 
-            float sectorAngle = entityID.fovAngle;  // tranche = FOV angle
-            float halfAngle = sectorAngle / 2f; // Gauche Droite
+            int angleChosen = Random.Range(0, 3);
             
-            float randomAngle = Random.Range(-halfAngle, halfAngle);   // Angle Random
+            float randomAngle = 0f;
 
+            if (angleChosen == 0)
+                randomAngle = 270;
+            else if (angleChosen == 1)
+                randomAngle = 0;
+            else if (angleChosen == 2)
+                randomAngle = 90;
+            
             float distance = entityID.fovRadius;
-            
-            float worldAngle = Vector3.Angle(Vector3.forward, transform.forward);
-            
-            if (transform.forward.x < 0)
-            {
-                worldAngle = 360 - worldAngle;
-            }
-            
+
+            worldAngle = WorldAngle(transform.forward);
+
             // transformation radian de l'enfer
             float x = distance * Mathf.Sin((randomAngle + worldAngle) * Mathf.Deg2Rad);
             float z = distance * Mathf.Cos((randomAngle + worldAngle) * Mathf.Deg2Rad);
             
             randomDir = new Vector3(x, 0f, z).normalized * distance;
         }
-        rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
 
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, entityID.fovRadius))
-            isSkippingWall = true;
-
-        else
+        float angleNormal = 0;
+        if ((ClampingOnGround() != Vector3.zero) && (isSkippingWall == false))
+        {
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, entityID.fovRadius))
+            {
+                isSkippingWall = true;
+                angleNormal = WorldAngle(hit.normal);
+            }
+        }
+        else if (ClampingOnGround() == Vector3.zero)
+        {
             isSkippingWall = false;
+        }
         
-            
-
-        if (isSkippingWall) 
-            // randomDir = hit.normal;
-            randomDir = transform.right;
-            
+        
+        if (isSkippingWall)
+        {
+            if (Mathf.Abs(angleNormal - worldAngle) <= 180)
+            {
+                // randomDir = hit.normal;
+                randomDir = transform.right;
+            }
+            else
+            {
+                // randomDir = hit.normal;
+                randomDir = -transform.right;
+            }
+        } 
         
         transform.forward = Vector3.Lerp(transform.forward, randomDir.normalized, Time.fixedDeltaTime * entityID.rotationSpeed);
+        rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
+    }
+
+    private float WorldAngle(Vector3 dir)
+    {
+        float worldAngle = Vector3.Angle(Vector3.forward, dir);
+
+        if (dir.x < 0)
+        {
+            worldAngle = 360 - worldAngle;
+        }
+
+        return worldAngle;
     }
 
     private Vector3 ClampingOnGround()
@@ -130,7 +160,6 @@ public class EntityMovement : MonoBehaviour
             totalNormals += wall;
         }
         
-
         return totalNormals;
     }
 

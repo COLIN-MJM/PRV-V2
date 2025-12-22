@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 1809577598}
   - component: {fileID: 1809577600}
   - component: {fileID: 1809577599}
+  - component: {fileID: 1809577603}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Species
@@ -373,7 +374,7 @@ MonoBehaviour:
   fightingUpperHandAgainst: 
   fightingLowerHandAgainst: 
   nativeSpeed: 5
-  rotationSpeed: 0.5
+  rotationSpeed: 4
   refreshPathRate: 2
   speedModifierWhenChasing: 0
   speedModifierWhenFleeing: 0
@@ -404,6 +405,7 @@ MonoBehaviour:
   fightsWithinFOV: []
   matesWithinFOV: []
   foodWithinFOV: []
+  wallsWithinFOV: []
 --- !u!114 &1809577599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,11 +461,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809577590}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 504b9b348d246124cae9431403b69f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1809577603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809577590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd457dc61b65a644898b163770bb84fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityID: {fileID: 0}
+  stateChecker: {fileID: 0}
+  entityFOV: {fileID: 0}
+  rb: {fileID: 0}
+  ground: {fileID: 0}
 --- !u!1 &2034793156
 GameObject:
   m_ObjectHideFlags: 0
