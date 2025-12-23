@@ -48,7 +48,7 @@ public class FoodEating : MonoBehaviour
                     }
                 }
                 
-                Instantiate(spawningSpecies, transform.position + rdPos, Quaternion.identity);
+                Instantiate(spawningSpecies, eater.transform.position + rdPos, Quaternion.identity);
             }
             Destroy(gameObject);
         }
