@@ -138,7 +138,7 @@ public class EntityMovementZigzag : MonoBehaviour
             }
         } 
         
-        transform.forward = Vector3.Lerp(transform.forward, randomDir.normalized, Time.fixedDeltaTime * entityID.rotationSpeed);
+        transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * entityID.rotationSpeed);
         
         if (zigzagBase)
         {

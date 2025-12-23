@@ -136,7 +136,7 @@ public class EntityMovementRightAngle : MonoBehaviour
             }
         } 
         
-        transform.forward = Vector3.Lerp(transform.forward, randomDir.normalized, Time.fixedDeltaTime * entityID.rotationSpeed);
+        transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * entityID.rotationSpeed);
         rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
     }
 
