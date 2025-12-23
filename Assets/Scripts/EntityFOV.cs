@@ -54,7 +54,7 @@ public class EntityFOV : MonoBehaviour
                             preysWithinFOV.Add(_nearbyObjects[i].gameObject);
                         }
                     }
-                
+
                     foreach (var species in entityID.weaknessAgainst)
                     {
                         if (species == _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species)
@@ -63,7 +63,7 @@ public class EntityFOV : MonoBehaviour
                             // Debug.Log(_nearbyObjects[i].name);
                         }
                     }
-                
+
                     foreach (var species in entityID.fightingUpperHandAgainst)
                     {
                         if (species == _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species)
@@ -71,7 +71,7 @@ public class EntityFOV : MonoBehaviour
                             fightsWithinFOV.Add(_nearbyObjects[i].gameObject);
                         }
                     }
-                
+
                     foreach (var species in entityID.fightingLowerHandAgainst)
                     {
                         if (species == _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species)
@@ -80,7 +80,8 @@ public class EntityFOV : MonoBehaviour
                         }
                     }
 
-                    if (_nearbyObjects[i].gameObject != this.gameObject && _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species == entityID.species)
+                    if (_nearbyObjects[i].gameObject != this.gameObject &&
+                        _nearbyObjects[i].gameObject.GetComponent<EntityIdentity>().species == entityID.species)
                     {
                         matesWithinFOV.Add(_nearbyObjects[i].gameObject);
                     }
@@ -89,7 +90,10 @@ public class EntityFOV : MonoBehaviour
                 {
                     preysWithinFOV.Add(_nearbyObjects[i].gameObject);
                 }
-                else if (_nearbyObjects[i].CompareTag("Wall"))
+            }
+            else if (Mathf.Abs(signedAngle) < entityID.fovAngle / 5f && _nearbyObjects[i] != selfCollider)
+            {
+                if (_nearbyObjects[i].CompareTag("Wall"))
                 {
                     if (Physics.Raycast(transform.position, _nearbyObjects[i].gameObject.transform.position, out RaycastHit hit, 1000f))
                     {
