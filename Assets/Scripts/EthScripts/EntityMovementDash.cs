@@ -4,7 +4,7 @@ using UnityEngine;
 using Input = UnityEngine.Input;
 using Random = UnityEngine.Random;
 
-public class Movement_01 : MonoBehaviour
+public class EntityMovementDash : MonoBehaviour
 {
     private EntityIdentity entityID;
     private Vector3 randomDir;

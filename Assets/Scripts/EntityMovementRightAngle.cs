@@ -89,7 +89,7 @@ public class EntityMovementRightAngle : MonoBehaviour
             float randomAngle = 0f;
 
             if (angleChosen == 0)
-                randomAngle = 270;
+                randomAngle = -90;
             else if (angleChosen == 1)
                 randomAngle = 0;
             else if (angleChosen == 2)

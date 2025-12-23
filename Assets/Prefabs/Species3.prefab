@@ -165,6 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityID: {fileID: 0}
   stateChecker: {fileID: 0}
+  entityFOV: {fileID: 0}
   rb: {fileID: 0}
   ground: {fileID: 0}
 --- !u!114 &7635573061697730617
@@ -185,6 +186,7 @@ MonoBehaviour:
   fightsWithinFOV: []
   matesWithinFOV: []
   foodWithinFOV: []
+  wallsWithinFOV: []
 --- !u!114 &2656173911854698250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,5 +339,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 1

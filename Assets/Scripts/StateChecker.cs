@@ -97,7 +97,7 @@ public class StateChecker : MonoBehaviour
                 {
                     if (prey.gameObject != null && (prey.gameObject.transform.position - transform.position).magnitude < (targetToChase - transform.position).magnitude)
                     {
-                        targetToChase = prey.gameObject.transform.position;
+                        targetToChase = new Vector3(prey.gameObject.transform.position.x, transform.position.y, prey.gameObject.transform.position.z);
                     }
                 }
                 targetPos = targetToChase;
