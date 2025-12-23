@@ -25,6 +25,9 @@ public class EntityMovementZigzag : MonoBehaviour
     private bool isSkippingWall;
     private int test;
     
+    private float worldAngle = 0;
+    private float angleNormal = 0;
+    
     private void Start()
     {
         entityID = GetComponent<EntityIdentity>();
@@ -88,7 +91,6 @@ public class EntityMovementZigzag : MonoBehaviour
 
     private void RandomMovement(float speedMult)
     {
-        float worldAngle = 0;
         if (timer >= entityID.refreshPathRate)
         {
             timer = 0;
@@ -108,8 +110,7 @@ public class EntityMovementZigzag : MonoBehaviour
             
             randomDir = new Vector3(x, transform.position.y, z).normalized * distance;
         }
-
-        float angleNormal = 0;
+        
         if ((ClampingWallsNormals() != Vector3.zero) && (isSkippingWall == false))
         {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, entityID.fovRadius))
