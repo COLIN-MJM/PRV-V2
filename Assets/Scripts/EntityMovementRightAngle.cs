@@ -103,7 +103,7 @@ public class EntityMovementRightAngle : MonoBehaviour
             float x = distance * Mathf.Sin((randomAngle + worldAngle) * Mathf.Deg2Rad);
             float z = distance * Mathf.Cos((randomAngle + worldAngle) * Mathf.Deg2Rad);
             
-            randomDir = new Vector3(x, 0f, z).normalized * distance;
+            randomDir = new Vector3(x, transform.position.y, z).normalized * distance;
         }
 
         float angleNormal = 0;

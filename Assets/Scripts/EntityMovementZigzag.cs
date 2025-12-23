@@ -5,18 +5,23 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(EntityIdentity))]
-public class EntityMovementRandomInFOV : MonoBehaviour
+public class EntityMovementZigzag : MonoBehaviour
 {
+    public float zigzagTendency = 1f;
+    public float zigzagAmplitude = 1f;
+    public float zigzagPower = 1f;
     public EntityIdentity entityID;
     public StateChecker stateChecker;
     public EntityFOV entityFOV;
     public Rigidbody rb;
     public GameObject ground;
     private Vector3 targetPos;
-    private float t;
+    private float timerZigzag;
     private float timer;
     private Vector2 randomVect;
     private Vector3 randomDir;
+    private Vector3 zigzagVector;
+    private bool zigzagBase;
     private bool isSkippingWall;
     private int test;
     
@@ -32,11 +37,15 @@ public class EntityMovementRandomInFOV : MonoBehaviour
         Vector2 randPos = Random.insideUnitCircle;
         Vector3 initialDir = new Vector3(randPos.x + transform.position.x, transform.position.y, randPos.y + transform.position.z);
         transform.forward = (initialDir - transform.position).normalized;
+
+        zigzagVector = transform.right;
+        zigzagBase = true;
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
+        timerZigzag += Time.deltaTime;
     }
 
     private void FixedUpdate()
@@ -129,7 +138,23 @@ public class EntityMovementRandomInFOV : MonoBehaviour
         } 
         
         transform.forward = Vector3.Lerp(transform.forward, randomDir.normalized, Time.fixedDeltaTime * entityID.rotationSpeed);
-        rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
+        
+        if (zigzagBase)
+        {
+            zigzagVector = Vector3.Lerp(zigzagVector, -transform.right, Time.fixedDeltaTime * zigzagTendency);
+        }
+        else
+        {
+            zigzagVector = Vector3.Lerp(zigzagVector, transform.right, Time.fixedDeltaTime * zigzagTendency);
+        }
+
+        if (timerZigzag >= zigzagAmplitude)
+        {
+            zigzagBase = !zigzagBase;
+            timerZigzag = 0;
+        }
+        
+        rb.linearVelocity = (transform.forward/zigzagPower + zigzagVector).normalized * (entityID.nativeSpeed * speedMult * zigzagPower);
     }
 
     private float WorldAngle(Vector3 dir)
