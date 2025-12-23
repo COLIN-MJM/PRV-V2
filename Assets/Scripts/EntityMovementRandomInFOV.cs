@@ -102,13 +102,10 @@ public class EntityMovementRandomInFOV : MonoBehaviour
             randomDir = new Vector3(x, transform.position.y, z).normalized * distance;
         }
         
-        if ((ClampingWallsNormals() != Vector3.zero) && (isSkippingWall == false))
+        if ((ClampingWallsNormals() != Vector3.zero) && (isSkippingWall == false) && Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, entityID.fovRadius))
         {
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, entityID.fovRadius))
-            {
-                isSkippingWall = true;
-                angleNormal = WorldAngle(hit.normal);
-            }
+            isSkippingWall = true;
+            angleNormal = WorldAngle(hit.normal);
         }
         else if (ClampingWallsNormals() == Vector3.zero)
         {

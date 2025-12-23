@@ -89,6 +89,13 @@ public class EntityFOV : MonoBehaviour
                 {
                     preysWithinFOV.Add(_nearbyObjects[i].gameObject);
                 }
+                else if (_nearbyObjects[i].CompareTag("Wall"))
+                {
+                    if (Physics.Raycast(transform.position, _nearbyObjects[i].gameObject.transform.position, out RaycastHit hit, 1000f))
+                    {
+                        wallsWithinFOV.Add(hit.normal);
+                    }
+                }
             }
         }
     }
