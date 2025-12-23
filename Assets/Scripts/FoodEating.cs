@@ -19,7 +19,8 @@ public class FoodEating : MonoBehaviour
             {
                 Species eaterSpecies = eater.GetComponent<EntityIdentity>().species;
                 GameObject spawningSpecies = null;
-                Vector3 rdPos = UnityEngine.Random.insideUnitCircle * 4f;
+                Vector3 rdPos = UnityEngine.Random.insideUnitCircle;
+                rdPos = new Vector3(rdPos.x * 4, 0, rdPos.z * 4);
                 int rdPercentage = UnityEngine.Random.Range(0, 100);
             
                 if (rdPercentage < percentageSpawningVariance)
