@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
@@ -17,7 +18,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
     private float timer;
     private Vector2 randomVect;
     private Vector3 randomDir;
-    private bool isSkippingWall;
+    public bool isSkippingWall;
     private int test;
     
     private float worldAngle = 0;
@@ -82,7 +83,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
 
     private void RandomMovement(float speedMult)
     {
-        if (timer >= entityID.refreshPathRate)
+        if (timer >= entityID.refreshPathRate && !isSkippingWall)
         {
             timer = 0;
 
@@ -100,6 +101,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
             float z = distance * Mathf.Cos((randomAngle + worldAngle) * Mathf.Deg2Rad);
             
             randomDir = (new Vector3(x, 0f, z).normalized + new Vector3(0f, transform.position.y, 0f)) * distance;
+            // Coroutine rotation
         }
         
         if ((ClampingWallsNormals() != Vector3.zero) && (isSkippingWall == false) && Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, entityID.fovRadius))
@@ -118,15 +120,27 @@ public class EntityMovementRandomInFOV : MonoBehaviour
             {
                 // randomDir = hit.normal;
                 randomDir = transform.right;
+                // StopCoroutine(ChangeDir());
+                // StartCoroutine(ChangeDir());
             }
             else
             {
                 // randomDir = hit.normal;
                 randomDir = -transform.right;
+                // StopCoroutine(ChangeDir());
+                // StartCoroutine(ChangeDir());
             }
         } 
         
-        transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * entityID.rotationSpeed);
+        float angle = Vector3.SignedAngle(transform.forward, randomDir, transform.up);
+        if (Mathf.Abs(angle) >= 0.1f)
+        {
+            float maxStep = entityID.rotationSpeed * Time.fixedDeltaTime;
+            float step = Mathf.Clamp(angle, -maxStep, maxStep);
+            
+            transform.Rotate(transform.up, step);
+        }
+        
         rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
     }
 
@@ -140,6 +154,22 @@ public class EntityMovementRandomInFOV : MonoBehaviour
         }
 
         return worldAngle;
+    }
+
+    private IEnumerator ChangeDir()
+    {
+        while (true)
+        {
+            float angle = Vector3.SignedAngle(transform.forward, randomDir, transform.up);
+            if (Mathf.Abs(angle) <= 0.1f)
+                break;
+            
+            float maxStep = entityID.rotationSpeed * Time.fixedDeltaTime;
+            float step = Mathf.Clamp(angle, -maxStep, maxStep);
+            
+            transform.Rotate(transform.up, step);
+            yield return null;
+        }
     }
 
     private Vector3 ClampingWallsNormals()

@@ -1867,17 +1867,25 @@ PrefabInstance:
       propertyPath: fovAngle
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 3185620283868787627, guid: 78cfd335221a32c4786459e5a5c5de01, type: 3}
+      propertyPath: nativeSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3185620283868787627, guid: 78cfd335221a32c4786459e5a5c5de01, type: 3}
+      propertyPath: rotationSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6328527880762836570, guid: 78cfd335221a32c4786459e5a5c5de01, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -54.8
+      value: -3.1
       objectReference: {fileID: 0}
     - target: {fileID: 6328527880762836570, guid: 78cfd335221a32c4786459e5a5c5de01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.19999953
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6328527880762836570, guid: 78cfd335221a32c4786459e5a5c5de01, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 92.8
+      value: 87.6
       objectReference: {fileID: 0}
     - target: {fileID: 6328527880762836570, guid: 78cfd335221a32c4786459e5a5c5de01, type: 3}
       propertyPath: m_LocalRotation.w
