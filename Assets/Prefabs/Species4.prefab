@@ -168,6 +168,7 @@ MonoBehaviour:
   entityFOV: {fileID: 0}
   rb: {fileID: 0}
   ground: {fileID: 0}
+  isSkippingWall: 0
 --- !u!114 &8408339431621042312
 MonoBehaviour:
   m_ObjectHideFlags: 0

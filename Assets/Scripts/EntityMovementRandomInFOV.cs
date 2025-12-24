@@ -13,16 +13,16 @@ public class EntityMovementRandomInFOV : MonoBehaviour
     public EntityFOV entityFOV;
     public Rigidbody rb;
     public GameObject ground;
+    private Bounds groundBounds;
     private Vector3 targetPos;
-    private float t;
     private float timer;
-    private Vector2 randomVect;
     private Vector3 randomDir;
-    public bool isSkippingWall;
-    private int test;
     
-    private float worldAngle = 0;
-    private float angleNormal = 0;
+    // Variables de vérification d'avoidance des murs
+    private Vector3 refVector = Vector3.zero;
+    private float rotationOrientation = 0f;
+    private bool hasAvoidingVector = false;
+
     
     private void Start()
     {
@@ -31,6 +31,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
         entityFOV = GetComponent<EntityFOV>();
         rb = GetComponent<Rigidbody>();
         ground = GameObject.FindGameObjectWithTag("Ground");
+        groundBounds = ground.GetComponent<Collider>().bounds;
         
         //Rotation aléatoire au start
         Vector2 randPos = Random.insideUnitCircle;
@@ -76,14 +77,18 @@ public class EntityMovementRandomInFOV : MonoBehaviour
 
     private void StateCheckedMovement(float speedMult)
     {
-        rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
         targetPos = stateChecker.targetPos;
-        transform.forward = Vector3.Lerp(transform.forward, targetPos - transform.position, Time.fixedDeltaTime * entityID.rotationSpeed);
+        randomDir = (targetPos - transform.position).normalized;
+        ClampingOnGround();
+        transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * entityID.rotationSpeed);
+        rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
     }
 
     private void RandomMovement(float speedMult)
     {
-        if (timer >= entityID.refreshPathRate && !isSkippingWall)
+        ClampingOnGround();
+
+        if (timer >= entityID.refreshPathRate)
         {
             timer = 0;
 
@@ -92,76 +97,109 @@ public class EntityMovementRandomInFOV : MonoBehaviour
             
             float randomAngle = Random.Range(-halfAngle, halfAngle);   // Angle Random
 
-            float distance = entityID.fovRadius;
-
-            worldAngle = WorldAngle(transform.forward);
-
-            // transformation radian de l'enfer
-            float x = distance * Mathf.Sin((randomAngle + worldAngle) * Mathf.Deg2Rad);
-            float z = distance * Mathf.Cos((randomAngle + worldAngle) * Mathf.Deg2Rad);
-            
-            randomDir = (new Vector3(x, 0f, z).normalized + new Vector3(0f, transform.position.y, 0f)) * distance;
-            // Coroutine rotation
+            randomDir = Quaternion.Euler(0f, randomAngle, 0f) * Vector3.forward;
+            randomDir.Normalize();
         }
-        
-        if ((ClampingWallsNormals() != Vector3.zero) && (isSkippingWall == false) && Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, entityID.fovRadius))
-        {
-            isSkippingWall = true;
-            angleNormal = WorldAngle(hit.normal);
-        }
-        else if (ClampingWallsNormals() == Vector3.zero)
-        {
-            isSkippingWall = false;
-        }
-        
-        if (isSkippingWall)
-        {
-            if (Mathf.Abs(angleNormal - worldAngle) <= 180)
-            {
-                // randomDir = hit.normal;
-                randomDir = transform.right;
-                // StopCoroutine(ChangeDir());
-                // StartCoroutine(ChangeDir());
-            }
-            else
-            {
-                // randomDir = hit.normal;
-                randomDir = -transform.right;
-                // StopCoroutine(ChangeDir());
-                // StartCoroutine(ChangeDir());
-            }
-        } 
         
         float angle = Vector3.SignedAngle(transform.forward, randomDir, transform.up);
         if (Mathf.Abs(angle) >= 0.1f)
         {
-            float maxStep = entityID.rotationSpeed * Time.fixedDeltaTime;
+            float maxStep = entityID.rotationSpeed;
             float step = Mathf.Clamp(angle, -maxStep, maxStep);
             
             transform.Rotate(transform.up, step);
         }
         
-        rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
+        rb.linearVelocity = transform.forward * (entityID.nativeSpeed * speedMult);
     }
 
-    private float WorldAngle(Vector3 dir)
+    private void ClampingOnGround()
     {
-        float worldAngle = Vector3.Angle(Vector3.forward, dir);
-
-        if (dir.x < 0)
+        Vector3 aheadPos = transform.position + transform.forward * entityID.fovRadius;
+        if (!groundBounds.Contains(new Vector3(aheadPos.x, ground.transform.position.y, aheadPos.z)) && !hasAvoidingVector)
         {
-            worldAngle = 360 - worldAngle;
+            hasAvoidingVector = true;
+            timer = 0;
+            SearchClampingParameters(aheadPos);
+            float avoidingAngle = (Vector3.Angle(transform.forward, refVector) + 2f) * rotationOrientation;
+            randomDir = Quaternion.Euler(0f, avoidingAngle, 0f) * transform.forward;
+            randomDir.Normalize();
         }
 
-        return worldAngle;
+        if (hasAvoidingVector)
+        {
+            timer = 0;
+            if (Vector3.Angle(transform.forward, randomDir) < 1f)
+            {
+                hasAvoidingVector = false;
+            }
+        }
     }
 
+    private void SearchClampingParameters(Vector3 aheadPos)
+    {
+        if (aheadPos.x < groundBounds.min.x)
+        {
+            if (aheadPos.z >= transform.position.z)
+            {
+                refVector = Vector3.forward;
+                rotationOrientation = 1f;
+            }
+            else
+            {
+                refVector = -Vector3.forward;
+                rotationOrientation = -1f;
+            }
+        }
+        else if (aheadPos.x > groundBounds.max.x)
+        {
+            if (aheadPos.z >= transform.position.z)
+            {
+                refVector = Vector3.forward;
+                rotationOrientation = -1f;
+            }
+            else
+            {
+                refVector = -Vector3.forward;
+                rotationOrientation = 1f;
+            }
+        }
+        else if (aheadPos.z < groundBounds.min.z)
+        {
+            if (aheadPos.x >= transform.position.x)
+            {
+                refVector = Vector3.right;
+                rotationOrientation = -1f;
+            }
+            else
+            {
+                refVector = -Vector3.right;
+                rotationOrientation = 1f;
+            }
+        }
+        else if (aheadPos.z > groundBounds.max.z)
+        {
+            if (aheadPos.x >= transform.position.x)
+            {
+                refVector = Vector3.right;
+                rotationOrientation = 1f;
+            }
+            else
+            {
+                refVector = -Vector3.right;
+                rotationOrientation = -1f;
+            }
+        }
+    }
+
+    // Coroutine (pas encore appelée)
     private IEnumerator ChangeDir()
     {
         while (true)
         {
             float angle = Vector3.SignedAngle(transform.forward, randomDir, transform.up);
             if (Mathf.Abs(angle) <= 0.1f)
+                // todo mettre la valeur à ce qu'elle est réelement 
                 break;
             
             float maxStep = entityID.rotationSpeed * Time.fixedDeltaTime;
@@ -170,28 +208,6 @@ public class EntityMovementRandomInFOV : MonoBehaviour
             transform.Rotate(transform.up, step);
             yield return null;
         }
-    }
-
-    private Vector3 ClampingWallsNormals()
-    {
-        Vector3 totalNormals = Vector3.zero;
-        
-        foreach (Vector3 wall in entityFOV.wallsWithinFOV)
-        {
-            totalNormals += wall;
-        }
-        
-
-        return totalNormals;
-    }
-
-    private void FindNewPos()
-    {
-        randomVect = Random.insideUnitCircle.normalized;
-        targetPos = new Vector3(randomVect.x, 0, randomVect.y) * entityID.refreshPathRate;
-        targetPos.x += transform.position.x;
-        targetPos.z += transform.position.z;
-        //ClampingOnGround();
     }
 
     private void OnDrawGizmos()
