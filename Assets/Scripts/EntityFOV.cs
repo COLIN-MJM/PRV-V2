@@ -90,6 +90,10 @@ public class EntityFOV : MonoBehaviour
                 {
                     preysWithinFOV.Add(_nearbyObjects[i].gameObject);
                 }
+                else if (_nearbyObjects[i].CompareTag("Scarecrow"))
+                {
+                    predatorsWithinFOV.Add(_nearbyObjects[i].gameObject);
+                }
             }
             else if (Mathf.Abs(signedAngle) < entityID.fovAngle / 5f && _nearbyObjects[i] != selfCollider)
             {
