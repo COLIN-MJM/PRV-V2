@@ -97,7 +97,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
             
             float randomAngle = Random.Range(-halfAngle, halfAngle);   // Angle Random
 
-            randomDir = Quaternion.Euler(0f, randomAngle, 0f) * Vector3.forward;
+            randomDir = Quaternion.Euler(0f, randomAngle, 0f) * transform.forward;
             randomDir.Normalize();
         }
         
