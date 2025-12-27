@@ -25,7 +25,6 @@ public class EntityMovementDash : MonoBehaviour
     private bool hasAvoidingVector = false;
 
     private float timerDash = 0;
-    private bool onHold = false;
 
     
     private void Start()
@@ -84,8 +83,20 @@ public class EntityMovementDash : MonoBehaviour
         targetPos = stateChecker.targetPos;
         randomDir = (targetPos - transform.position).normalized;
         ClampingOnGround();
-        transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * entityID.rotationSpeed);
-        rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
+        
+        float angle = Vector3.SignedAngle(transform.forward, randomDir, transform.up);
+        if (Mathf.Abs(angle) >= 0.1f)
+        {
+            float maxStep = entityID.rotationSpeed;
+            float step = Mathf.Clamp(angle, -maxStep, maxStep);
+            
+            transform.Rotate(transform.up, step);
+        }
+        else
+        {
+            timerDash += Time.fixedDeltaTime;
+        }
+        DashVelocityUpdating(speedMult, entityID.refreshPathRate/4, timerDashCD/4);
     }
 
     private void RandomMovement(float speedMult)
@@ -95,7 +106,6 @@ public class EntityMovementDash : MonoBehaviour
         if (timer >= entityID.refreshPathRate)
         {
             rb.linearVelocity = Vector3.zero;
-            onHold = true;
             timer = 0;
             timerDash = 0;
 
@@ -111,7 +121,6 @@ public class EntityMovementDash : MonoBehaviour
         float angle = Vector3.SignedAngle(transform.forward, randomDir, transform.up);
         if (Mathf.Abs(angle) >= 0.1f)
         {
-            onHold = true;
             float maxStep = entityID.rotationSpeed;
             float step = Mathf.Clamp(angle, -maxStep, maxStep);
             
@@ -122,14 +131,19 @@ public class EntityMovementDash : MonoBehaviour
             timerDash += Time.fixedDeltaTime;
         }
 
-        if (timerDash >= timerDashCD && rb.linearVelocity == Vector3.zero)
+        DashVelocityUpdating(speedMult, entityID.refreshPathRate, timerDashCD);
+    }
+
+    private void DashVelocityUpdating(float speedMult, float refreshTiming, float dashLength)
+    {
+        if (timerDash >= dashLength && rb.linearVelocity == Vector3.zero)
         {
             timerDash = 0;
             rb.linearVelocity = transform.forward * (entityID.nativeSpeed * speedMult);
         }
         else if (rb.linearVelocity != Vector3.zero)
         {
-            rb.linearVelocity -= rb.linearVelocity.normalized * (Time.fixedDeltaTime / entityID.refreshPathRate);
+            rb.linearVelocity -= rb.linearVelocity.normalized * (Time.fixedDeltaTime / refreshTiming);
         }
     }
 

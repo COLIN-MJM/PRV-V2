@@ -80,6 +80,35 @@ public class EntityMovementRightAngle : MonoBehaviour
         targetPos = stateChecker.targetPos;
         randomDir = (targetPos - transform.position).normalized;
         ClampingOnGroundWithRightAngle();
+        
+        int randomN = Random.Range(0, 2);
+        float angle = Vector3.SignedAngle(transform.forward, randomDir, transform.up);
+        float randomAngle = 0f;
+        if (angle >= 0f && angle < 90f)
+        {
+            if (randomN == 1)
+            {
+                randomAngle = 90f;
+            }
+        }
+        else if (angle >= 90f && angle < 180f)
+        {
+            randomAngle = 90f;
+        }
+        else if (angle >= -90f && angle < 0f)
+        {
+            if (randomN == 1)
+            {
+                randomAngle = -90f;
+            }
+        }
+        else if (angle >= -180f && angle < -90f)
+        {
+            randomAngle = -90f;
+        }
+            
+        randomDir = Quaternion.Euler(0f, randomAngle, 0f) * transform.forward;
+        randomDir.Normalize();
         transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * entityID.rotationSpeed);
         rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
     }

@@ -91,7 +91,8 @@ public class EntityMovementZigzag : MonoBehaviour
         randomDir = (targetPos - transform.position).normalized;
         ClampingOnGround();
         transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * entityID.rotationSpeed);
-        rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
+        ZigzagControl();
+        rb.linearVelocity = (transform.forward/zigzagPower + zigzagVector).normalized * (entityID.nativeSpeed * speedMult * zigzagPower);
     }
 
     private void RandomMovement(float speedMult)
@@ -120,6 +121,12 @@ public class EntityMovementZigzag : MonoBehaviour
             transform.Rotate(transform.up, step);
         }
         
+        ZigzagControl();
+        rb.linearVelocity = (transform.forward/zigzagPower + zigzagVector).normalized * (entityID.nativeSpeed * speedMult * zigzagPower);
+    }
+
+    private void ZigzagControl()
+    {
         if (zigzagBase)
         {
             zigzagVector = Vector3.Lerp(zigzagVector, -transform.right, Time.fixedDeltaTime * zigzagTendency);
@@ -134,8 +141,6 @@ public class EntityMovementZigzag : MonoBehaviour
             zigzagBase = !zigzagBase;
             timerZigzag = 0;
         }
-        
-        rb.linearVelocity = (transform.forward/zigzagPower + zigzagVector).normalized * (entityID.nativeSpeed * speedMult * zigzagPower);
     }
 
     private void ClampingOnGround()
