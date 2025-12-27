@@ -31,6 +31,7 @@ public class StateChecker : MonoBehaviour
     {
         if (entityID.state == State.Idle)
         {
+            entityFOV.currentFOV = entityID.fovAngle;
             if (entityFOV.predatorsWithinFOV.Count > 0)
             {
                 entityID.state = State.Fleeing;
@@ -55,6 +56,7 @@ public class StateChecker : MonoBehaviour
 
         if (entityID.state == State.Fleeing)
         {
+            entityFOV.currentFOV = 360;
             t += 0.2f;
             
             if (t <= entityID.enduranceWhenFleeing &&  entityFOV.predatorsWithinFOV.Count > 0)
@@ -87,6 +89,7 @@ public class StateChecker : MonoBehaviour
 
         if (entityID.state == State.Chasing)
         {
+            entityFOV.currentFOV = entityID.fovAngle;
             t += 0.2f;
 
             if (t <= entityID.enduranceWhenChasing && entityFOV.preysWithinFOV.Count > 0)
@@ -128,6 +131,7 @@ public class StateChecker : MonoBehaviour
 
         if (entityID.state == State.Fatigued)
         {
+            entityFOV.currentFOV = entityID.fovAngle;
             t += 0.2f;
 
             if (t > entityID.recoveryTime)

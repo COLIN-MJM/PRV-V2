@@ -17,6 +17,7 @@ public class EntityFOV : MonoBehaviour
     public List<Vector3> wallsWithinFOV;
     private Collider selfCollider;
     private Collider[] _nearbyObjects;
+    public float currentFOV;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class EntityFOV : MonoBehaviour
         selfCollider = GetComponent<Collider>();
         InvokeRepeating(nameof(CheckingSurroundings), 0f, 0.2f); //Optimisation?
         wallsWithinFOV = new List<Vector3>();
+        currentFOV = entityID.fovAngle;
     }
 
     private void CheckingSurroundings()
@@ -43,7 +45,7 @@ public class EntityFOV : MonoBehaviour
         for (int i = 0; i < _nearbyObjects.Length; i++)
         {
             float signedAngle = Vector3.Angle(transform.forward, _nearbyObjects[i].transform.position - transform.position);
-            if (Mathf.Abs(signedAngle) < entityID.fovAngle / 2f && _nearbyObjects[i] != selfCollider)
+            if (Mathf.Abs(signedAngle) < currentFOV / 2f && _nearbyObjects[i] != selfCollider)
             {
                 if (_nearbyObjects[i].CompareTag("Species"))
                 {
