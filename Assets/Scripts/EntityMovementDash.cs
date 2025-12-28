@@ -136,14 +136,11 @@ public class EntityMovementDash : MonoBehaviour
 
     private void DashVelocityUpdating(float speedMult, float refreshTiming, float dashLength)
     {
-        if (timerDash >= dashLength && rb.linearVelocity == Vector3.zero)
+        if (timerDash >= dashLength)
         {
+            rb.linearVelocity = Vector3.zero;
             timerDash = 0;
-            rb.linearVelocity = transform.forward * (entityID.nativeSpeed * speedMult);
-        }
-        else if (rb.linearVelocity != Vector3.zero)
-        {
-            rb.linearVelocity -= rb.linearVelocity.normalized * (Time.fixedDeltaTime / refreshTiming);
+            rb.AddForce(transform.forward * (entityID.nativeSpeed * speedMult), ForceMode.Impulse);
         }
     }
 
