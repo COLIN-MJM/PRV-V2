@@ -224,6 +224,7 @@ MonoBehaviour:
   interactingRangeEntities: []
   child: {fileID: 6797965953060153057}
   isInCollision: 0
+  spawnCorpse: {fileID: 0}
 --- !u!114 &4173460013106403022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,3 +357,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityID: {fileID: 0}
+  carcass: {fileID: 8319837764671334093, guid: 0e35753f06739e341b0242077d7f017c, type: 3}

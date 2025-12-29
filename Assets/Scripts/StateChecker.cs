@@ -67,7 +67,7 @@ public class StateChecker : MonoBehaviour
                 {
                     if (predator != null)
                     {
-                        fleeingDirection += new Vector3(predator.transform.forward.x, 0, predator.transform.forward.z);
+                        fleeingDirection -= new Vector3(predator.transform.forward.x, 0, predator.transform.forward.z);
                     }
                 }
                 // fleeingDirection = -fleeingDirection;
@@ -105,7 +105,7 @@ public class StateChecker : MonoBehaviour
                         targetToChase = new Vector3(prey.gameObject.transform.position.x, transform.position.y, prey.gameObject.transform.position.z);
                     }
                 }
-                targetPos = targetToChase;
+                targetPos = targetToChase - transform.position;
             }
             else if (entityFOV.preysWithinFOV.Count == 0)
             {
