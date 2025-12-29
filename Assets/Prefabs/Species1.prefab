@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 6378986312588673064}
   - component: {fileID: -2045406052066068269}
   - component: {fileID: 8604668278478979759}
+  - component: {fileID: -2786186242355588809}
   m_Layer: 0
   m_Name: Species1
   m_TagString: Species
@@ -168,7 +169,6 @@ MonoBehaviour:
   entityFOV: {fileID: 0}
   rb: {fileID: 0}
   ground: {fileID: 0}
-  isSkippingWall: 0
 --- !u!114 &8614927263629562624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +188,7 @@ MonoBehaviour:
   matesWithinFOV: []
   foodWithinFOV: []
   wallsWithinFOV: []
+  currentFOV: 0
 --- !u!114 &5578232867560692834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,3 +343,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 1
+--- !u!114 &-2786186242355588809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6797965953060153057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4d9fa788e42ae43ab419fc5ce1c1e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
