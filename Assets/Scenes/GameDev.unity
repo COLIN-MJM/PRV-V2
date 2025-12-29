@@ -505,7 +505,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5387480836745986218, guid: 7704c93569596a74cb850071a8aa5b54, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1646408109}
   m_SourcePrefab: {fileID: 100100000, guid: 7704c93569596a74cb850071a8aa5b54, type: 3}
 --- !u!1001 &548107079
 PrefabInstance:
@@ -1682,6 +1685,25 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02d24028600336340baa48c0f2ed8061, type: 3}
+--- !u!1 &1646408108 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5387480836745986218, guid: 7704c93569596a74cb850071a8aa5b54, type: 3}
+  m_PrefabInstance: {fileID: 513550598}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1646408109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646408108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4d9fa788e42ae43ab419fc5ce1c1e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityID: {fileID: 0}
+  carcass: {fileID: 8319837764671334093, guid: 0e35753f06739e341b0242077d7f017c, type: 3}
 --- !u!1001 &1765992231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1864,9 +1886,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5341543887678264666, guid: 0e35753f06739e341b0242077d7f017c, type: 3}
+      propertyPath: m_Name
+      value: Carcass
+      objectReference: {fileID: 0}
     - target: {fileID: 8319837764671334093, guid: 0e35753f06739e341b0242077d7f017c, type: 3}
       propertyPath: m_Name
-      value: Corpse
+      value: Carcass
       objectReference: {fileID: 0}
     - target: {fileID: 8319837764671334093, guid: 0e35753f06739e341b0242077d7f017c, type: 3}
       propertyPath: m_IsActive

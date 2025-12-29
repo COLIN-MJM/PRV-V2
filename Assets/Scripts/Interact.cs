@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(EntityIdentity))]
@@ -14,10 +15,13 @@ public class Interact : MonoBehaviour
     public GameObject child;
     public bool isInCollision;
 
+    public SpawnCarcass spawnCorpse;
+
     private void Start()
     {
         entityID = GetComponent<EntityIdentity>();
         entityFOV = GetComponent<EntityFOV>();
+        spawnCorpse = GetComponent<SpawnCarcass>();
         InvokeRepeating(nameof(InteractCheck), 0f, 0.2f);
         isInCollision = false;
     }
@@ -35,6 +39,7 @@ public class Interact : MonoBehaviour
                     if (entity.GetComponent<EntityIdentity>().species == prey)
                     {
                         entityFOV.preysWithinFOV.Remove(entity.gameObject);
+                        spawnCorpse.SpawnIDCorpse();
                         Destroy(entity.gameObject);
                     }
                     else
@@ -50,6 +55,16 @@ public class Interact : MonoBehaviour
                 entityFOV.foodWithinFOV.Remove(entity.gameObject);
                 
             }
+            
         }
     }
+    
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Carcass") && entityID.strengthAgainst.Contains(other.gameObject.GetComponent<CarcassState>().species))
+        {
+            other.gameObject.GetComponent<CarcassState>().carcassHealth -= Time.deltaTime;
+        }
+    }
+    
 }
