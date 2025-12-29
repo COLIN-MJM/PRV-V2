@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 6791589443676760791}
   - component: {fileID: -2901477280905652816}
   - component: {fileID: 245092036501826312}
+  - component: {fileID: -5106024456721349933}
   m_Layer: 0
   m_Name: Species2
   m_TagString: Species
@@ -168,7 +169,6 @@ MonoBehaviour:
   entityFOV: {fileID: 0}
   rb: {fileID: 0}
   ground: {fileID: 0}
-  isSkippingWall: 0
 --- !u!114 &6084082106887357807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +188,7 @@ MonoBehaviour:
   matesWithinFOV: []
   foodWithinFOV: []
   wallsWithinFOV: []
+  currentFOV: 0
 --- !u!114 &231015468276277967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +224,7 @@ MonoBehaviour:
   interactingRangeEntities: []
   child: {fileID: 5387480836745986218}
   isInCollision: 0
+  spawnCorpse: {fileID: 0}
 --- !u!114 &8604654339696575618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,3 +344,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 1
+--- !u!114 &-5106024456721349933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5387480836745986218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4d9fa788e42ae43ab419fc5ce1c1e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityID: {fileID: 0}
+  carcass: {fileID: 8319837764671334093, guid: 0e35753f06739e341b0242077d7f017c, type: 3}

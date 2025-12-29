@@ -9,6 +9,8 @@ TagManager:
   - Food
   - GM
   - Wall
+  - Scarecrow
+  - Carcass
   layers:
   - Default
   - TransparentFX

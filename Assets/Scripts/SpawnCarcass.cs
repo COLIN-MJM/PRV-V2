@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
 
-public class SpawnCorpse : MonoBehaviour
+public class SpawnCarcass : MonoBehaviour
 {
     public EntityIdentity entityID;
+    public GameObject carcass;
     
     private void Start()
     {
@@ -18,7 +19,8 @@ public class SpawnCorpse : MonoBehaviour
 
     public void SpawnIDCorpse()
     {
-        //Logique
+        GameObject currentCarcass = Instantiate(carcass, transform.position, transform.rotation);
+        currentCarcass.GetComponent<CarcassState>().species = entityID.species;
     }
     
 }
