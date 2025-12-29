@@ -75,6 +75,7 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
+            // Instantiate(currentChoice, new Vector3(eventData.pointerPressRaycast.worldPosition.x, 0f, eventData.pointerPressRaycast.worldPosition.z), Quaternion.identity);
             Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);
         }
     }

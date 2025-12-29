@@ -10,6 +10,11 @@ public class SpawnCorpse : MonoBehaviour
         entityID = GetComponent<EntityIdentity>();
     }
 
+    private void Update()
+    {
+        // Debug.Log(transform.position);
+    }
+
 
     public void SpawnIDCorpse()
     {

@@ -70,8 +70,9 @@ public class StateChecker : MonoBehaviour
                         fleeingDirection += predator.transform.position;
                     }
                 }
-                fleeingDirection = -fleeingDirection.normalized;
-                targetPos = fleeingDirection * 5f;
+                fleeingDirection = -fleeingDirection;
+                targetPos = (fleeingDirection * 5f) + transform.position;
+                Debug.Log(fleeingDirection);
             }
             else if (entityFOV.predatorsWithinFOV.Count == 0)
             {

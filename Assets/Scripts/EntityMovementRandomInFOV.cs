@@ -41,6 +41,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
 
     private void Update()
     {
+        // transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
         timer += Time.deltaTime;
     }
 
@@ -78,7 +79,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
     private void StateCheckedMovement(float speedMult)
     {
         targetPos = stateChecker.targetPos;
-        randomDir = (targetPos - transform.position).normalized;
+        randomDir = (targetPos - transform.position);
         ClampingOnGround();
         transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * entityID.rotationSpeed);
         rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
