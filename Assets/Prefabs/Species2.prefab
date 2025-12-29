@@ -148,7 +148,7 @@ MonoBehaviour:
   recoveryTime: 0.1
   reproductionCooldown: 0
   fovRadius: 5
-  fovAngle: 180
+  fovAngle: 100
   interactingRadius: 1.3
   reproducingRadius: 0
 --- !u!114 &3145378884874384820
@@ -168,7 +168,6 @@ MonoBehaviour:
   entityFOV: {fileID: 0}
   rb: {fileID: 0}
   ground: {fileID: 0}
-  isSkippingWall: 0
 --- !u!114 &6084082106887357807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +187,7 @@ MonoBehaviour:
   matesWithinFOV: []
   foodWithinFOV: []
   wallsWithinFOV: []
+  currentFOV: 0
 --- !u!114 &231015468276277967
 MonoBehaviour:
   m_ObjectHideFlags: 0

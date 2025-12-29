@@ -62,16 +62,17 @@ public class StateChecker : MonoBehaviour
             if (t <= entityID.enduranceWhenFleeing &&  entityFOV.predatorsWithinFOV.Count > 0)
             {
                 targetObjects = entityFOV.predatorsWithinFOV;
-                Vector3 fleeingDirection = Vector3.zero;
-                foreach (var predator in targetObjects)
+                Vector3 fleeingDirection = new Vector3(transform.forward.x, 0, transform.forward.z);
+                foreach (GameObject predator in targetObjects)
                 {
                     if (predator != null)
                     {
-                        fleeingDirection += predator.transform.position;
+                        fleeingDirection += new Vector3(predator.transform.forward.x, 0, predator.transform.forward.z);
                     }
                 }
-                fleeingDirection = -fleeingDirection;
-                targetPos = (fleeingDirection * 5f) + transform.position;
+                // fleeingDirection = -fleeingDirection;
+                // targetPos = (fleeingDirection * 5f) + transform.position;
+                targetPos = fleeingDirection.normalized * 5f;
                 Debug.Log(fleeingDirection);
             }
             else if (entityFOV.predatorsWithinFOV.Count == 0)
