@@ -86,8 +86,9 @@ public class EntityMovementLazy : MonoBehaviour
 
     private void SleepingLerping(float deceleration)
     {
-        if (rb.linearVelocity != Vector3.zero)
-            rb.linearVelocity -= transform.forward * (Time.fixedDeltaTime / deceleration);
+        rb.linearVelocity = Vector3.zero;
+        // if (rb.linearVelocity != Vector3.zero)
+        //     rb.linearVelocity -= transform.forward * (Time.fixedDeltaTime / deceleration);
     }
 
     private void ClampingOnGround()
