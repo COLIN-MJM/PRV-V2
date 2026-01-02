@@ -17,12 +17,12 @@ public class CarcassState : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(carcassHealth);
+        // Debug.Log(carcassHealth);
         
         float toScale = 0.2f + (carcassHealth / maxCarcassHealth);
         transform.localScale = new Vector3(toScale, toScale, toScale);
 
-        Debug.Log("toScale = " + toScale);
+        // Debug.Log("toScale = " + toScale);
         
         if (carcassHealth <= 0)
         {
