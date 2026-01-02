@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 
 public class PlayerChoice : MonoBehaviour
 {
+    public bool carcassOn;
+
+
     // public InputReader inputReader;
     // public SpawnByPlayer spawnByPlayer;
     // public List<GameObject> choices;
