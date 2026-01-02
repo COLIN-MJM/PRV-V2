@@ -1933,6 +1933,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2006261915119477834, guid: 0e35753f06739e341b0242077d7f017c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356028078382235452, guid: 0e35753f06739e341b0242077d7f017c, type: 3}
+      propertyPath: carcassHealth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356028078382235452, guid: 0e35753f06739e341b0242077d7f017c, type: 3}
+      propertyPath: maxCarcassHealth
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5341543887678264666, guid: 0e35753f06739e341b0242077d7f017c, type: 3}
       propertyPath: m_Name
       value: Carcass

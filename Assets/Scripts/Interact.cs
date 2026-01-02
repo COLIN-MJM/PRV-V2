@@ -43,7 +43,7 @@ public class Interact : MonoBehaviour
                     if (entity.GetComponent<EntityIdentity>().species == prey)
                     {
                         entityFOV.preysWithinFOV.Remove(entity.gameObject);
-                        spawnCorpse.SpawnIDCorpse();
+                        spawnCorpse.SpawnIDCorpse(entity.GetComponent<MeshRenderer>());
                         Destroy(entity.gameObject);
                     }
                     else
