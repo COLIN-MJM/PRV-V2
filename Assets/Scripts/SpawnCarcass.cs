@@ -5,6 +5,8 @@ public class SpawnCarcass : MonoBehaviour
 {
     public EntityIdentity entityID;
     public GameObject carcass;
+
+    public bool activated;
     // public MeshRenderer entityMesh;
     
     private void Start()
@@ -20,9 +22,12 @@ public class SpawnCarcass : MonoBehaviour
 
     public void SpawnIDCorpse(MeshRenderer entityMesh)
     {
-        GameObject currentCarcass = Instantiate(carcass, transform.position, transform.rotation);
-        currentCarcass.GetComponent<CarcassState>().species = entityID.species;
-        currentCarcass.GetComponentInChildren<MeshRenderer>().materials = entityMesh.materials;
+        if (activated)
+        {
+            GameObject currentCarcass = Instantiate(carcass, transform.position, transform.rotation);
+            currentCarcass.GetComponent<CarcassState>().species = entityID.species;
+            currentCarcass.GetComponentInChildren<MeshRenderer>().materials = entityMesh.materials;
+        }
     }
     
 }

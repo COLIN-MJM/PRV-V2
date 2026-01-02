@@ -361,6 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityID: {fileID: 0}
   carcass: {fileID: 8319837764671334093, guid: 0e35753f06739e341b0242077d7f017c, type: 3}
+  activated: 1
 --- !u!114 &-912320231828911325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,3 +388,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hungerBar: 0
   maxHungerBar: 1.5
+  ownSpecies: {fileID: 4258745890326616887}

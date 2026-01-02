@@ -4,6 +4,8 @@ public class OnHungerFull : MonoBehaviour
 {
     public float hungerBar;
     public float maxHungerBar;
+
+    public GameObject ownSpecies;
     
     
     void Start()
@@ -22,7 +24,7 @@ public class OnHungerFull : MonoBehaviour
             rdPos = new Vector3(rdPos.x * 4, 0, rdPos.z * 4);
             int rdPercentage = UnityEngine.Random.Range(0, 100);
 
-            Instantiate(gameObject, transform.position + rdPos, transform.rotation);
+            Instantiate(ownSpecies, transform.position + rdPos, transform.rotation);
         }
         
         
