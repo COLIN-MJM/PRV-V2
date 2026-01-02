@@ -11,8 +11,10 @@ public class FoodEating : MonoBehaviour
     public GameObject eater = null;
     public GameObject spawningSpecies = null;
 
+
     private void Update()
     {
+        
         if (eater)
         {
             for (int j = 0; j < spawningNumber; j++)

@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: -6128513467364277002}
   - component: {fileID: 2515929996044617565}
   - component: {fileID: 4372078426351275744}
+  - component: {fileID: 4785696240509096591}
   m_Layer: 0
   m_Name: Species4
   m_TagString: Species
@@ -226,6 +227,7 @@ MonoBehaviour:
   child: {fileID: 5686148549985477031}
   isInCollision: 0
   spawnCorpse: {fileID: 0}
+  hungerScript: {fileID: 0}
 --- !u!114 &5528447762993298053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,3 +373,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9f1d6094407574ea8ecb27adc57562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4785696240509096591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5686148549985477031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739b31b99d124584c97e0e53d8c39a64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hungerBar: 0
+  maxHungerBar: 1.5

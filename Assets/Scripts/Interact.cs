@@ -16,14 +16,18 @@ public class Interact : MonoBehaviour
     public bool isInCollision;
 
     public SpawnCarcass spawnCorpse;
+    public OnHungerFull hungerScript;
 
     private void Start()
     {
+        hungerScript = gameObject.GetComponent<OnHungerFull>();
         entityID = GetComponent<EntityIdentity>();
         entityFOV = GetComponent<EntityFOV>();
         spawnCorpse = GetComponent<SpawnCarcass>();
         InvokeRepeating(nameof(InteractCheck), 0f, 0.2f);
         isInCollision = false;
+        
+        
     }
 
     private void InteractCheck()
@@ -64,6 +68,7 @@ public class Interact : MonoBehaviour
         if (other.gameObject.CompareTag("Carcass") && entityID.strengthAgainst.Contains(other.gameObject.GetComponent<CarcassState>().species))
         {
             other.gameObject.GetComponent<CarcassState>().carcassHealth -= Time.deltaTime;
+            hungerScript.hungerBar += Time.deltaTime;
         }
     }
     
