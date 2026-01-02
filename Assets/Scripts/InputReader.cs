@@ -112,4 +112,53 @@ public class InputReader : MonoBehaviour
             }
         }
     }
+    
+    // get
+    //     {
+    //         if (Input.GetKeyDown(KeyCode.C))
+    //         {
+    //             return 0;
+    //         }
+    //         else if (Input.GetKeyDown(KeyCode.V))
+    //         {
+    //             return 1;
+    //         }
+    //         else if (Input.GetKeyDown(KeyCode.B))
+    //         {
+    //             return 2;
+    //         }
+    //         else if (Input.GetKeyDown(KeyCode.N))
+    //         {
+    //             return 3;
+    //         }
+    //         else if (Input.GetKeyDown(KeyCode.F))
+    //         {
+    //             return 4;
+    //         }
+    //         else if (Input.GetKeyDown(KeyCode.G))
+    //         {
+    //             return 5;
+    //         }
+    //         else if (Input.GetKeyDown(KeyCode.H))
+    //         {
+    //             return 6;
+    //         }
+    //         else if (Input.GetKeyDown(KeyCode.T))
+    //         {
+    //             return 7;
+    //         }
+    //         else if (Input.GetKeyDown(KeyCode.Y))
+    //         {
+    //             return 8;
+    //         }
+    //         else if (Input.GetKeyDown(KeyCode.U))
+    //         {
+    //             return 9;
+    //         }
+    //         else
+    //         {
+    //             return 0;
+    //         }
+    //     }
+    // }
 }
