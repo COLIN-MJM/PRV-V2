@@ -64,45 +64,94 @@ public class InputReader : MonoBehaviour
 
     public int NumChoice
     {
-        get
+    //     get
+    //     {
+    //         if (Keyboard.current.numpad0Key.isPressed)
+    //         {
+    //             return 0;
+    //         }
+    //         else if (Keyboard.current.numpad1Key.isPressed)
+    //         {
+    //             return 1;
+    //         }
+    //         else if (Keyboard.current.numpad2Key.isPressed)
+    //         {
+    //             return 2;
+    //         }
+    //         else if (Keyboard.current.numpad3Key.isPressed)
+    //         {
+    //             return 3;
+    //         }
+    //         else if (Keyboard.current.numpad4Key.isPressed)
+    //         {
+    //             return 4;
+    //         }
+    //         else if (Keyboard.current.numpad5Key.isPressed)
+    //         {
+    //             return 5;
+    //         }
+    //         else if (Keyboard.current.numpad6Key.isPressed)
+    //         {
+    //             return 6;
+    //         }
+    //         else if (Keyboard.current.numpad7Key.isPressed)
+    //         {
+    //             return 7;
+    //         }
+    //         else if (Keyboard.current.numpad8Key.isPressed)
+    //         {
+    //             return 8;
+    //         }
+    //         else if (Keyboard.current.numpad9Key.isPressed)
+    //         {
+    //             return 9;
+    //         }
+    //         else
+    //         {
+    //             return -1;
+    //         }
+    //     }
+    // }
+    
+    get
         {
-            if (Keyboard.current.numpad0Key.isPressed)
+            if (Input.GetKeyDown(KeyCode.Alpha0))
             {
                 return 0;
             }
-            else if (Keyboard.current.numpad1Key.isPressed)
+            else if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 return 1;
             }
-            else if (Keyboard.current.numpad2Key.isPressed)
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 return 2;
             }
-            else if (Keyboard.current.numpad3Key.isPressed)
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 return 3;
             }
-            else if (Keyboard.current.numpad4Key.isPressed)
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 return 4;
             }
-            else if (Keyboard.current.numpad5Key.isPressed)
+            else if (Input.GetKeyDown(KeyCode.Alpha5))
             {
                 return 5;
             }
-            else if (Keyboard.current.numpad6Key.isPressed)
+            else if (Input.GetKeyDown(KeyCode.Alpha6))
             {
                 return 6;
             }
-            else if (Keyboard.current.numpad7Key.isPressed)
+            else if (Input.GetKeyDown(KeyCode.Alpha7))
             {
                 return 7;
             }
-            else if (Keyboard.current.numpad8Key.isPressed)
+            else if (Input.GetKeyDown(KeyCode.Alpha8))
             {
                 return 8;
             }
-            else if (Keyboard.current.numpad9Key.isPressed)
+            else if (Input.GetKeyDown(KeyCode.Alpha9))
             {
                 return 9;
             }
@@ -112,53 +161,4 @@ public class InputReader : MonoBehaviour
             }
         }
     }
-    
-    // get
-    //     {
-    //         if (Input.GetKeyDown(KeyCode.C))
-    //         {
-    //             return 0;
-    //         }
-    //         else if (Input.GetKeyDown(KeyCode.V))
-    //         {
-    //             return 1;
-    //         }
-    //         else if (Input.GetKeyDown(KeyCode.B))
-    //         {
-    //             return 2;
-    //         }
-    //         else if (Input.GetKeyDown(KeyCode.N))
-    //         {
-    //             return 3;
-    //         }
-    //         else if (Input.GetKeyDown(KeyCode.F))
-    //         {
-    //             return 4;
-    //         }
-    //         else if (Input.GetKeyDown(KeyCode.G))
-    //         {
-    //             return 5;
-    //         }
-    //         else if (Input.GetKeyDown(KeyCode.H))
-    //         {
-    //             return 6;
-    //         }
-    //         else if (Input.GetKeyDown(KeyCode.T))
-    //         {
-    //             return 7;
-    //         }
-    //         else if (Input.GetKeyDown(KeyCode.Y))
-    //         {
-    //             return 8;
-    //         }
-    //         else if (Input.GetKeyDown(KeyCode.U))
-    //         {
-    //             return 9;
-    //         }
-    //         else
-    //         {
-    //             return 0;
-    //         }
-    //     }
-    // }
 }
