@@ -62,6 +62,21 @@ public class InputReader : MonoBehaviour
         }
     }
 
+    public Vector3 MiddleClick
+    {
+        get
+        {
+            if (Mouse.current.middleButton.isPressed)
+            {
+                return Input.mousePosition;
+            }
+            else
+            {
+                return Vector3.zero;
+            }
+        }
+    }
+
     public int NumChoice
     {
     //     get

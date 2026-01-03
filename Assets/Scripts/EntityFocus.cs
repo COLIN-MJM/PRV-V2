@@ -30,7 +30,7 @@ public class EntityFocus : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         //Debug.Log(gameObject.name);
-        if (eventData.button == PointerEventData.InputButton.Left)
+        if (eventData.button == PointerEventData.InputButton.Right)
         {
             if (camFocus.GetComponent<CameraController>().specificFocus != this.gameObject)
             {

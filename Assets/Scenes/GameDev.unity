@@ -167,7 +167,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31425251}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -221,9 +221,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31425251}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -16.25, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -347,12 +347,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f137188fb728840908337ac9245a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fakeGround: {fileID: 0}
   cam: {fileID: 0}
   inputReader: {fileID: 0}
   cameraSpeed: 12
   zoomSensibility: 0.5
   closestZoom: 5
   furthestZoom: 30
+  dragSensibility: 0.05
   specificFocus: {fileID: 0}
   velocity: {x: 0, y: 0, z: 2}
 --- !u!114 &238302022
