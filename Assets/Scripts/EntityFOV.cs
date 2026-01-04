@@ -45,8 +45,7 @@ public class EntityFOV : MonoBehaviour
         for (int i = 0; i < _nearbyObjects.Length; i++)
         {
             float signedAngle = Vector3.Angle(transform.forward, _nearbyObjects[i].transform.position - transform.position);
-
-
+            
             if (_nearbyObjects[i].CompareTag("Carcass"))
             {
                 foreach (var species in entityID.strengthAgainst)
@@ -112,16 +111,16 @@ public class EntityFOV : MonoBehaviour
                     predatorsWithinFOV.Add(_nearbyObjects[i].gameObject);
                 }
             }
-            else if (Mathf.Abs(signedAngle) < entityID.fovAngle / 5f && _nearbyObjects[i] != selfCollider)
-            {
-                if (_nearbyObjects[i].CompareTag("Wall"))
-                {
-                    if (Physics.Raycast(transform.position, _nearbyObjects[i].gameObject.transform.position, out RaycastHit hit, 1000f))
-                    {
-                        wallsWithinFOV.Add(hit.normal);
-                    }
-                }
-            }
+            // else if (Mathf.Abs(signedAngle) < entityID.fovAngle / 5f && _nearbyObjects[i] != selfCollider)
+            // {
+            //     if (_nearbyObjects[i].CompareTag("Wall"))
+            //     {
+            //         if (Physics.Raycast(transform.position, _nearbyObjects[i].gameObject.transform.position, out RaycastHit hit, 1000f))
+            //         {
+            //             wallsWithinFOV.Add(hit.normal);
+            //         }
+            //     }
+            // }
         }
     }
 

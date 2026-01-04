@@ -11,17 +11,22 @@ public class EntityMovementRandomInFOV : MonoBehaviour
     public EntityIdentity entityID;
     public StateChecker stateChecker;
     public EntityFOV entityFOV;
+    public Interact interact;
     public Rigidbody rb;
     public GameObject ground;
     private Bounds groundBounds;
     private Vector3 targetPos;
-    private float timer;
+    private float timer = 0;
+    private float bumpTimer = 0;
     private Vector3 randomDir;
     
     // Variables de vérification d'avoidance des murs
     private Vector3 refVector = Vector3.zero;
     private float rotationOrientation = 0f;
     private bool hasAvoidingVector = false;
+    private bool justAvoidedWall = false;
+    
+    private bool isInCollision = false;
 
     
     private void Start()
@@ -29,6 +34,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
         entityID = GetComponent<EntityIdentity>();
         stateChecker = GetComponent<StateChecker>();
         entityFOV = GetComponent<EntityFOV>();
+        interact = GetComponent<Interact>();
         rb = GetComponent<Rigidbody>();
         ground = GameObject.FindGameObjectWithTag("Ground");
         groundBounds = ground.GetComponent<Collider>().bounds;
@@ -69,6 +75,12 @@ public class EntityMovementRandomInFOV : MonoBehaviour
                 case State.Reproducing:
                     //todo
                     break;
+                case State.Interacting:
+                    StateCheckedMovement(1f);
+                    break;
+                case State.Consuming:
+                    rb.linearVelocity = Vector3.zero;
+                    break;
                 default:
                     RandomMovement(1f);
                     break;
@@ -78,11 +90,27 @@ public class EntityMovementRandomInFOV : MonoBehaviour
 
     private void StateCheckedMovement(float speedMult)
     {
-        targetPos = stateChecker.targetPos;
-        // randomDir = (targetPos - transform.position);
         ClampingOnGround();
-        // transform.forward = Vector3.Lerp(transform.forward, randomDir, Time.fixedDeltaTime * entityID.rotationSpeed);
-        transform.forward = Vector3.Lerp(transform.forward, targetPos, Time.fixedDeltaTime * entityID.rotationSpeed);
+        
+        if (!hasAvoidingVector)
+        {
+            randomDir = stateChecker.targetPos;
+        }
+        // randomDir = (targetPos - transform.position);
+        float angle = Vector3.SignedAngle(transform.forward, randomDir, transform.up);
+        if (Mathf.Abs(angle) >= 0.1f)
+        {
+            float maxStep = entityID.rotationSpeed;
+            float step = Mathf.Clamp(angle, -maxStep, maxStep);
+            
+            transform.Rotate(transform.up, step);
+        }
+        
+        // if (!hasAvoidingVector)
+        // {
+        //     Bump();
+        // }
+        
         rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
     }
 
@@ -99,6 +127,12 @@ public class EntityMovementRandomInFOV : MonoBehaviour
             
             float randomAngle = Random.Range(-halfAngle, halfAngle);   // Angle Random
 
+            if (justAvoidedWall)
+            {
+                randomAngle = Mathf.Abs(randomAngle) * rotationOrientation;
+                justAvoidedWall = false;
+            }
+
             randomDir = Quaternion.Euler(0f, randomAngle, 0f) * transform.forward;
             randomDir.Normalize();
         }
@@ -111,8 +145,21 @@ public class EntityMovementRandomInFOV : MonoBehaviour
             
             transform.Rotate(transform.up, step);
         }
+
+        // if (!hasAvoidingVector)
+        // {
+        //     Bump();
+        // }
         
         rb.linearVelocity = transform.forward * (entityID.nativeSpeed * speedMult);
+    }
+
+    private void Bump()
+    {
+        if (isInCollision)
+        {
+            transform.Rotate(Vector3.up, 5f);
+        }
     }
 
     private void ClampingOnGround()
@@ -123,7 +170,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
             hasAvoidingVector = true;
             timer = 0;
             SearchClampingParameters(aheadPos);
-            float avoidingAngle = (Vector3.Angle(transform.forward, refVector) + 2f) * rotationOrientation;
+            float avoidingAngle = (Vector3.Angle(transform.forward, refVector) + 4f) * rotationOrientation;
             randomDir = Quaternion.Euler(0f, avoidingAngle, 0f) * transform.forward;
             randomDir.Normalize();
         }
@@ -134,6 +181,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
             if (Vector3.Angle(transform.forward, randomDir) < 1f)
             {
                 hasAvoidingVector = false;
+                justAvoidedWall = true;
             }
         }
     }
@@ -212,6 +260,22 @@ public class EntityMovementRandomInFOV : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.CompareTag("Species"))
+        {
+            isInCollision = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Species"))
+        {
+            isInCollision = false;
+        }
+    }
+
     private void OnDrawGizmos()
     {
         if (rb)
@@ -241,7 +305,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
                     Gizmos.color = Color.magenta;
                     break;
             }
-            //Gizmos.DrawLine(transform.position, targetPos);
+            Gizmos.DrawRay(transform.position, transform.forward * 5);
         }
     }
 }

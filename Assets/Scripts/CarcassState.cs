@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CarcassState : MonoBehaviour
@@ -7,11 +8,13 @@ public class CarcassState : MonoBehaviour
 
     public float carcassHealth;
     public float maxCarcassHealth;
+    public List<GameObject> eater;
 
 
     private void Start()
     {
         carcassHealth = maxCarcassHealth;
+        eater = new List<GameObject>();
     }
 
 
@@ -26,11 +29,14 @@ public class CarcassState : MonoBehaviour
         
         if (carcassHealth <= 0)
         {
+            if (eater.Count > 0)
+            {
+                foreach (GameObject obj in eater)
+                {
+                    obj.GetComponent<EntityIdentity>().state = State.Idle;
+                }
+            }
             Destroy(gameObject);
         }
-
-        
     }
-
-    
 }

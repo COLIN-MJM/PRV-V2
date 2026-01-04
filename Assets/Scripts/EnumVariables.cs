@@ -18,6 +18,8 @@ public enum State
         Fleeing,
         Fighting,
         Fatigued,
+        Interacting,
+        Consuming,
         Reproducing
     }
     

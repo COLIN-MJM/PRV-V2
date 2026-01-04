@@ -7,15 +7,8 @@ public class OnHungerFull : MonoBehaviour
 
     public GameObject ownSpecies;
     
-    
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
-        
         if (hungerBar > maxHungerBar)
         {
             hungerBar = 0;
@@ -26,11 +19,5 @@ public class OnHungerFull : MonoBehaviour
 
             Instantiate(ownSpecies, transform.position + rdPos, transform.rotation);
         }
-        
-        
-        
-        
-        
-        
     }
 }

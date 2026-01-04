@@ -11,6 +11,5 @@ public class TimerBeforeDestroy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
     }
 }

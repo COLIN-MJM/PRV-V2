@@ -23,6 +23,7 @@ public class FoodEating : MonoBehaviour
                 GameObject spawningSpecies = null;
                 Vector3 rdPos = UnityEngine.Random.insideUnitCircle;
                 rdPos = new Vector3(rdPos.x * 4, 0, rdPos.z * 4);
+                
                 int rdPercentage = UnityEngine.Random.Range(0, 100);
             
                 if (rdPercentage < percentageSpawningVariance)

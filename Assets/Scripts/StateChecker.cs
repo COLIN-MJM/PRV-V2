@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(EntityFOV))]
 public class StateChecker : MonoBehaviour
@@ -12,6 +13,7 @@ public class StateChecker : MonoBehaviour
     public EntityIdentity entityID;
     public EntityFOV entityFOV;
     public IfMatingSeason ifMatingSeason;
+    public OnHungerFull onHungerFull;
     
     [Header("Entity Targets")]
     public List<GameObject> targetObjects;
@@ -24,6 +26,7 @@ public class StateChecker : MonoBehaviour
         entityID = GetComponent<EntityIdentity>();
         entityFOV = GetComponent<EntityFOV>();
         ifMatingSeason = GetComponent<IfMatingSeason>();
+        onHungerFull = GetComponent<OnHungerFull>();
         InvokeRepeating(nameof(StateChecking), 0f, 0.2f);
     }
 
@@ -59,7 +62,7 @@ public class StateChecker : MonoBehaviour
             entityFOV.currentFOV = 360;
             t += 0.2f;
             
-            if (t <= entityID.enduranceWhenFleeing &&  entityFOV.predatorsWithinFOV.Count > 0)
+            if (t <= entityID.enduranceWhenFleeing && entityFOV.predatorsWithinFOV.Count > 0)
             {
                 targetObjects = entityFOV.predatorsWithinFOV;
                 Vector3 fleeingDirection = new Vector3(transform.forward.x, 0, transform.forward.z);
@@ -67,7 +70,7 @@ public class StateChecker : MonoBehaviour
                 {
                     if (predator != null)
                     {
-                        fleeingDirection -= new Vector3(predator.transform.forward.x, 0, predator.transform.forward.z);
+                        fleeingDirection += new Vector3(predator.transform.forward.x, 0, predator.transform.forward.z);
                     }
                 }
                 // fleeingDirection = -fleeingDirection;
@@ -137,6 +140,17 @@ public class StateChecker : MonoBehaviour
             t += 0.2f;
 
             if (t > entityID.recoveryTime)
+            {
+                t = 0;
+                entityID.state = State.Idle;
+            }
+        }
+
+        if (entityID.state == State.Consuming)
+        {
+            t += 0.2f;
+
+            if (t > onHungerFull.maxHungerBar)
             {
                 t = 0;
                 entityID.state = State.Idle;

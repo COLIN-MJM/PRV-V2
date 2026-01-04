@@ -25,9 +25,6 @@ public class Interact : MonoBehaviour
         entityFOV = GetComponent<EntityFOV>();
         spawnCorpse = GetComponent<SpawnCarcass>();
         InvokeRepeating(nameof(InteractCheck), 0f, 0.2f);
-        isInCollision = false;
-        
-        
     }
 
     private void InteractCheck()
@@ -36,7 +33,7 @@ public class Interact : MonoBehaviour
         
         foreach (var entity in interactingRangeEntities)
         {
-            if (entity.CompareTag("Species"))
+            if (entity.CompareTag("Species") && entity.gameObject != this.gameObject)
             {
                 foreach (var prey in entityID.strengthAgainst)
                 {
@@ -67,9 +64,20 @@ public class Interact : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Carcass") && entityID.strengthAgainst.Contains(other.gameObject.GetComponent<CarcassState>().species))
         {
-            other.gameObject.GetComponent<CarcassState>().carcassHealth -= Time.deltaTime;
+            entityID.state = State.Consuming;
+            CarcassState consumedCarcass = other.gameObject.GetComponent<CarcassState>();
+            consumedCarcass.eater.Add(this.gameObject);
+            consumedCarcass.carcassHealth -= Time.deltaTime;
             hungerScript.hungerBar += Time.deltaTime;
         }
     }
-    
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Carcass") &&
+            entityID.strengthAgainst.Contains(other.gameObject.GetComponent<CarcassState>().species))
+        {
+            entityID.state = State.Idle;
+        }
+    }
 }
