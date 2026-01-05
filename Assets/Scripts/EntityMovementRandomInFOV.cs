@@ -58,7 +58,31 @@ public class EntityMovementRandomInFOV : MonoBehaviour
             switch (entityID.state)
             {
                 case State.Idle:
-                    RandomMovement(1f);
+                    // Ray ray = new Ray(transform.position, transform.forward);
+                    // RaycastHit hit;
+                    // Debug.DrawRay(transform.position, transform.forward);
+                    //
+                    // if (Physics.Raycast(ray, out hit, 1) )
+                    // {
+                    //     ClampingOnGround();
+                    //
+                    //     Debug.Log("hit " + hit.collider.gameObject.name);
+                    //     Vector3 awayDir = Vector3.ProjectOnPlane(hit.normal, Vector3.up);
+                    //
+                    //     Quaternion targetRot = Quaternion.LookRotation(awayDir);
+                    //
+                    //     transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, 1000 * Time.deltaTime);
+                    //     
+                    //     rb.linearVelocity = transform.forward * (entityID.nativeSpeed);
+                    // }
+                    // else
+                    // {
+                    //     RandomMovement(1f);
+                    // }
+                    
+                        RandomMovement(1f);
+                    
+                    
                     break;
                 case State.Chasing:
                     StateCheckedMovement(entityID.speedModifierWhenChasing);

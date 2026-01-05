@@ -14,6 +14,7 @@ public class SpawnCarcass : MonoBehaviour
     {
         entityID = GetComponent<EntityIdentity>();
         gameManager = GameObject.FindGameObjectWithTag("GM");
+        
     }
 
     private void Update()
@@ -22,12 +23,13 @@ public class SpawnCarcass : MonoBehaviour
     }
 
 
-    public void SpawnIDCorpse(MeshRenderer entityMesh)
+    public void SpawnIDCorpse(MeshRenderer entityMesh, Species theSpecies)
     {
         if (gameManager.GetComponent<PlayerChoice>().carcassOn)
         {
             GameObject currentCarcass = Instantiate(carcass, transform.position, transform.rotation);
-            currentCarcass.GetComponent<CarcassState>().species = entityID.species;
+            // currentCarcass.GetComponent<CarcassState>().species = entityID.species;
+            currentCarcass.GetComponent<CarcassState>().species = theSpecies;
             currentCarcass.GetComponentInChildren<MeshRenderer>().materials = entityMesh.materials;
         }
     }

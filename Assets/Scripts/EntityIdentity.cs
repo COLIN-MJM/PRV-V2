@@ -8,6 +8,7 @@ public class EntityIdentity : MonoBehaviour
     public Species species;
     public Season matingSeason;
     public State state = State.Idle;
+    public string isASpecies = "yes";
     
     [Header("Strengths & Weaknesses")]
     public Species[] strengthAgainst;
