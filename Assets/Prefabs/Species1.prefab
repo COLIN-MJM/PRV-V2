@@ -114,7 +114,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
@@ -136,6 +136,7 @@ MonoBehaviour:
   species: 0
   matingSeason: 1
   state: 0
+  isASpecies: yes
   strengthAgainst: 0100000002000000
   weaknessAgainst: 0400000005000000
   fightingUpperHandAgainst: 
@@ -169,6 +170,7 @@ MonoBehaviour:
   entityID: {fileID: 0}
   stateChecker: {fileID: 0}
   entityFOV: {fileID: 0}
+  interact: {fileID: 0}
   rb: {fileID: 0}
   ground: {fileID: 0}
 --- !u!114 &8614927263629562624
@@ -207,6 +209,7 @@ MonoBehaviour:
   entityID: {fileID: 0}
   entityFOV: {fileID: 0}
   ifMatingSeason: {fileID: 0}
+  onHungerFull: {fileID: 0}
   targetObjects: []
   targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &108697452457354769
@@ -361,7 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityID: {fileID: 0}
   carcass: {fileID: 8319837764671334093, guid: 0e35753f06739e341b0242077d7f017c, type: 3}
-  activated: 1
+  gameManager: {fileID: 0}
 --- !u!114 &8617844669014978856
 MonoBehaviour:
   m_ObjectHideFlags: 0

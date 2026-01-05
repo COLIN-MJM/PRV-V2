@@ -33,7 +33,10 @@ public class CarcassState : MonoBehaviour
             {
                 foreach (GameObject obj in eater)
                 {
-                    obj.GetComponent<EntityIdentity>().state = State.Idle;
+                    if (obj != null)
+                    {
+                        obj.GetComponent<EntityIdentity>().state = State.Idle;
+                    }
                 }
             }
             Destroy(gameObject);
