@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 1137857168307987485}
   - component: {fileID: -6310407724435617292}
   m_Layer: 0
-  m_Name: Species2
+  m_Name: Species2 lvl3
   m_TagString: Species
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5.94}
-  m_LocalScale: {x: 1.5, y: 0.2, z: 1.5}
+  m_LocalScale: {x: 3, y: 0.2, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -406,4 +406,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityID: {fileID: 0}
-  nextLevel: {fileID: 5387480836745986218, guid: 5b35b69dcd8bc1d41ad32c87b5d29028, type: 3}
+  nextLevel: {fileID: 5387480836745986218}
+  currentLevel: 2
