@@ -39,15 +39,59 @@ public class Interact : MonoBehaviour
                 {
                     if (entity.GetComponent<EntityIdentity>().species == prey)
                     {
-                        if (entity.GetComponent<EntityIdentity>().species != Species.S6 || !entity.GetComponent<ShieldAndToxicGas>().isInvincibilityStillRunning)
+                        switch (entity.GetComponent<EntityIdentity>().species)
                         {
-                            entityFOV.preysWithinFOV.Remove(entity.gameObject);
-                            spawnCorpse.SpawnIDCorpse(entity.GetComponent<MeshRenderer>(), entity.GetComponent<EntityIdentity>().species);
-                            Destroy(entity.gameObject);
-                        }
-                        else
-                        {
-                            entity.GetComponent<ShieldAndToxicGas>().isShieldActivated = false;
+                            case Species.S1:
+                                KillAndSpawnCarcass(entity);
+                                break;
+                            case Species.S2:
+                                //todo ce que tu veux faire avec l'espèce bleue
+                                if (entity.GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlThree)
+                                {
+                                    GameObject toSpawn = entity.GetComponent<MergeOnTrigger>().previousLevel;
+                                    Vector3 rdPos = UnityEngine.Random.insideUnitCircle;
+                                    rdPos = new Vector3(rdPos.x * 4, 0, rdPos.z * 4).normalized * 4;
+                                    
+                                    Instantiate(toSpawn, entity.transform.position + rdPos, Quaternion.identity);
+                                    Instantiate(toSpawn, entity.transform.position + rdPos, Quaternion.identity);
+                                    Instantiate(toSpawn, entity.transform.position + rdPos, Quaternion.identity);
+                                    Instantiate(toSpawn, entity.transform.position + rdPos, Quaternion.identity);
+                                    Destroy(entity.gameObject);
+                                }
+                                else if (entity.GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlTwo)
+                                {
+                                    GameObject toSpawn = entity.GetComponent<MergeOnTrigger>().previousLevel;
+                                    Vector3 rdPos = UnityEngine.Random.insideUnitCircle;
+                                    rdPos = new Vector3(rdPos.x * 4, 0, rdPos.z * 4);
+                                    
+                                    Instantiate(toSpawn, entity.transform.position + rdPos, Quaternion.identity);
+                                    Instantiate(toSpawn, entity.transform.position + rdPos, Quaternion.identity);
+                                    Destroy(entity.gameObject);
+                                }
+                                else if (entity.GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlOne)
+                                {
+                                    KillAndSpawnCarcass(entity);
+                                }
+                                break;
+                            case Species.S3:
+                                KillAndSpawnCarcass(entity);
+                                break;
+                            case Species.S4:
+                                KillAndSpawnCarcass(entity);
+                                break;
+                            case Species.S5:
+                                KillAndSpawnCarcass(entity);
+                                break;
+                            case Species.S6:
+                                if (entity.GetComponent<ShieldAndToxicGas>().isInvincibilityStillRunning)
+                                {
+                                    entity.GetComponent<ShieldAndToxicGas>().isShieldActivated = false;
+                                }
+                                else
+                                {
+                                    KillAndSpawnCarcass(entity);
+                                }
+                                break;
                         }
                     }
                     else
@@ -66,7 +110,14 @@ public class Interact : MonoBehaviour
             
         }
     }
-    
+
+    private void KillAndSpawnCarcass(Collider entity)
+    {
+        entityFOV.preysWithinFOV.Remove(entity.gameObject);
+        spawnCorpse.SpawnIDCorpse(entity.GetComponent<MeshRenderer>(), entity.GetComponent<EntityIdentity>().species);
+        Destroy(entity.gameObject);
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Carcass") && entityID.strengthAgainst.Contains(other.gameObject.GetComponent<CarcassState>().species))

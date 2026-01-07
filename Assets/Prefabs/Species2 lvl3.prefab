@@ -407,4 +407,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityID: {fileID: 0}
   nextLevel: {fileID: 5387480836745986218}
+  previousLevel: {fileID: 5387480836745986218, guid: 7704c93569596a74cb850071a8aa5b54, type: 3}
   currentLevel: 2
