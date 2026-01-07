@@ -137,8 +137,8 @@ MonoBehaviour:
   matingSeason: 1
   state: 0
   isASpecies: yes
-  strengthAgainst: 0100000002000000
-  weaknessAgainst: 0400000005000000
+  strengthAgainst: 0100000005000000
+  weaknessAgainst: 02000000
   fightingUpperHandAgainst: 
   fightingLowerHandAgainst: 
   nativeSpeed: 5

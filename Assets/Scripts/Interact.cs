@@ -68,7 +68,7 @@ public class Interact : MonoBehaviour
                                     Instantiate(toSpawn, entity.transform.position + rdPos, Quaternion.identity);
                                     Destroy(entity.gameObject);
                                 }
-                                else if (entity.GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlOne)
+                                else if (entity.GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlOne && entity.GetComponent<MergeOnTrigger>().invincibilityT <= 0)
                                 {
                                     KillAndSpawnCarcass(entity);
                                 }
