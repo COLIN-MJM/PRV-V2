@@ -142,7 +142,7 @@ MonoBehaviour:
   weaknessAgainst: 0000000005000000
   fightingUpperHandAgainst: 
   fightingLowerHandAgainst: 
-  nativeSpeed: 5
+  nativeSpeed: 3
   rotationSpeed: 5
   refreshPathRate: 1
   speedModifierWhenChasing: 1.7
