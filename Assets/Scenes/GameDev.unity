@@ -1754,25 +1754,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -5543165601249841736, guid: 1a0c46d28859c4d40ae466b6edd4d880, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4258745890326616887, guid: 1a0c46d28859c4d40ae466b6edd4d880, type: 3}
       propertyPath: m_Name
       value: Species6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4258745890326616887, guid: 1a0c46d28859c4d40ae466b6edd4d880, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5071072475054919532, guid: 1a0c46d28859c4d40ae466b6edd4d880, type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
-    - target: {fileID: 5440702731733364492, guid: 1a0c46d28859c4d40ae466b6edd4d880, type: 3}
-      propertyPath: fovAngle
-      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 8799157339726137910, guid: 1a0c46d28859c4d40ae466b6edd4d880, type: 3}
       propertyPath: m_LocalPosition.x

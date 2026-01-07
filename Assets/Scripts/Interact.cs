@@ -39,9 +39,16 @@ public class Interact : MonoBehaviour
                 {
                     if (entity.GetComponent<EntityIdentity>().species == prey)
                     {
-                        entityFOV.preysWithinFOV.Remove(entity.gameObject);
-                        spawnCorpse.SpawnIDCorpse(entity.GetComponent<MeshRenderer>(), entity.GetComponent<EntityIdentity>().species);
-                        Destroy(entity.gameObject);
+                        if (entity.GetComponent<EntityIdentity>().species != Species.S6 || !entity.GetComponent<ShieldAndToxicGas>().isInvincibilityStillRunning)
+                        {
+                            entityFOV.preysWithinFOV.Remove(entity.gameObject);
+                            spawnCorpse.SpawnIDCorpse(entity.GetComponent<MeshRenderer>(), entity.GetComponent<EntityIdentity>().species);
+                            Destroy(entity.gameObject);
+                        }
+                        else
+                        {
+                            entity.GetComponent<ShieldAndToxicGas>().isShieldActivated = false;
+                        }
                     }
                     else
                     {
