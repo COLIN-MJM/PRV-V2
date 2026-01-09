@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: -5543165601249841736}
   - component: {fileID: -912320231828911325}
   - component: {fileID: -4482773932829987658}
+  - component: {fileID: 4296273050584459858}
   - component: {fileID: 4126296059820793830}
   m_Layer: 0
   m_Name: Species6
@@ -395,6 +396,22 @@ MonoBehaviour:
   hungerBar: 0
   maxHungerBar: 1.5
   ownSpecies: {fileID: 4258745890326616887}
+--- !u!114 &4296273050584459858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4258745890326616887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae1f4e7821f10bf42a5d7bc770f8e3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ground: {fileID: 0}
+  groundBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!114 &4126296059820793830
 MonoBehaviour:
   m_ObjectHideFlags: 0
