@@ -35,6 +35,10 @@ public class EntityIdentity : MonoBehaviour
     public float fovAngle;
     public float interactingRadius;
     public float reproducingRadius;
+
+    [Header("Poison Variables")] 
+    public float timeLeftInPoison;
+    public float speedMultWhenPoisoned;
     
     private void OnDrawGizmos()
     {

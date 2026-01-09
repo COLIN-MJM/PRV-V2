@@ -23,21 +23,12 @@ public class GasZoneBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Species") &&
             other.gameObject.GetComponent<EntityIdentity>().species != Species.S6)
         {
-            other.gameObject.GetComponent<EntityIdentity>().nativeSpeed *= slowDownMultiplier;
-        }
-    }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Species") &&
-            other.gameObject.GetComponent<EntityIdentity>().species != Species.S6)
-        {
-            other.gameObject.GetComponent<EntityIdentity>().nativeSpeed /= slowDownMultiplier;
+            other.gameObject.GetComponent<EntityIdentity>().timeLeftInPoison = 1f;
         }
     }
 }

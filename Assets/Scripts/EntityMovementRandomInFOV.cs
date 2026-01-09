@@ -14,10 +14,10 @@ public class EntityMovementRandomInFOV : MonoBehaviour
     public Interact interact;
     public Rigidbody rb;
     public GameObject ground;
+    private float currentSpeed;
     private Bounds groundBounds;
     private Vector3 targetPos;
     private float timer = 0;
-    private float bumpTimer = 0;
     private Vector3 randomDir;
     
     // Variables de vérification d'avoidance des murs
@@ -36,6 +36,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
         entityFOV = GetComponent<EntityFOV>();
         interact = GetComponent<Interact>();
         rb = GetComponent<Rigidbody>();
+        currentSpeed = entityID.nativeSpeed;
         ground = GameObject.FindGameObjectWithTag("Ground");
         groundBounds = ground.GetComponent<Collider>().bounds;
         
@@ -49,6 +50,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
     {
         // transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
         timer += Time.deltaTime;
+        entityID.timeLeftInPoison -= Time.deltaTime;
     }
 
     private void FixedUpdate()
@@ -115,6 +117,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
     private void StateCheckedMovement(float speedMult)
     {
         ClampingOnGround();
+        VerifyIfInPoison();
         
         if (!hasAvoidingVector)
         {
@@ -135,12 +138,13 @@ public class EntityMovementRandomInFOV : MonoBehaviour
         //     Bump();
         // }
         
-        rb.linearVelocity = transform.forward.normalized * (entityID.nativeSpeed * speedMult);
+        rb.linearVelocity = transform.forward.normalized * (currentSpeed * speedMult);
     }
 
     private void RandomMovement(float speedMult)
     {
         ClampingOnGround();
+        VerifyIfInPoison();
 
         if (timer >= entityID.refreshPathRate)
         {
@@ -175,7 +179,19 @@ public class EntityMovementRandomInFOV : MonoBehaviour
         //     Bump();
         // }
         
-        rb.linearVelocity = transform.forward * (entityID.nativeSpeed * speedMult);
+        rb.linearVelocity = transform.forward * (currentSpeed * speedMult);
+    }
+
+    private void VerifyIfInPoison()
+    {
+        if (entityID.timeLeftInPoison > 0)
+        {
+            currentSpeed = entityID.nativeSpeed * entityID.speedMultWhenPoisoned;
+        }
+        else
+        {
+            currentSpeed = entityID.nativeSpeed;
+        }
     }
 
     private void Bump()
@@ -284,21 +300,21 @@ public class EntityMovementRandomInFOV : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision other)
-    {
-        if (other.gameObject.CompareTag("Species"))
-        {
-            isInCollision = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.CompareTag("Species"))
-        {
-            isInCollision = false;
-        }
-    }
+    // private void OnCollisionStay(Collision other)
+    // {
+    //     if (other.gameObject.CompareTag("Species"))
+    //     {
+    //         isInCollision = true;
+    //     }
+    // }
+    //
+    // private void OnCollisionExit(Collision other)
+    // {
+    //     if (other.gameObject.CompareTag("Species"))
+    //     {
+    //         isInCollision = false;
+    //     }
+    // }
 
     private void OnDrawGizmos()
     {

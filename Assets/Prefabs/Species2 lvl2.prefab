@@ -156,6 +156,8 @@ MonoBehaviour:
   fovAngle: 100
   interactingRadius: 1.3
   reproducingRadius: 0
+  timeLeftInPoison: 0
+  speedMultWhenPoisoned: 0.5
 --- !u!114 &3145378884874384820
 MonoBehaviour:
   m_ObjectHideFlags: 0
