@@ -140,7 +140,9 @@ public class Interact : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Carcass") && entityID.strengthAgainst.Contains(other.gameObject.GetComponent<CarcassState>().species))
+        if ((other.gameObject.CompareTag("Carcass") && 
+            entityID.strengthAgainst.Contains(other.gameObject.GetComponent<CarcassState>().species)) ||
+            entityID.species == Species.S3)
         {
             entityID.state = State.Consuming;
             CarcassState consumedCarcass = other.gameObject.GetComponent<CarcassState>();
@@ -152,8 +154,9 @@ public class Interact : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Carcass") &&
-            entityID.strengthAgainst.Contains(other.gameObject.GetComponent<CarcassState>().species))
+        if ((other.gameObject.CompareTag("Carcass") && 
+            entityID.strengthAgainst.Contains(other.gameObject.GetComponent<CarcassState>().species)) ||
+            entityID.species == Species.S3)
         {
             entityID.state = State.Idle;
         }

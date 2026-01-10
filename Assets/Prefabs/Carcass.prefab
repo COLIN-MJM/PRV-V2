@@ -170,6 +170,7 @@ MonoBehaviour:
   species: 0
   carcassHealth: 0
   maxCarcassHealth: 1.5
+  maxHealthModifierS3: 2
   eater: []
 --- !u!65 &366951290411508524
 BoxCollider:

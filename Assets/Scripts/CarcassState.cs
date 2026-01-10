@@ -8,6 +8,7 @@ public class CarcassState : MonoBehaviour
 
     public float carcassHealth;
     public float maxCarcassHealth;
+    public float maxHealthModifierS3;
     public List<GameObject> eater;
 
 
@@ -15,13 +16,15 @@ public class CarcassState : MonoBehaviour
     {
         carcassHealth = maxCarcassHealth;
         eater = new List<GameObject>();
+        if (species == Species.S3)
+        {
+            carcassHealth = maxCarcassHealth * maxHealthModifierS3;
+        }
     }
 
 
     private void Update()
     {
-        // Debug.Log(carcassHealth);
-        
         float toScale = 0.2f + (carcassHealth / maxCarcassHealth);
         transform.localScale = new Vector3(toScale, toScale, toScale);
 

@@ -48,15 +48,22 @@ public class EntityFOV : MonoBehaviour
             
             if (_nearbyObjects[i].CompareTag("Carcass"))
             {
-                foreach (var species in entityID.strengthAgainst)
+                if (entityID.species == Species.S3)
                 {
-                    if (species == _nearbyObjects[i].gameObject.GetComponent<CarcassState>().species)
+                    preysWithinFOV.Add(_nearbyObjects[i].gameObject);
+                }
+                else
+                {
+                    foreach (var species in entityID.strengthAgainst)
                     {
+                        if (species == _nearbyObjects[i].gameObject.GetComponent<CarcassState>().species)
+                        {
                             preysWithinFOV.Add(_nearbyObjects[i].gameObject);
+                        }
+                        // Debug.Log(_nearbyObjects[i].gameObject.GetComponentInParent<CarcassState>().species);
+                        // preysWithinFOV.Add(_nearbyObjects[i].gameObject);
+                        //
                     }
-                    // Debug.Log(_nearbyObjects[i].gameObject.GetComponentInParent<CarcassState>().species);
-                    // preysWithinFOV.Add(_nearbyObjects[i].gameObject);
-                    //
                 }
             }
             else if (Mathf.Abs(signedAngle) < currentFOV / 2f && _nearbyObjects[i] != selfCollider)
