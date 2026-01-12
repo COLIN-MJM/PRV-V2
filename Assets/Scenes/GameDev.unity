@@ -1275,14 +1275,12 @@ MonoBehaviour:
   inputReader: {fileID: 0}
   choices:
   - {fileID: 1568366197890041967, guid: 18eb8c5c45d87fb4c87a278157e05ea4, type: 3}
-  - {fileID: 6797965953060153057, guid: 78cfd335221a32c4786459e5a5c5de01, type: 3}
-  - {fileID: 5387480836745986218, guid: 7704c93569596a74cb850071a8aa5b54, type: 3}
-  - {fileID: 2384495371635827893, guid: 02d24028600336340baa48c0f2ed8061, type: 3}
-  - {fileID: 5686148549985477031, guid: fb53bdc01d7a8ff45bee66725b10b01c, type: 3}
-  - {fileID: 3923028635199669355, guid: 278f451a796240f48a47b1469a5a4352, type: 3}
-  - {fileID: 4258745890326616887, guid: 1a0c46d28859c4d40ae466b6edd4d880, type: 3}
+  - {fileID: 3013996808204840528, guid: 95972b5c93b9f0a4ca85c5d3201287df, type: 3}
+  - {fileID: 3013996808204840528, guid: fb7c5eb44c325ab47aeb18b92b11e723, type: 3}
+  - {fileID: 3013996808204840528, guid: 2a874e2cb5ed02e46955fb04c39d5b34, type: 3}
   - {fileID: 1568366197890041967, guid: f4786952a7dbd464ab47d3a4c3eb1890, type: 3}
-  - {fileID: 4919036241879587163, guid: 5d12fcc6cc2a2a5428f94a4287aaab67, type: 3}
+  - {fileID: 9200511298655133942, guid: d001ee842ea796847abe4dd227288564, type: 3}
+  - {fileID: 3013996808204840528, guid: 4254cd7a7b92bfa4cbea224e938a2a58, type: 3}
   currentChoice: {fileID: 0}
 --- !u!114 &1032658887
 MonoBehaviour:
@@ -1411,12 +1409,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255855944}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1db12a78fff32044eb5d4e6461dffa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   carcassOn: 1
+  inputReader: {fileID: 0}
+  spawnByPlayer: {fileID: 0}
+  choices:
+  - {fileID: 1568366197890041967, guid: 18eb8c5c45d87fb4c87a278157e05ea4, type: 3}
+  - {fileID: 3013996808204840528, guid: fb7c5eb44c325ab47aeb18b92b11e723, type: 3}
+  currentChoice: {fileID: 0}
 --- !u!114 &1255855948
 MonoBehaviour:
   m_ObjectHideFlags: 0

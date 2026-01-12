@@ -9,12 +9,12 @@ public class PlayerChoice : MonoBehaviour
     public bool carcassOn;
 
 
-    // public InputReader inputReader;
-    // public SpawnByPlayer spawnByPlayer;
-    // public List<GameObject> choices;
-    // public GameObject currentChoice;
-    // private Text text;
-    //
+    public InputReader inputReader;
+    public SpawnByPlayer spawnByPlayer;
+    public List<GameObject> choices;
+    public GameObject currentChoice;
+    private Text text;
+    
     // void Awake()
     // {
     //     // Load the Arial font from the Unity Resources folder.
@@ -51,25 +51,25 @@ public class PlayerChoice : MonoBehaviour
     //     rectTransform.localPosition = new Vector3(-450, 575, 0);
     //     rectTransform.sizeDelta = new Vector2(1000, 200);
     // }
-    //
-    // private void Start()
-    // {
-    //     inputReader = GetComponent<InputReader>();
-    //     
-    //     spawnByPlayer = GameObject.FindGameObjectWithTag("Ground").GetComponent<SpawnByPlayer>();
-    //     
-    //     currentChoice = choices[0];
-    //     // spawnByPlayer.objectToSpawn = currentChoice;
-    //     text.text = $"Current Spawn if Right Click: {currentChoice.name}";
-    // }
-    //
-    // private void Update()
-    // {
-    //     if (inputReader.NumChoice >= 0)
-    //     {
-    //         currentChoice = choices[inputReader.NumChoice];
-    //         // spawnByPlayer.objectToSpawn = currentChoice;
-    //         text.text = $"Current Spawn if Right Click: {currentChoice.name}";
-    //     }
-    // }
+    
+    private void Start()
+    {
+        inputReader = GetComponent<InputReader>();
+        
+        spawnByPlayer = GameObject.FindGameObjectWithTag("Ground").GetComponent<SpawnByPlayer>();
+        
+        currentChoice = choices[0];
+        // spawnByPlayer.objectToSpawn = currentChoice;
+        // text.text = $"Current Spawn if Right Click: {currentChoice.name}";
+    }
+    
+    private void Update()
+    {
+        if (inputReader.NumChoice >= 0)
+        {
+            currentChoice = choices[inputReader.NumChoice];
+            // spawnByPlayer.objectToSpawn = currentChoice;
+            // text.text = $"Current Spawn if Right Click: {currentChoice.name}";
+        }
+    }
 }
