@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
             transform.position = Vector3.SmoothDamp(transform.position, specificFocus.transform.position, ref velocity, 0.5f );
         }
         
-        cam.orthographicSize += inputReader.Zoom * zoomSensibility;
-        cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, closestZoom, furthestZoom);
+        // cam.orthographicSize += inputReader.Mousewheel * zoomSensibility;
+        // cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, closestZoom, furthestZoom);
     }
 }

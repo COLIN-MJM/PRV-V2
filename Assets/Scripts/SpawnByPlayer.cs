@@ -14,6 +14,8 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
     public List<GameObject> choices;
     public GameObject currentChoice;
     
+    public int choiceIndex = 0;
+    
     private Text text;
 
     void Awake()
@@ -64,11 +66,8 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
     
     private void Update()
     {
-        if (inputReader.NumChoice >= 0)
-        {
-            currentChoice = choices[inputReader.NumChoice];
-            text.text = $"Current Spawn if Right Click: {currentChoice.name}";
-        }
+        currentChoice = choices[choiceIndex];
+        text.text = $"Current Spawn if Right Click: {currentChoice.name}";
     }
 
     public void OnPointerClick(PointerEventData eventData)

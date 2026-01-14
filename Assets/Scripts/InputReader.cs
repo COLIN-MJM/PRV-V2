@@ -5,6 +5,18 @@ using UnityEngine.UIElements;
 
 public class InputReader : MonoBehaviour
 {
+    private float smoothValue;
+
+    private void Start()
+    {
+        smoothValue = Input.GetAxis("Mouse ScrollWheel");
+    }
+
+    private void Update()
+    {
+        smoothValue = Input.GetAxis("Mouse ScrollWheel");
+    }
+
     public float HorizontalMove
     { 
         get
@@ -43,21 +55,21 @@ public class InputReader : MonoBehaviour
         }
     }
 
-    public float Zoom
+    public int Mousewheel
     {
         get
         {
-            if (Mouse.current.scroll.ReadValue().y < 0f)
+            if (smoothValue < 0)
             {
-                return 1f;
+                return -1;
             }
-            else if (Mouse.current.scroll.ReadValue().y > 0f)
+            else if (smoothValue > 0)
             {
-                return -1f;
+                return 1;
             }
             else
             {
-                return 0f;
+                return 0;
             }
         }
     }
