@@ -48,7 +48,7 @@ public class EntityFOV : MonoBehaviour
             
             if (_nearbyObjects[i].CompareTag("Carcass"))
             {
-                if (entityID.species == Species.S3)
+                if (entityID.species == Species.S3 && _nearbyObjects[i].GetComponent<CarcassState>().species != Species.S3)
                 {
                     preysWithinFOV.Add(_nearbyObjects[i].gameObject);
                 }
