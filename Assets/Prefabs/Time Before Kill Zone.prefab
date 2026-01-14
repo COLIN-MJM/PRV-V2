@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34bd299053d922a439a8ad63d424d3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 2
+  time: 1
   killZone: {fileID: 9200511298655133942, guid: d001ee842ea796847abe4dd227288564, type: 3}
