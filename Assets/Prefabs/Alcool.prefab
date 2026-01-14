@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8329150403271344191}
   - component: {fileID: 2322092682704479264}
   m_Layer: 0
-  m_Name: Time Before Kill Zone
+  m_Name: Alcool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
