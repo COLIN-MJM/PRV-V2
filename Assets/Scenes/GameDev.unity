@@ -1443,6 +1443,19 @@ MonoBehaviour:
   - {fileID: 3013996808204840528, guid: 4254cd7a7b92bfa4cbea224e938a2a58, type: 3}
   currentChoice: {fileID: 0}
   choiceIndex: 0
+  foodCount: 0
+  maxFoodCount: 5
+  foodTimer: 0
+  maxFoodTimer: 5
+  zoneCount: 0
+  maxZoneCount: 5
+  zoneTimer: 0
+  maxZoneTimer: 5
+  maxEggCount: 3
+  eggOneCount: 0
+  eggTwoCount: 0
+  eggThreeCount: 0
+  eggSixCount: 0
 --- !u!114 &1032658887
 MonoBehaviour:
   m_ObjectHideFlags: 0
