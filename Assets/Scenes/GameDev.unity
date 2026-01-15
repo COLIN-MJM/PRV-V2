@@ -1652,6 +1652,7 @@ GameObject:
   - component: {fileID: 1255855948}
   - component: {fileID: 1255855949}
   - component: {fileID: 1255855950}
+  - component: {fileID: 1255855951}
   m_Layer: 0
   m_Name: GM
   m_TagString: GM
@@ -1739,6 +1740,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032571a889e785945aa8f93c2d67adbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
+  inputReader: {fileID: 0}
   buttons:
   - {fileID: 700015457}
   - {fileID: 236657470}
@@ -1747,6 +1750,23 @@ MonoBehaviour:
   - {fileID: 720015241}
   - {fileID: 146589193}
   - {fileID: 637634234}
+--- !u!114 &1255855951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255855944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33d9dd30b8c5224e8c012e2c19710e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityCount: 0
+  vanilliCount: 0
+  enXCount: 0
+  holoCount: 0
+  toxiCount: 0
 --- !u!1001 &1343761421
 PrefabInstance:
   m_ObjectHideFlags: 0

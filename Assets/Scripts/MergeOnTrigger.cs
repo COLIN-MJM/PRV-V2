@@ -9,6 +9,9 @@ public class MergeOnTrigger : MonoBehaviour
     public EntityIdentity entityID;
     public GameObject nextLevel;
     public GameObject previousLevel;
+
+    public GameObject gm;
+    public EntityCount entityCount;
     
 
     public enum Level 
@@ -24,6 +27,9 @@ public class MergeOnTrigger : MonoBehaviour
 
     private void Start()
     {
+        gm = GameObject.FindGameObjectWithTag("GM");
+        entityCount = gm.GetComponent<EntityCount>();
+        
         entityID = GetComponent<EntityIdentity>();
     }
 
@@ -47,11 +53,17 @@ public class MergeOnTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Species") && other.gameObject.GetComponent<EntityIdentity>().species == entityID.species 
                                                    && transform.position.x < other.transform.position.x && other.gameObject.GetComponent<MergeOnTrigger>().currentLevel == currentLevel && currentLevel != Level.LvlThree && tBeforeMerge <= 0)
         {
+            // entityCount.EntityCountMod(-1);
+            // entityCount.EnXCountMod(-1);
+            entityCount.CountUpdate(entityID, -1);
             Destroy(gameObject);
         }
         else if (other.gameObject.CompareTag("Species") && other.gameObject.GetComponent<EntityIdentity>().species == entityID.species 
                                                         && transform.position.x > other.transform.position.x  && other.gameObject.GetComponent<MergeOnTrigger>().currentLevel == currentLevel && currentLevel != Level.LvlThree && tBeforeMerge <= 0)
         {
+            // entityCount.EntityCountMod(-1);
+            // entityCount.EnXCountMod(-1);
+            entityCount.CountUpdate(entityID, -1);
             Instantiate(nextLevel, transform.position, transform.rotation);
             Destroy(gameObject);
         }

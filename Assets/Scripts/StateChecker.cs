@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class StateChecker : MonoBehaviour
 {
     public GameObject gm;
+    public EntityCount entityCount;
     
     [Header("Entity Self Comps")]
     public EntityIdentity entityID;
@@ -23,10 +24,35 @@ public class StateChecker : MonoBehaviour
     private void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM");
+        entityCount = gm.GetComponent<EntityCount>();
         entityID = GetComponent<EntityIdentity>();
         entityFOV = GetComponent<EntityFOV>();
         ifMatingSeason = GetComponent<IfMatingSeason>();
         onHungerFull = GetComponent<OnHungerFull>();
+        
+        //Rajoute 1 au compteur d'entité total au spawn
+        // entityCount.EntityCountMod(1);
+        //
+        // if (entityID.species == Species.S1)
+        // {
+        //     entityCount.VanilliCountMod(1);
+        // }
+        // else if (entityID.species == Species.S2)
+        // {
+        //     entityCount.EnXCountMod(1);
+        // } 
+        // else if (entityID.species == Species.S3)
+        // {
+        //     entityCount.HoloCountMod(1);
+        // }
+        // else if (entityID.species == Species.S6)
+        // {
+        //     entityCount.ToxiCountMod(1);
+        // }
+        
+        entityCount.CountUpdate(entityID, 1);
+        
+        
         InvokeRepeating(nameof(StateChecking), 0f, 0.2f);
     }
 

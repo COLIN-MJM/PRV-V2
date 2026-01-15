@@ -18,8 +18,13 @@ public class Interact : MonoBehaviour
     public SpawnCarcass spawnCorpse;
     public OnHungerFull hungerScript;
 
+    public GameObject gm;
+    public EntityCount entityCount;
+
     private void Start()
     {
+        gm = GameObject.FindGameObjectWithTag("GM");
+        entityCount = gm.GetComponent<EntityCount>();
         hungerScript = gameObject.GetComponent<OnHungerFull>();
         entityID = GetComponent<EntityIdentity>();
         entityFOV = GetComponent<EntityFOV>();
@@ -94,10 +99,12 @@ public class Interact : MonoBehaviour
     {
         if (entity.GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlThree)
         {
+            entityCount.CountUpdate(entity.GetComponent<EntityIdentity>(), -1);
             SplitInFour(entity);
         }
         else if (entity.GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlTwo)
         {
+            entityCount.CountUpdate(entity.GetComponent<EntityIdentity>(), -1);
             SplitInTwo(entity);
         }
         else if (entity.GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlOne && entity.GetComponent<MergeOnTrigger>().invincibilityT <= 0)
@@ -135,6 +142,28 @@ public class Interact : MonoBehaviour
     {
         entityFOV.preysWithinFOV.Remove(entity.gameObject);
         spawnCorpse.SpawnIDCorpse(entity.GetComponent<MeshRenderer>(), entity.GetComponent<EntityIdentity>().species);
+        EntityIdentity thisEntitySpecies = entity.GetComponent<EntityIdentity>();
+        
+        // entityCount.EntityCountMod(-1);
+        // if (thisEntitySpecies.species == Species.S1)
+        // {
+        //     entityCount.VanilliCountMod(-1);
+        // }
+        // else if (thisEntitySpecies.species == Species.S2)
+        // {
+        //     entityCount.EnXCountMod(-1);
+        // } 
+        // else if (thisEntitySpecies.species == Species.S3)
+        // {
+        //     entityCount.HoloCountMod(-1);
+        // }
+        // else if (thisEntitySpecies.species == Species.S6)
+        // {
+        //     entityCount.ToxiCountMod(-1);
+        // }
+        
+        entityCount.CountUpdate(thisEntitySpecies, -1);
+        
         Destroy(entity.gameObject);
     }
 
