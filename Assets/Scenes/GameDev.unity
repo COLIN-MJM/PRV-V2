@@ -1452,10 +1452,10 @@ MonoBehaviour:
   zoneTimer: 0
   maxZoneTimer: 5
   maxEggCount: 3
-  eggOneCount: 0
-  eggTwoCount: 0
-  eggThreeCount: 0
-  eggSixCount: 0
+  eggOneCount: 3
+  eggTwoCount: 3
+  eggThreeCount: 3
+  eggSixCount: 3
 --- !u!114 &1032658887
 MonoBehaviour:
   m_ObjectHideFlags: 0

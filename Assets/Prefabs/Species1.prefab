@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 0}
+  entityCount: {fileID: 0}
   entityID: {fileID: 0}
   entityFOV: {fileID: 0}
   ifMatingSeason: {fileID: 0}
@@ -235,6 +236,8 @@ MonoBehaviour:
   isInCollision: 0
   spawnCorpse: {fileID: 0}
   hungerScript: {fileID: 0}
+  gm: {fileID: 0}
+  entityCount: {fileID: 0}
 --- !u!114 &4173460013106403022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +384,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9f1d6094407574ea8ecb27adc57562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
+  entityCount: {fileID: 0}
+  entityID: {fileID: 0}
 --- !u!114 &610474591794134188
 MonoBehaviour:
   m_ObjectHideFlags: 0

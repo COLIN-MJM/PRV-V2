@@ -112,22 +112,22 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
                 zoneCount--;
                 Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);
             }
-            else if (currentChoice.name == "Eggs species1" && eggOneCount > 0)
+            else if (currentChoice.name == "Eggs Species1" && eggOneCount > 0)
             {
                 eggOneCount--;
                 Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);
             }
-            else if (currentChoice.name == "Eggs species2" && eggTwoCount > 0)
+            else if (currentChoice.name == "Eggs Species2" && eggTwoCount > 0)
             {
                 eggTwoCount--;
                 Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);
             }
-            else if (currentChoice.name == "Eggs species3" && eggThreeCount > 0)
+            else if (currentChoice.name == "Eggs Species3" && eggThreeCount > 0)
             {
                 eggThreeCount--;
                 Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);
             }
-            else if (currentChoice.name == "Eggs species6" && eggSixCount > 0)
+            else if (currentChoice.name == "Eggs Species6" && eggSixCount > 0)
             {
                 eggSixCount--;
                 Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);
