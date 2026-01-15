@@ -46,7 +46,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 0.2, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 561000954065426175}
+  - {fileID: 4975999930007704531}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7963081891287984398
@@ -432,7 +432,7 @@ MonoBehaviour:
   isShieldActivated: 1
   isGasZoneInstanciated: 0
   isInvincibilityStillRunning: 1
---- !u!1001 &19045844687057172
+--- !u!1001 &4793225214937216056
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -458,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 473ee497751a56f4382c6edfa143d2e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 473ee497751a56f4382c6edfa143d2e9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -492,15 +492,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -6652725513331149018, guid: 473ee497751a56f4382c6edfa143d2e9, type: 3}
+    - target: {fileID: -2356504276479636286, guid: 473ee497751a56f4382c6edfa143d2e9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 676c32e8ba5c64c40bd4a481031815b1, type: 2}
-    - target: {fileID: -6532055803787292656, guid: 473ee497751a56f4382c6edfa143d2e9, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 676c32e8ba5c64c40bd4a481031815b1, type: 2}
-    - target: {fileID: -505929436113270756, guid: 473ee497751a56f4382c6edfa143d2e9, type: 3}
+    - target: {fileID: 574513763827929230, guid: 473ee497751a56f4382c6edfa143d2e9, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 676c32e8ba5c64c40bd4a481031815b1, type: 2}
@@ -508,13 +504,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield
       objectReference: {fileID: 0}
+    - target: {fileID: 6438654181380772246, guid: 473ee497751a56f4382c6edfa143d2e9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 676c32e8ba5c64c40bd4a481031815b1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 473ee497751a56f4382c6edfa143d2e9, type: 3}
---- !u!4 &561000954065426175 stripped
+--- !u!4 &4975999930007704531 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 473ee497751a56f4382c6edfa143d2e9, type: 3}
-  m_PrefabInstance: {fileID: 19045844687057172}
+  m_PrefabInstance: {fileID: 4793225214937216056}
   m_PrefabAsset: {fileID: 0}
