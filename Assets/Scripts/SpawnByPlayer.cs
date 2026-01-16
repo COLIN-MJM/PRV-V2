@@ -33,12 +33,19 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
     public int maxEggCount = 3;
     
     public int eggOneCount;
+    private bool eggOneBool;
     
     public int eggTwoCount;
+    private bool eggTwoBool;
+    
     
     public int eggThreeCount;
+    private bool eggThreeBool;
+    
     
     public int eggSixCount;
+    private bool eggSixBool;
+    
 
     private int maxEntityCount = 50;
     private int midEntityCount = 25;
@@ -101,40 +108,50 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
         
         OnTimerGetFood();
         OnTimerGetKillZone();
+        ToolUpdater();
 
-        if (entityCount.entityCount > maxEntityCount)
+
+        if (entityCount.vanilliCount <= 0 && eggOneBool)
         {
-            maxFoodCount = 0;
-            maxZoneCount = 5;
-            maxZoneTimer = 1.5f;
+            eggOneBool = false;
+            eggOneCount = maxEggCount;
         }
-        else if (entityCount.entityCount < maxEntityCount && entityCount.entityCount > midEntityCount)
+        else if (entityCount.vanilliCount > 0)
         {
-            maxFoodCount = 3;
-            maxFoodTimer = 4f;
-            maxZoneCount = 3;
-            maxZoneTimer = 2.5f;
+            eggOneBool = true;
         }
-        else if (entityCount.entityCount < midEntityCount && entityCount.entityCount > lowEntityCount)
+        
+        if (entityCount.enXCount <= 0 && eggTwoBool)
         {
-            maxFoodCount = 4;
-            maxFoodTimer = 3f;
-            maxZoneCount = 2;
-            maxZoneTimer = 4f;
+            eggTwoBool = false;
+            eggTwoCount = maxEggCount;
         }
-        else if (entityCount.entityCount < lowEntityCount)
+        else if (entityCount.enXCount > 0)
         {
-            maxFoodCount = 5;
-            maxFoodTimer = 2;
-            maxZoneCount = 2;
-            maxZoneTimer = 5f;
+            eggTwoBool = true;
         }
-        else if (entityCount.entityCount < minEntityCount)
+        
+        if (entityCount.holoCount <= 0 && eggThreeBool)
         {
-            maxFoodCount = 5;
-            maxFoodTimer = 1;
-            maxZoneCount = 0;
+            eggThreeBool = false;
+            eggThreeCount = maxEggCount;
         }
+        else if (entityCount.holoCount > 0)
+        {
+            eggThreeBool = true;
+        }
+        
+        if (entityCount.toxiCount <= 0 && eggSixBool)
+        {
+            eggSixBool = false;
+            eggSixCount = maxEggCount;
+        }
+        else if (entityCount.toxiCount > 0)
+        {
+            eggSixBool = true;
+        }
+
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -219,5 +236,43 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
             zoneTimer = 0;
         }
         
-    }   
+    }
+
+    public void ToolUpdater()
+    {
+        if (entityCount.entityCount > maxEntityCount)
+        {
+            maxFoodCount = 0;
+            maxZoneCount = 5;
+            maxZoneTimer = 1.5f;
+        }
+        else if (entityCount.entityCount < maxEntityCount && entityCount.entityCount > midEntityCount)
+        {
+            maxFoodCount = 3;
+            maxFoodTimer = 4f;
+            maxZoneCount = 3;
+            maxZoneTimer = 2.5f;
+        }
+        else if (entityCount.entityCount < midEntityCount && entityCount.entityCount > lowEntityCount)
+        {
+            maxFoodCount = 4;
+            maxFoodTimer = 3f;
+            maxZoneCount = 2;
+            maxZoneTimer = 4f;
+        }
+        else if (entityCount.entityCount < lowEntityCount)
+        {
+            maxFoodCount = 5;
+            maxFoodTimer = 2;
+            maxZoneCount = 2;
+            maxZoneTimer = 5f;
+        }
+        else if (entityCount.entityCount < minEntityCount)
+        {
+            maxFoodCount = 5;
+            maxFoodTimer = 1;
+            maxZoneCount = 0;
+        }
+    }
+    
 }
