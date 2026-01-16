@@ -211,12 +211,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 0}
+  entityCount: {fileID: 0}
   entityID: {fileID: 0}
   entityFOV: {fileID: 0}
   ifMatingSeason: {fileID: 0}
   onHungerFull: {fileID: 0}
   targetObjects: []
   targetPos: {x: 0, y: 0, z: 0}
+  addToCount: 2
 --- !u!114 &4076226203226505197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +238,8 @@ MonoBehaviour:
   isInCollision: 0
   spawnCorpse: {fileID: 0}
   hungerScript: {fileID: 0}
+  gm: {fileID: 0}
+  entityCount: {fileID: 0}
 --- !u!114 &8604654339696575618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +386,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9f1d6094407574ea8ecb27adc57562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
+  entityCount: {fileID: 0}
+  entityID: {fileID: 0}
 --- !u!114 &1137857168307987485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +435,8 @@ MonoBehaviour:
   entityID: {fileID: 0}
   nextLevel: {fileID: 5387480836745986218, guid: 7773b9bbf4399ca4eb882285410c3965, type: 3}
   previousLevel: {fileID: 5387480836745986218, guid: 7704c93569596a74cb850071a8aa5b54, type: 3}
+  gm: {fileID: 0}
+  entityCount: {fileID: 0}
   currentLevel: 1
   tBeforeMerge: 1
   invincibilityT: 1

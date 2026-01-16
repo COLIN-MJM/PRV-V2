@@ -19,7 +19,9 @@ public class StateChecker : MonoBehaviour
     [Header("Entity Targets")]
     public List<GameObject> targetObjects;
     public Vector3 targetPos;
+    
     private float t;
+    public int addToCount = 1;
 
     private void Start()
     {
@@ -50,7 +52,7 @@ public class StateChecker : MonoBehaviour
         //     entityCount.ToxiCountMod(1);
         // }
         
-        entityCount.CountUpdate(entityID, 1);
+        entityCount.CountUpdate(entityID, addToCount);
         
         
         InvokeRepeating(nameof(StateChecking), 0f, 0.2f);

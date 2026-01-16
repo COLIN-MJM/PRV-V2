@@ -17,9 +17,24 @@ public class KillZoneEnter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("KillZone"))
+        if (other.gameObject.CompareTag("KillZone") && entityID.species != Species.S2)
         {
             entityCount.CountUpdate(entityID, -1);
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.CompareTag("KillZone") && entityID.species == Species.S2 && GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlOne)
+        {
+            entityCount.CountUpdate(entityID, -1);
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.CompareTag("KillZone") && entityID.species == Species.S2 && GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlTwo)
+        {
+            entityCount.CountUpdate(entityID, -2);
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.CompareTag("KillZone") && entityID.species == Species.S2 && GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlThree)
+        {
+            entityCount.CountUpdate(entityID, -4);
             Destroy(gameObject);
         }
     }

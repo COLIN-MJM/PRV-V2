@@ -9,9 +9,11 @@ public class MergeOnTrigger : MonoBehaviour
     public EntityIdentity entityID;
     public GameObject nextLevel;
     public GameObject previousLevel;
+    public StateChecker stateChecker;
 
     public GameObject gm;
     public EntityCount entityCount;
+
     
 
     public enum Level 
@@ -29,6 +31,7 @@ public class MergeOnTrigger : MonoBehaviour
     {
         gm = GameObject.FindGameObjectWithTag("GM");
         entityCount = gm.GetComponent<EntityCount>();
+        stateChecker = GetComponent<StateChecker>();
         
         entityID = GetComponent<EntityIdentity>();
     }
@@ -55,7 +58,7 @@ public class MergeOnTrigger : MonoBehaviour
         {
             // entityCount.EntityCountMod(-1);
             // entityCount.EnXCountMod(-1);
-            entityCount.CountUpdate(entityID, -1);
+            entityCount.CountUpdate(entityID, -stateChecker.addToCount);
             Destroy(gameObject);
         }
         else if (other.gameObject.CompareTag("Species") && other.gameObject.GetComponent<EntityIdentity>().species == entityID.species 
@@ -63,7 +66,7 @@ public class MergeOnTrigger : MonoBehaviour
         {
             // entityCount.EntityCountMod(-1);
             // entityCount.EnXCountMod(-1);
-            entityCount.CountUpdate(entityID, -1);
+            entityCount.CountUpdate(entityID, -stateChecker.addToCount);
             Instantiate(nextLevel, transform.position, transform.rotation);
             Destroy(gameObject);
         }

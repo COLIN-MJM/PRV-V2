@@ -9,6 +9,7 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
     [Header("Input Detection")]
     public GameObject gm;
     public InputReader inputReader;
+    private EntityCount entityCount;
     
     [Header("Choices Related")]
     public List<GameObject> choices;
@@ -39,6 +40,10 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
     
     public int eggSixCount;
 
+    private int maxEntityCount = 50;
+    private int midEntityCount = 25;
+    private int lowEntityCount = 15;
+    private int minEntityCount = 7;
 
     void Awake()
     {
@@ -81,6 +86,7 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
     {
         gm = GameObject.FindGameObjectWithTag("GM");
         inputReader = gm.GetComponent<InputReader>();
+        entityCount = gm.GetComponent<EntityCount>();
 
         foodCount = maxFoodCount;
         
@@ -95,6 +101,40 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
         
         OnTimerGetFood();
         OnTimerGetKillZone();
+
+        if (entityCount.entityCount > maxEntityCount)
+        {
+            maxFoodCount = 0;
+            maxZoneCount = 5;
+            maxZoneTimer = 1.5f;
+        }
+        else if (entityCount.entityCount < maxEntityCount && entityCount.entityCount > midEntityCount)
+        {
+            maxFoodCount = 3;
+            maxFoodTimer = 4f;
+            maxZoneCount = 3;
+            maxZoneTimer = 2.5f;
+        }
+        else if (entityCount.entityCount < midEntityCount && entityCount.entityCount > lowEntityCount)
+        {
+            maxFoodCount = 4;
+            maxFoodTimer = 3f;
+            maxZoneCount = 2;
+            maxZoneTimer = 4f;
+        }
+        else if (entityCount.entityCount < lowEntityCount)
+        {
+            maxFoodCount = 5;
+            maxFoodTimer = 2;
+            maxZoneCount = 2;
+            maxZoneTimer = 5f;
+        }
+        else if (entityCount.entityCount < minEntityCount)
+        {
+            maxFoodCount = 5;
+            maxFoodTimer = 1;
+            maxZoneCount = 0;
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
