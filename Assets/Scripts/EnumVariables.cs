@@ -20,6 +20,7 @@ public enum State
         Fatigued,
         Interacting,
         Consuming,
+        Afraid,
         Reproducing
     }
     

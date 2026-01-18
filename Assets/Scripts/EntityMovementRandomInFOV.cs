@@ -107,6 +107,9 @@ public class EntityMovementRandomInFOV : MonoBehaviour
                 case State.Consuming:
                     rb.linearVelocity = Vector3.zero;
                     break;
+                case State.Afraid:
+                    StateCheckedMovement(entityID.speedModifierWhenFleeing);
+                    break;
                 default:
                     RandomMovement(1f);
                     break;

@@ -14,7 +14,7 @@ public class EntityFOV : MonoBehaviour
     public List<GameObject> fightsWithinFOV;
     public List<GameObject> matesWithinFOV;
     public List<GameObject> foodWithinFOV;
-    public List<Vector3> wallsWithinFOV;
+    public List<GameObject> scarecrowsWithinFOV;
     private Collider selfCollider;
     private Collider[] _nearbyObjects;
     public float currentFOV;
@@ -25,20 +25,24 @@ public class EntityFOV : MonoBehaviour
         entityID = gameObject.GetComponent<EntityIdentity>();
         selfCollider = GetComponent<Collider>();
         InvokeRepeating(nameof(CheckingSurroundings), 0f, 0.2f); //Optimisation?
-        wallsWithinFOV = new List<Vector3>();
         currentFOV = entityID.fovAngle;
-    }
-
-    private void CheckingSurroundings()
-    {
+        
         predatorsWithinFOV = new List<GameObject>();
         preysWithinFOV = new List<GameObject>();
         fightsWithinFOV = new List<GameObject>();
         matesWithinFOV = new List<GameObject>();
         foodWithinFOV = new List<GameObject>();
-        wallsWithinFOV.Clear();
-        
-        
+        scarecrowsWithinFOV = new List<GameObject>();
+    }
+
+    private void CheckingSurroundings()
+    {
+        predatorsWithinFOV.Clear();
+        preysWithinFOV.Clear();
+        fightsWithinFOV.Clear();
+        matesWithinFOV.Clear();
+        foodWithinFOV.Clear();
+        scarecrowsWithinFOV.Clear();
         
         _nearbyObjects = Physics.OverlapSphere(transform.position, entityID.fovRadius);
         
@@ -115,7 +119,7 @@ public class EntityFOV : MonoBehaviour
                 }
                 else if (_nearbyObjects[i].CompareTag("Scarecrow"))
                 {
-                    predatorsWithinFOV.Add(_nearbyObjects[i].gameObject);
+                    scarecrowsWithinFOV.Add(_nearbyObjects[i].gameObject);
                 }
             }
             // else if (Mathf.Abs(signedAngle) < entityID.fovAngle / 5f && _nearbyObjects[i] != selfCollider)

@@ -83,6 +83,11 @@ public class StateChecker : MonoBehaviour
                 entityID.state = State.Reproducing;
                 targetObjects = entityFOV.matesWithinFOV;
             }
+            else if (entityFOV.scarecrowsWithinFOV.Count > 0)
+            {
+                entityID.state = State.Afraid;
+                targetObjects = entityFOV.scarecrowsWithinFOV;
+            }
         }
 
         if (entityID.state == State.Fleeing)
@@ -139,6 +144,38 @@ public class StateChecker : MonoBehaviour
                 targetPos = targetToChase - transform.position;
             }
             else if (entityFOV.preysWithinFOV.Count == 0)
+            {
+                t = 0;
+                targetPos = transform.position;
+                entityID.state = State.Idle;
+            }
+            else
+            {
+                t = 0;
+                targetPos = transform.position;
+                entityID.state = State.Fatigued;
+            }
+        }
+        
+        if (entityID.state == State.Afraid)
+        {
+            entityFOV.currentFOV = entityID.fovAngle;
+            t += 0.2f;
+
+            if (entityFOV.scarecrowsWithinFOV.Count > 0)
+            {
+                targetObjects = entityFOV.scarecrowsWithinFOV;
+                Vector3 targetToBeAfraidOf = new Vector3(1000f, 0f, 1000f);
+                foreach (var scarecrow in targetObjects)
+                {
+                    if (scarecrow.gameObject != null && (scarecrow.gameObject.transform.position - transform.position).magnitude < (targetToBeAfraidOf - transform.position).magnitude)
+                    {
+                        targetToBeAfraidOf = new Vector3(scarecrow.gameObject.transform.position.x, transform.position.y, scarecrow.gameObject.transform.position.z);
+                    }
+                }
+                targetPos = transform.position - targetToBeAfraidOf;
+            }
+            else if (entityFOV.scarecrowsWithinFOV.Count == 0)
             {
                 t = 0;
                 targetPos = transform.position;
