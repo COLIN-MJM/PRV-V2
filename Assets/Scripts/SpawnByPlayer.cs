@@ -51,7 +51,7 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
         // Provide Text position and size using RectTransform.
         RectTransform rectTransform;
         rectTransform = text.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(-450, 575, 0);
+        rectTransform.localPosition = new Vector3(-500, 580, 0);
         rectTransform.sizeDelta = new Vector2(1000, 200);
     }
     
@@ -61,13 +61,13 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
         inputReader = gm.GetComponent<InputReader>();
         
         currentChoice = choices[0];
-        text.text = $"Current Spawn if Right Click: {currentChoice.name}";
+        text.text = $"Current Spawn if Left Click: {currentChoice.name}";
     }
     
     private void Update()
     {
         currentChoice = choices[choiceIndex];
-        text.text = $"Current Spawn if Right Click: {currentChoice.name}";
+        text.text = $"Current Spawn if Left Click: {currentChoice.name}";
     }
 
     public void OnPointerClick(PointerEventData eventData)
