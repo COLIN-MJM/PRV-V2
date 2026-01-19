@@ -98,13 +98,13 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
         foodCount = maxFoodCount;
         
         currentChoice = choices[0];
-        text.text = $"Current Spawn if Right Click: {currentChoice.name}";
+        text.text = $"Current Spawn if Left Click: {currentChoice.name}";
     }
     
     private void Update()
     {
         currentChoice = choices[choiceIndex];
-        text.text = $"Current Spawn if Right Click: {currentChoice.name}";
+        text.text = $"Current Spawn if Left Click: {currentChoice.name}";
         
         OnTimerGetFood();
         OnTimerGetKillZone();
