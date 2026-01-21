@@ -78,11 +78,11 @@ public class StateChecker : MonoBehaviour
                 entityID.state = State.Fighting;
                 targetObjects = entityFOV.fightsWithinFOV;
             }
-            else if (entityFOV.matesWithinFOV.Count > 0 && gm.GetComponent<SeasonManager>().currentSeason == entityID.matingSeason)
-            {
-                entityID.state = State.Reproducing;
-                targetObjects = entityFOV.matesWithinFOV;
-            }
+            // else if (entityFOV.matesWithinFOV.Count > 0 && gm.GetComponent<SeasonManager>().currentSeason == entityID.matingSeason)
+            // {
+            //     entityID.state = State.Reproducing;
+            //     targetObjects = entityFOV.matesWithinFOV;
+            // }
             else if (entityFOV.scarecrowsWithinFOV.Count > 0)
             {
                 entityID.state = State.Afraid;
