@@ -141,6 +141,9 @@ public class Interact : MonoBehaviour
     private void KillAndSpawnCarcass(Collider entity)
     {
         entityFOV.preysWithinFOV.Remove(entity.gameObject);
+        
+        // Quand on en sera ici, il faudra penser à retirer la partie pour récup le mesh render, pour clean les prefabs
+        
         spawnCorpse.SpawnIDCorpse(entity.GetComponent<MeshRenderer>(), entity.GetComponent<EntityIdentity>().species);
         EntityIdentity thisEntitySpecies = entity.GetComponent<EntityIdentity>();
         
