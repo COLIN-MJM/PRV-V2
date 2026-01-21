@@ -39,6 +39,34 @@ public class EntityCount : MonoBehaviour
         toxiCount += value;
     }
 
+    public void Update()
+    {
+        if (entityCount < 0)
+        {
+            entityCount = 0;
+        }
+        
+        if (vanilliCount < 0)
+        {
+            vanilliCount = 0;
+        }
+        
+        if (enXCount < 0)
+        {
+            enXCount = 0;
+        }
+        
+        if (holoCount < 0)
+        {
+            holoCount = 0;
+        }
+        
+        if (toxiCount < 0)
+        {
+            toxiCount = 0;
+        }
+        
+    }
 
     public void CountUpdate(EntityIdentity objectEntityID, int value)
     {
