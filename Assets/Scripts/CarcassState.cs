@@ -11,6 +11,11 @@ public class CarcassState : MonoBehaviour
     public float maxHealthModifierS3;
     public List<GameObject> eater;
 
+    public GameObject vanilliiBody;
+    public GameObject entityXBody;
+    public GameObject holoBody;
+    public GameObject toxiBody;
+
 
     private void Start()
     {
@@ -20,6 +25,25 @@ public class CarcassState : MonoBehaviour
         {
             carcassHealth = maxCarcassHealth * maxHealthModifierS3;
         }
+
+        if (species == Species.S1)
+        {
+            vanilliiBody.SetActive(true);
+        }
+        else if (species == Species.S2)
+        {
+            entityXBody.SetActive(true);
+        }
+        else if (species == Species.S3)
+        {
+            holoBody.SetActive(true);
+        }
+        else if (species == Species.S6)
+        {
+            toxiBody.SetActive(true);
+        }
+        
+        
     }
 
 
@@ -44,5 +68,7 @@ public class CarcassState : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        
+        
     }
 }

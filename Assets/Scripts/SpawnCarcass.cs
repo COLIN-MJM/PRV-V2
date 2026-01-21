@@ -23,14 +23,17 @@ public class SpawnCarcass : MonoBehaviour
     }
 
 
-    public void SpawnIDCorpse(MeshRenderer entityMesh, Species theSpecies)
+    public void SpawnIDCorpse(Species theSpecies)
     {
         if (gameManager.GetComponent<PlayerChoice>().carcassOn)
         {
             GameObject currentCarcass = Instantiate(carcass, transform.position, transform.rotation);
             // currentCarcass.GetComponent<CarcassState>().species = entityID.species;
-            currentCarcass.GetComponent<CarcassState>().species = theSpecies;
-            currentCarcass.GetComponentInChildren<MeshRenderer>().materials = entityMesh.materials;
+            // currentCarcass.GetComponent<CarcassState>().species = theSpecies;
+            CarcassState currentCarcassState = currentCarcass.GetComponent<CarcassState>();
+            currentCarcassState.species = theSpecies;
+            // currentCarcass.GetComponentInChildren<MeshRenderer>().materials = entityMesh.materials;
+            
         }
     }
     

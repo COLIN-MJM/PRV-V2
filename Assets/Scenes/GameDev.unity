@@ -1920,6 +1920,7 @@ GameObject:
   - component: {fileID: 1255855950}
   - component: {fileID: 1255855951}
   - component: {fileID: 1255855952}
+  - component: {fileID: 1255855953}
   m_Layer: 0
   m_Name: GM
   m_TagString: GM
@@ -2025,6 +2026,19 @@ MonoBehaviour:
   alcool: {fileID: 664394425}
   ground: {fileID: 1032658880}
   spawnByPlayer: {fileID: 0}
+--- !u!114 &1255855953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255855944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db12a78fff32044eb5d4e6461dffa75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carcassOn: 1
 --- !u!1001 &1277146390
 PrefabInstance:
   m_ObjectHideFlags: 0

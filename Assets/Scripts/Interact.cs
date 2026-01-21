@@ -144,26 +144,8 @@ public class Interact : MonoBehaviour
         
         // Quand on en sera ici, il faudra penser à retirer la partie pour récup le mesh render, pour clean les prefabs
         
-        spawnCorpse.SpawnIDCorpse(entity.GetComponent<MeshRenderer>(), entity.GetComponent<EntityIdentity>().species);
+        spawnCorpse.SpawnIDCorpse(entity.GetComponent<EntityIdentity>().species);
         EntityIdentity thisEntitySpecies = entity.GetComponent<EntityIdentity>();
-        
-        // entityCount.EntityCountMod(-1);
-        // if (thisEntitySpecies.species == Species.S1)
-        // {
-        //     entityCount.VanilliCountMod(-1);
-        // }
-        // else if (thisEntitySpecies.species == Species.S2)
-        // {
-        //     entityCount.EnXCountMod(-1);
-        // } 
-        // else if (thisEntitySpecies.species == Species.S3)
-        // {
-        //     entityCount.HoloCountMod(-1);
-        // }
-        // else if (thisEntitySpecies.species == Species.S6)
-        // {
-        //     entityCount.ToxiCountMod(-1);
-        // }
         
         entityCount.CountUpdate(thisEntitySpecies, -1);
         
