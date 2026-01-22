@@ -43,9 +43,13 @@ public class EntityIdentity : MonoBehaviour
     private void OnDrawGizmos()
     {
         // Faudra l'enlever c'est pour éviter dde l'appeller à chaque DrawGizmo dans un autre script
-        Handles.color = new Color(1,1,1,0.5f);
-        Handles.DrawSolidArc(transform.position, transform.up, Quaternion.AngleAxis(-fovAngle/2f, transform.up) * transform.forward, fovAngle, fovRadius);
-        Handles.color = new Color(1,1,1,0.5f);
-        fovRadius = Handles.ScaleValueHandle(fovRadius, transform.position + transform.forward * fovRadius, transform.rotation, 3, Handles.SphereHandleCap, 1);
+        // if (!enabled)
+        // {
+        //     Handles.color = new Color(1,1,1,0.5f);
+        //     Handles.DrawSolidArc(transform.position, transform.up, Quaternion.AngleAxis(-fovAngle/2f, transform.up) * transform.forward, fovAngle, fovRadius);
+        //     Handles.color = new Color(1,1,1,0.5f);
+        //     fovRadius = Handles.ScaleValueHandle(fovRadius, transform.position + transform.forward * fovRadius, transform.rotation, 3, Handles.SphereHandleCap, 1);
+        // }
+        
     }
 }

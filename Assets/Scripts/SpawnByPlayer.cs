@@ -51,42 +51,49 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
     private int midEntityCount = 25;
     private int lowEntityCount = 15;
     private int minEntityCount = 7;
+    public bool debugText;
 
     void Awake()
     {
         // Load the Arial font from the Unity Resources folder.
-        Font font;
-        font = (Font)Resources.GetBuiltinResource(typeof(Font), "LegacyRuntime.ttf");
+        if (debugText)
+        {
+            Font font;
+            font = (Font)Resources.GetBuiltinResource(typeof(Font), "LegacyRuntime.ttf");
 
-        // Create Canvas GameObject.
-        GameObject canvasGO = new GameObject();
-        canvasGO.name = "Canvas";
-        canvasGO.AddComponent<Canvas>();
-        canvasGO.AddComponent<CanvasScaler>();
-        canvasGO.AddComponent<GraphicRaycaster>();
+            // Create Canvas GameObject.
+            GameObject canvasGO = new GameObject();
+            canvasGO.name = "Canvas";
+            canvasGO.AddComponent<Canvas>();
+            canvasGO.AddComponent<CanvasScaler>();
+            canvasGO.AddComponent<GraphicRaycaster>();
 
-        // Get canvas from the GameObject.
-        Canvas canvas;
-        canvas = canvasGO.GetComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            // Get canvas from the GameObject.
+            Canvas canvas;
+            canvas = canvasGO.GetComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
-        // Create the Text GameObject.
-        GameObject textGO = new GameObject();
-        textGO.transform.parent = canvasGO.transform;
-        textGO.AddComponent<Text>();
+            // Create the Text GameObject.
+            GameObject textGO = new GameObject();
+            textGO.transform.parent = canvasGO.transform;
+            textGO.AddComponent<Text>();
 
-        // Set Text component properties.
-        text = textGO.GetComponent<Text>();
-        text.font = font;
-        text.text = " ";
-        text.fontSize = 48;
-        text.alignment = TextAnchor.LowerLeft;
+            // Set Text component properties.
+            text = textGO.GetComponent<Text>();
+            text.font = font;
+            text.text = " ";
+            text.fontSize = 48;
+            text.alignment = TextAnchor.LowerLeft;
+            
+            // Provide Text position and size using RectTransform.
+            RectTransform rectTransform;
+            rectTransform = text.GetComponent<RectTransform>();
+            rectTransform.localPosition = new Vector3(-450, 575, 0);
+            rectTransform.sizeDelta = new Vector2(1000, 200);
+        }
+        
 
-        // Provide Text position and size using RectTransform.
-        RectTransform rectTransform;
-        rectTransform = text.GetComponent<RectTransform>();
-        rectTransform.localPosition = new Vector3(-450, 575, 0);
-        rectTransform.sizeDelta = new Vector2(1000, 200);
+        
     }
     
     private void Start()
@@ -98,13 +105,20 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
         foodCount = maxFoodCount;
         
         currentChoice = choices[0];
-        text.text = $"Current Spawn if Left Click: {currentChoice.name}";
+        if (debugText)
+        {
+            text.text = $"Current Spawn if Left Click: {currentChoice.name}";
+        }
     }
     
     private void Update()
     {
         currentChoice = choices[choiceIndex];
-        text.text = $"Current Spawn if Left Click: {currentChoice.name}";
+
+        if (debugText)
+        {
+            text.text = $"Current Spawn if Left Click: {currentChoice.name}";
+        }
         
         OnTimerGetFood();
         OnTimerGetKillZone();

@@ -1676,6 +1676,7 @@ MonoBehaviour:
   eggTwoCount: 0
   eggThreeCount: 0
   eggSixCount: 0
+  debugText: 0
 --- !u!114 &1032658887
 MonoBehaviour:
   m_ObjectHideFlags: 0
