@@ -54,7 +54,7 @@ public class MergeOnTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Species") && other.gameObject.GetComponent<EntityIdentity>().species == entityID.species 
-                                                   && transform.position.x < other.transform.position.x && other.gameObject.GetComponent<MergeOnTrigger>().currentLevel == currentLevel && currentLevel != Level.LvlThree && tBeforeMerge <= 0)
+                                                   && transform.position.x < other.transform.position.x && other.gameObject.GetComponent<MergeOnTrigger>().currentLevel == currentLevel && currentLevel != Level.LvlThree && tBeforeMerge <= 0 && other.gameObject.GetComponent<MergeOnTrigger>().tBeforeMerge <= 0)
         {
             // entityCount.EntityCountMod(-1);
             // entityCount.EnXCountMod(-1);
@@ -62,7 +62,7 @@ public class MergeOnTrigger : MonoBehaviour
             Destroy(gameObject);
         }
         else if (other.gameObject.CompareTag("Species") && other.gameObject.GetComponent<EntityIdentity>().species == entityID.species 
-                                                        && transform.position.x > other.transform.position.x  && other.gameObject.GetComponent<MergeOnTrigger>().currentLevel == currentLevel && currentLevel != Level.LvlThree && tBeforeMerge <= 0)
+                                                        && transform.position.x > other.transform.position.x  && other.gameObject.GetComponent<MergeOnTrigger>().currentLevel == currentLevel && currentLevel != Level.LvlThree && tBeforeMerge <= 0 && other.gameObject.GetComponent<MergeOnTrigger>().tBeforeMerge <= 0)
         {
             // entityCount.EntityCountMod(-1);
             // entityCount.EnXCountMod(-1);

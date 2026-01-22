@@ -97,7 +97,7 @@ public class Interact : MonoBehaviour
 
     private void SplitOrKill(Collider entity)
     {
-        if (entity.GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlThree)
+        if (entity.GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlThree )
         {
             entityCount.CountUpdate(entity.GetComponent<EntityIdentity>(), -4);
             SplitInFour(entity);
