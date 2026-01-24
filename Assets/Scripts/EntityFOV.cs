@@ -24,7 +24,7 @@ public class EntityFOV : MonoBehaviour
         // rb = GetComponent<Rigidbody>();
         entityID = gameObject.GetComponent<EntityIdentity>();
         selfCollider = GetComponent<Collider>();
-        InvokeRepeating(nameof(CheckingSurroundings), 0f, 0.2f); //Optimisation?
+        InvokeRepeating(nameof(CheckingSurroundings), 0f, 0.1f); //Optimisation?
         currentFOV = entityID.fovAngle;
         
         predatorsWithinFOV = new List<GameObject>();
