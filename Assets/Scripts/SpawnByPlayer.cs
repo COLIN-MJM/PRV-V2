@@ -33,18 +33,18 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
     public int maxEggCount = 3;
     
     public int eggOneCount;
-    private bool eggOneBool;
+    private bool eggOneBool = true;
     
     public int eggTwoCount;
-    private bool eggTwoBool;
+    private bool eggTwoBool = true;
     
     
     public int eggThreeCount;
-    private bool eggThreeBool;
+    private bool eggThreeBool = true;
     
     
     public int eggSixCount;
-    private bool eggSixBool;
+    private bool eggSixBool = true;
     
 
     private int maxEntityCount = 50;
