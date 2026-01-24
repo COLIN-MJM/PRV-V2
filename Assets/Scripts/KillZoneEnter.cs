@@ -6,6 +6,7 @@ public class KillZoneEnter : MonoBehaviour
     public GameObject gm;
     public EntityCount entityCount;
     public EntityIdentity entityID;
+    public TimerBeforeDestroy killZoneScript = null;
 
 
     private void Start()
@@ -17,25 +18,30 @@ public class KillZoneEnter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("KillZone") && entityID.species != Species.S2)
+        if (other.gameObject.CompareTag("KillZone"))
         {
-            entityCount.CountUpdate(entityID, -1);
-            Destroy(gameObject);
-        }
-        else if (other.gameObject.CompareTag("KillZone") && entityID.species == Species.S2 && GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlOne)
-        {
-            entityCount.CountUpdate(entityID, -1);
-            Destroy(gameObject);
-        }
-        else if (other.gameObject.CompareTag("KillZone") && entityID.species == Species.S2 && GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlTwo)
-        {
-            entityCount.CountUpdate(entityID, -2);
-            Destroy(gameObject);
-        }
-        else if (other.gameObject.CompareTag("KillZone") && entityID.species == Species.S2 && GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlThree)
-        {
-            entityCount.CountUpdate(entityID, -4);
-            Destroy(gameObject);
+            killZoneScript = other.gameObject.GetComponent<TimerBeforeDestroy>();
+            killZoneScript.touchedEntities++;
+            if (entityID.species != Species.S2)
+            {
+                entityCount.CountUpdate(entityID, -1);
+                Destroy(gameObject);
+            }
+            else if (entityID.species == Species.S2 && GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlOne)
+            {
+                entityCount.CountUpdate(entityID, -1);
+                Destroy(gameObject);
+            }
+            else if (entityID.species == Species.S2 && GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlTwo)
+            {
+                entityCount.CountUpdate(entityID, -2);
+                Destroy(gameObject);
+            }
+            else if (entityID.species == Species.S2 && GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlThree)
+            {
+                entityCount.CountUpdate(entityID, -4);
+                Destroy(gameObject);
+            }
         }
     }
 }

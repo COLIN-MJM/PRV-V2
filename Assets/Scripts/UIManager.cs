@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
     public GameObject gm;
     public InputReader inputReader;
+    public StudioEventEmitter eventEmitterSelection;
     
     public List<GameObject> buttons;
     private int lastlyClickedButton = 0;
@@ -29,6 +31,7 @@ public class UIManager : MonoBehaviour
                 else
                 {
                     buttons[lastlyClickedButton].GetComponent<UIActions>().isSelected = false;
+                    eventEmitterSelection.SetParameter("SelectionSoundToPlay", i);
                     lastlyClickedButton = i;
                 }
             }

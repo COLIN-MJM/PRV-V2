@@ -282,6 +282,8 @@ GameObject:
   m_Component:
   - component: {fileID: 238302020}
   - component: {fileID: 238302022}
+  - component: {fileID: 238302024}
+  - component: {fileID: 238302023}
   m_Layer: 0
   m_Name: CameraFocus
   m_TagString: MainCamera
@@ -317,6 +319,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4458fe7712eae4b992f96e41b8eebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &238302023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238302019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde2d48dff9b688499b25c44f4218886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &238302024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238302019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -16806919
+      Data2: 1279501062
+      Data3: -745903477
+      Data4: 19031475
+    Path: event:/BasicClick
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &264579501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1486,8 +1531,8 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1495,14 +1540,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &963194226
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -1585,6 +1622,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1001 &968620216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1688,6 +1739,8 @@ GameObject:
   - component: {fileID: 1032658881}
   - component: {fileID: 1032658886}
   - component: {fileID: 1032658887}
+  - component: {fileID: 1032658888}
+  - component: {fileID: 1032658889}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Ground
@@ -1799,6 +1852,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm: {fileID: 0}
   inputReader: {fileID: 0}
+  eventEmitterWrong: {fileID: 1032658888}
+  eventEmitterRecharge: {fileID: 1032658889}
   choices:
   - {fileID: 1568366197890041967, guid: 18eb8c5c45d87fb4c87a278157e05ea4, type: 3}
   - {fileID: 1568366197890041967, guid: f4786952a7dbd464ab47d3a4c3eb1890, type: 3}
@@ -1835,6 +1890,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2da6abe72dd09047971257b0886a072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1032658888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032658880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1986389618
+      Data2: 1323669408
+      Data3: -1738690172
+      Data4: 805653388
+    Path: event:/WrongClick
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1032658889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032658880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1411769943
+      Data2: 1214700880
+      Data3: -948042588
+      Data4: 731351237
+    Path: event:/RechargeState
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params:
+  - Name: RechargeState
+    Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!4 &1076917275 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 62e2aa9e836c9a24c91541a2b4f654bd, type: 3}
@@ -2100,6 +2219,7 @@ GameObject:
   - component: {fileID: 1255855951}
   - component: {fileID: 1255855952}
   - component: {fileID: 1255855953}
+  - component: {fileID: 1255855954}
   m_Layer: 0
   m_Name: GM
   m_TagString: GM
@@ -2160,6 +2280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm: {fileID: 0}
   inputReader: {fileID: 0}
+  eventEmitterSelection: {fileID: 1255855954}
   buttons:
   - {fileID: 700015457}
   - {fileID: 236657470}
@@ -2218,6 +2339,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carcassOn: 1
+--- !u!114 &1255855954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255855944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1872737774
+      Data2: 1243133825
+      Data3: 1520960697
+      Data4: 1931892375
+    Path: event:/SelectionSound
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params:
+  - Name: SelectionSoundToPlay
+    Value: 7
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1343761421
 PrefabInstance:
   m_ObjectHideFlags: 0

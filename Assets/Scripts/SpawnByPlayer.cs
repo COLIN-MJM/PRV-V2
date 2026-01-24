@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -10,6 +11,8 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
     public GameObject gm;
     public InputReader inputReader;
     private EntityCount entityCount;
+    public StudioEventEmitter eventEmitterWrong;
+    public StudioEventEmitter eventEmitterRecharge;
     
     [Header("Choices Related")]
     public List<GameObject> choices;
@@ -25,8 +28,8 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
     public float foodTimer;
     public float maxFoodTimer = 5f;
     
-    public float zoneCount;
-    public float maxZoneCount = 5;
+    public int zoneCount;
+    public int maxZoneCount = 5;
     public float zoneTimer;
     public float maxZoneTimer = 5f;
 
@@ -129,40 +132,48 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
         {
             eggOneBool = false;
             eggOneCount = maxEggCount;
+            eventEmitterRecharge.SetParameter("RechargeState", 3);
         }
         else if (entityCount.vanilliCount > 0)
         {
             eggOneBool = true;
+            eventEmitterRecharge.SetParameter("RechargeState", 0);
         }
         
         if (entityCount.enXCount <= 0 && eggTwoBool)
         {
             eggTwoBool = false;
             eggTwoCount = maxEggCount;
+            eventEmitterRecharge.SetParameter("RechargeState", 3);
         }
         else if (entityCount.enXCount > 0)
         {
             eggTwoBool = true;
+            eventEmitterRecharge.SetParameter("RechargeState", 0);
         }
         
         if (entityCount.holoCount <= 0 && eggThreeBool)
         {
             eggThreeBool = false;
             eggThreeCount = maxEggCount;
+            eventEmitterRecharge.SetParameter("RechargeState", 3);
         }
         else if (entityCount.holoCount > 0)
         {
             eggThreeBool = true;
+            eventEmitterRecharge.SetParameter("RechargeState", 0);
         }
         
         if (entityCount.toxiCount <= 0 && eggSixBool)
         {
             eggSixBool = false;
             eggSixCount = maxEggCount;
+            eventEmitterRecharge.SetParameter("RechargeState", 3);
         }
         else if (entityCount.toxiCount > 0)
         {
             eggSixBool = true;
+            eventEmitterRecharge.SetParameter("RechargeState", 0);
         }
 
 
@@ -207,6 +218,10 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
             {
                 Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);
             }
+            else
+            {
+                eventEmitterWrong.Play();
+            }
         }
     }
 
@@ -221,6 +236,7 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
         {
             foodTimer = 0;
             foodCount++;
+            eventEmitterRecharge.SetParameter("RechargeState", 1);
         }
 
         if (foodCount >= maxFoodCount)
@@ -242,6 +258,7 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
         {
             zoneTimer = 0;
             zoneCount++;
+            eventEmitterRecharge.SetParameter("RechargeState", 2);
         }
 
         if (zoneCount >= maxZoneCount)

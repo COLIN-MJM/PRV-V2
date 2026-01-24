@@ -74,6 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 605432846985302747}
   - component: {fileID: -677461476076697817}
+  - component: {fileID: -9053262466728104378}
   m_Layer: 0
   m_Name: Eggs Species6
   m_TagString: Untagged
@@ -116,6 +117,37 @@ MonoBehaviour:
   - {fileID: 2852104306179478028}
   child: {fileID: 4258745890326616887, guid: 1a0c46d28859c4d40ae466b6edd4d880, type: 3}
   timeBeforeHatching: 2
+--- !u!114 &-9053262466728104378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3013996808204840528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -991879409
+      Data2: 1115532542
+      Data3: -1182968929
+      Data4: 421531178
+    Path: event:/EggsDropping
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &230598048000634319
 PrefabInstance:
   m_ObjectHideFlags: 0
