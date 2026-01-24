@@ -33,7 +33,7 @@ public class UIActions : MonoBehaviour
         {
             Transform actualChild = fbx.transform.GetChild(i);
             childMatList[i] = actualChild.GetComponent<MeshRenderer>().materials[1];
-            Debug.Log(childMatList[i]);
+            // Debug.Log(childMatList[i]);
         }
     }
 

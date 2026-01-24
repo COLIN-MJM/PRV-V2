@@ -19,6 +19,9 @@ public class StateChecker : MonoBehaviour
     [Header("Entity Targets")]
     public List<GameObject> targetObjects;
     public Vector3 targetPos;
+
+    [Header(("Entity Animation Params"))]
+    // public Animator animator;
     
     private float t;
     public int addToCount = 1;
@@ -31,6 +34,11 @@ public class StateChecker : MonoBehaviour
         entityFOV = GetComponent<EntityFOV>();
         ifMatingSeason = GetComponent<IfMatingSeason>();
         onHungerFull = GetComponent<OnHungerFull>();
+
+        // if (entityID.species == Species.S1)
+        // {
+        //     animator = GetComponentInChildren<Animator>();
+        // }
         
         //Rajoute 1 au compteur d'entité total au spawn
         // entityCount.EntityCountMod(1);
@@ -67,11 +75,29 @@ public class StateChecker : MonoBehaviour
             {
                 entityID.state = State.Fleeing;
                 targetObjects = entityFOV.predatorsWithinFOV;
+                
+                // HERE
+                // if (entityID.species == Species.S1)
+                // {
+                //     animator.SetBool("IsFleeing", true);
+                // }
+                
+                // if (entityID.species == Species.S6)
+                // {
+                //     animator.SetBool("IsAttacking", true);
+                // }
             }
             else if (entityFOV.preysWithinFOV.Count > 0)
             {
                 entityID.state = State.Chasing;
                 targetObjects = entityFOV.preysWithinFOV;
+                
+                // HERE
+                // if (entityID.species == Species.S1)
+                // {
+                //     animator.SetBool("IsAttacking", true);
+                // }
+                
             }
             else if (entityFOV.fightsWithinFOV.Count > 0)
             {
@@ -116,6 +142,12 @@ public class StateChecker : MonoBehaviour
                 t = 0;
                 targetPos = transform.position;
                 entityID.state = State.Idle;
+                
+                // HERE
+                // if (entityID.species == Species.S1)
+                // {
+                //     animator.SetBool("IsFleeing", false);
+                // }
             }
             else
             {
@@ -148,6 +180,12 @@ public class StateChecker : MonoBehaviour
                 t = 0;
                 targetPos = transform.position;
                 entityID.state = State.Idle;
+                
+                // HERE
+                // if (entityID.species == Species.S1)
+                // {
+                //     animator.SetBool("IsAttacking", false);
+                // }
             }
             else
             {

@@ -85,11 +85,11 @@ public class Interact : MonoBehaviour
 
     private void BreakShieldOrKill(Collider entity)
     {
-        if (entity.GetComponent<ShieldAndToxicGas>().isInvincibilityStillRunning)
+        if (entity.GetComponent<ShieldAndToxicGas>().isInvincibilityStillRunning) // BREAK SHIELD
         {
-            entity.GetComponent<ShieldAndToxicGas>().isShieldActivated = false;
+            entity.GetComponent<ShieldAndToxicGas>().isShieldUsable = false;
         }
-        else
+        else  // KILL
         {
             KillAndSpawnCarcass(entity);
         }
