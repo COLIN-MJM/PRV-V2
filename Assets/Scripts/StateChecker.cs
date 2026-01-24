@@ -127,9 +127,15 @@ public class StateChecker : MonoBehaviour
                 Vector3 fleeingDirection = new Vector3(transform.forward.x, 0, transform.forward.z);
                 foreach (GameObject predator in targetObjects)
                 {
-                    if (predator != null)
+                    // if (predator != null)
+                    // {
+                    //     fleeingDirection += new Vector3(predator.transform.forward.x, 0, predator.transform.forward.z);
+                    // }
+
+                    if (predator != null && (predator.gameObject.transform.position - transform.position).magnitude <
+                        fleeingDirection.magnitude)
                     {
-                        fleeingDirection += new Vector3(predator.transform.forward.x, 0, predator.transform.forward.z);
+                        fleeingDirection = transform.position - predator.gameObject.transform.position;
                     }
                 }
                 // fleeingDirection = -fleeingDirection;
