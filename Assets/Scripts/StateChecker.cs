@@ -63,7 +63,7 @@ public class StateChecker : MonoBehaviour
         entityCount.CountUpdate(entityID, addToCount);
         
         
-        InvokeRepeating(nameof(StateChecking), 0f, 0.2f);
+        InvokeRepeating(nameof(StateChecking), 0f, 0.1f);
     }
 
     private void StateChecking()

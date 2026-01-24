@@ -108,7 +108,7 @@ MonoBehaviour:
   recoveryTime: 0.1
   reproductionCooldown: 0
   fovRadius: 5
-  fovAngle: 100
+  fovAngle: 160
   interactingRadius: 1.3
   reproducingRadius: 0
   timeLeftInPoison: 0
