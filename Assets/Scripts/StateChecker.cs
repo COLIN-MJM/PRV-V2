@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -25,6 +26,8 @@ public class StateChecker : MonoBehaviour
     
     private float t;
     public int addToCount = 1;
+
+    private bool crunchSoundAlreadyPlayed = false;
 
     private void Start()
     {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FMODUnity;
 using UnityEngine;
 
 [RequireComponent(typeof(EntityIdentity))]
@@ -9,6 +10,7 @@ public class Interact : MonoBehaviour
     [Header("Entity Self Comps")]
     public EntityIdentity entityID;
     public EntityFOV entityFOV;
+    public StudioEventEmitter eventEmitterCrunch;
     
     [Header("Interacting Entities")]
     public Collider[] interactingRangeEntities;
@@ -30,6 +32,14 @@ public class Interact : MonoBehaviour
         entityFOV = GetComponent<EntityFOV>();
         spawnCorpse = GetComponent<SpawnCarcass>();
         InvokeRepeating(nameof(InteractCheck), 0f, 0.2f);
+    }
+
+    private void Update()
+    {
+        if (entityID.state != State.Consuming)
+        {
+            eventEmitterCrunch.Stop();
+        }
     }
 
     private void InteractCheck()
@@ -150,6 +160,16 @@ public class Interact : MonoBehaviour
         entityCount.CountUpdate(thisEntitySpecies, -1);
         
         Destroy(entity.gameObject);
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Carcass") && 
+            (entityID.strengthAgainst.Contains(other.gameObject.GetComponent<CarcassState>().species) ||
+             (entityID.species == Species.S3 && other.GetComponent<CarcassState>().species != Species.S3)))
+        {
+            eventEmitterCrunch.Play();
+        }
     }
 
     private void OnTriggerStay(Collider other)

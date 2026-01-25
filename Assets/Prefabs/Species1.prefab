@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 7849572404749528700}
   - component: {fileID: 4477346953917973624}
   - component: {fileID: -6294151240771849282}
+  - component: {fileID: -3626997814353912467}
   m_Layer: 0
   m_Name: Species1
   m_TagString: Species
@@ -187,6 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityID: {fileID: 0}
   entityFOV: {fileID: 0}
+  eventEmitterCrunch: {fileID: -3626997814353912467}
   interactingRangeEntities: []
   child: {fileID: 6797965953060153057}
   isInCollision: 0
@@ -265,6 +267,7 @@ MonoBehaviour:
   gm: {fileID: 0}
   entityCount: {fileID: 0}
   entityID: {fileID: 0}
+  killZoneScript: {fileID: 0}
 --- !u!114 &610474591794134188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,6 +398,37 @@ MonoBehaviour:
   Event: 
   EventPlayTrigger: 1
   EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &-3626997814353912467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6797965953060153057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 639592384
+      Data2: 1086921365
+      Data3: 806871454
+      Data4: -1354127510
+    Path: event:/CrunchingWhenFeeding
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
