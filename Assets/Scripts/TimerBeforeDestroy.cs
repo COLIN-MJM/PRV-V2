@@ -35,12 +35,16 @@ public class TimerBeforeDestroy : MonoBehaviour
             alreadyTouched = true;
         }
         
-        if (timer <= 0.5f)
+        if (timer <= 0.7f)
         {
             collider.enabled = true;
-            float toScale = 0.1f + (timer / 0.5f);
-            transform.localScale = new Vector3(toScale, toScale, toScale);
-            
         }
+        
+        if (timer <= 0.3f)
+        {
+            float toScale = 0.1f + (timer / 0.3f);
+            transform.localScale = new Vector3(toScale, toScale, toScale);
+        }
+        
     }
 }
