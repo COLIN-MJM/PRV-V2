@@ -18,6 +18,7 @@ public class UIActions : MonoBehaviour
     private Transform fbx;
     private Material[] childMatList;
     private Material secondMat;
+    private Color selfColor;
 
     private void Start()
     {
@@ -32,8 +33,9 @@ public class UIActions : MonoBehaviour
         {
             Transform actualChild = fbx.transform.GetChild(i);
             childMatList[i] = actualChild.GetComponent<MeshRenderer>().materials[1];
-            // Debug.Log(childMatList[i]);
         }
+        selfColor = childMatList[0].GetColor("_Outline_Color");
+        Debug.Log(selfColor);
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class UIActions : MonoBehaviour
             for (int i = 0; i < childMatList.Length; i++)
             {
                 secondMat = childMatList[i];
-                secondMat.SetColor("_Outline_Color", Color.red);
+                secondMat.SetColor("_Outline_Color", selfColor);
             }
             spawnByPlayer.choiceIndex = choiceIndex;
         }

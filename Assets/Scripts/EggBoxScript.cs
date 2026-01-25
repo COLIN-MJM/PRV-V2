@@ -22,7 +22,7 @@ public class EggBoxScript : MonoBehaviour
         egg1 = box.GetChild(1).GetComponent<MeshRenderer>();
         egg2 = box.GetChild(2).GetComponent<MeshRenderer>();
         
-        Debug.Log(box + " " + egg1 + " " + egg2);
+        // Debug.Log(box + " " + egg1 + " " + egg2);
     }
 
     
