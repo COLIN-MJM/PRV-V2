@@ -408,7 +408,7 @@ MonoBehaviour:
   - {fileID: -1873148587723846217}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -428,7 +428,7 @@ MonoBehaviour:
   Path: ../3D PRV/Sound Design/PRV/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639049499473071725
+  lastModified: 639049736096403680
   FileSizes: []
   Exists: 1
 --- !u!114 &-6149075914237292257
@@ -876,7 +876,7 @@ MonoBehaviour:
   Path: ../3D PRV/Sound Design/PRV/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639049499473151963
+  lastModified: 639049736096614330
   FileSizes: []
   Exists: 1
 --- !u!114 &-1016984724397478725
@@ -894,7 +894,7 @@ MonoBehaviour:
   Path: ../3D PRV/Sound Design/PRV/Environnement.bank
   Name: Environnement
   StudioPath: bank:/Environnement
-  lastModified: 639049499472936168
+  lastModified: 639049736096294534
   FileSizes: []
   Exists: 1
 --- !u!114 &-930981602225885282
@@ -1028,7 +1028,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 3601015055341211008}
   cacheVersion: 131857
-  cacheTime: 639049499473151963
+  cacheTime: 639049736096614330
   SerializableEventsDict:
   - key: event:/Ambiance
     index: 0
@@ -1358,7 +1358,7 @@ MonoBehaviour:
   Path: ../3D PRV/Sound Design/PRV/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639049499473096764
+  lastModified: 639049736096434718
   FileSizes:
   - Name: 
     Value: 1812
