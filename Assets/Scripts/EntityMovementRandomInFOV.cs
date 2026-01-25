@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.AI.Navigation;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -19,6 +20,8 @@ public class EntityMovementRandomInFOV : MonoBehaviour
     private Vector3 targetPos;
     private float timer = 0;
     private Vector3 randomDir;
+
+    private Animator animator;
     
     // Variables de vérification d'avoidance des murs
     private Vector3 refVector = Vector3.zero;
@@ -36,6 +39,9 @@ public class EntityMovementRandomInFOV : MonoBehaviour
         entityFOV = GetComponent<EntityFOV>();
         interact = GetComponent<Interact>();
         rb = GetComponent<Rigidbody>();
+
+        animator = GetComponentInChildren<Animator>();
+        
         currentSpeed = entityID.nativeSpeed;
         ground = GameObject.FindGameObjectWithTag("Ground");
         groundBounds = ground.GetComponent<Collider>().bounds;
@@ -60,6 +66,9 @@ public class EntityMovementRandomInFOV : MonoBehaviour
             switch (entityID.state)
             {
                 case State.Idle:
+                    RandomMovement(1f);
+                    animator.SetFloat("animSpeedMult", 1f);
+                    
                     // Ray ray = new Ray(transform.position, transform.forward);
                     // RaycastHit hit;
                     // Debug.DrawRay(transform.position, transform.forward);
@@ -82,18 +91,18 @@ public class EntityMovementRandomInFOV : MonoBehaviour
                     //     RandomMovement(1f);
                     // }
                     
-                        RandomMovement(1f);
-                    
-                    
                     break;
                 case State.Chasing:
                     StateCheckedMovement(entityID.speedModifierWhenChasing);
+                    animator.SetFloat("animSpeedMult", entityID.speedModifierWhenChasing);
                     break;
                 case State.Fleeing:
                     StateCheckedMovement(entityID.speedModifierWhenFleeing);
+                    animator.SetFloat("animSpeedMult", entityID.speedModifierWhenFleeing);
                     break;
                 case State.Fatigued:
                     RandomMovement(entityID.speedModifierWhenFatigued);
+                    animator.SetFloat("animSpeedMult", entityID.speedModifierWhenFatigued);
                     break;
                 case State.Fighting:
                     //todo
@@ -103,15 +112,19 @@ public class EntityMovementRandomInFOV : MonoBehaviour
                     break;
                 case State.Interacting:
                     StateCheckedMovement(1f);
+                    animator.SetFloat("animSpeedMult", 1f);     // ICI pas sur
                     break;
                 case State.Consuming:
                     rb.linearVelocity = Vector3.zero;
+                    animator.SetFloat("animSpeedMult", 0.2f);
                     break;
                 case State.Afraid:
                     StateCheckedMovement(entityID.speedModifierWhenFleeing);
+                    animator.SetFloat("animSpeedMult", entityID.speedModifierWhenFleeing);
                     break;
                 default:
                     RandomMovement(1f);
+                    animator.SetFloat("animSpeedMult", 1f);
                     break;
             }
         }

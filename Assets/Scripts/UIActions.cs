@@ -14,8 +14,7 @@ public class UIActions : MonoBehaviour
     public bool isSelected = false;
     private SpawnByPlayer spawnByPlayer;
     private bool isHighlighted = false;
-
-
+    
     private Transform fbx;
     private Material[] childMatList;
     private Material secondMat;

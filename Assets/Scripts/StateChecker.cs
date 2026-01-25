@@ -149,12 +149,6 @@ public class StateChecker : MonoBehaviour
                 t = 0;
                 targetPos = transform.position;
                 entityID.state = State.Idle;
-                
-                // HERE
-                // if (entityID.species == Species.S1)
-                // {
-                //     animator.SetBool("IsFleeing", false);
-                // }
             }
             else
             {
