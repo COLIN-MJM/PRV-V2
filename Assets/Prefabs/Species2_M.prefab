@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 1137857168307987485}
   - component: {fileID: 6146538095671869447}
   - component: {fileID: -6310407724435617292}
-  - component: {fileID: -6075462411327848751}
   - component: {fileID: 3592509353586327293}
   m_Layer: 0
   m_Name: Species2_M
@@ -133,7 +132,6 @@ MonoBehaviour:
   interact: {fileID: 0}
   rb: {fileID: 0}
   ground: {fileID: 0}
-  attackParticle: {fileID: 3498022402604353147}
 --- !u!114 &6084082106887357807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,51 +319,6 @@ MonoBehaviour:
   currentLevel: 1
   tBeforeMerge: 1
   invincibilityT: 1
---- !u!23 &-6075462411327848751
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5387480836745986218}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 5c76d3bb3b5befa40814dd2cddbbd183, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &3592509353586327293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,11 +407,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 296e899757f03704585392cae1937566, type: 3}
---- !u!198 &3498022402604353147 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8984183740822026646, guid: 296e899757f03704585392cae1937566, type: 3}
-  m_PrefabInstance: {fileID: 5486865751612473325}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4510235004030177679 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8264898629230030434, guid: 296e899757f03704585392cae1937566, type: 3}

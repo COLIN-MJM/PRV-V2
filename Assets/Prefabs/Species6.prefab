@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 8685853571661384144}
   - component: {fileID: 7902403027446096046}
   - component: {fileID: 4421275390600080210}
-  - component: {fileID: 3879179065426832717}
   - component: {fileID: -7308974185953475185}
   - component: {fileID: 5071072475054919532}
   - component: {fileID: -5543165601249841736}
@@ -24,7 +23,6 @@ GameObject:
   - component: {fileID: -4482773932829987658}
   - component: {fileID: 4296273050584459858}
   - component: {fileID: 4126296059820793830}
-  - component: {fileID: -3029899080149813867}
   - component: {fileID: 5061307912571909727}
   - component: {fileID: 350048748494541266}
   - component: {fileID: -1900796928654427941}
@@ -136,7 +134,6 @@ MonoBehaviour:
   interact: {fileID: 0}
   rb: {fileID: 0}
   ground: {fileID: 0}
-  attackParticle: {fileID: 2900715337036956485}
 --- !u!114 &8685853571661384144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,71 +197,6 @@ MonoBehaviour:
   hungerScript: {fileID: 0}
   gm: {fileID: 0}
   entityCount: {fileID: 0}
---- !u!108 &3879179065426832717
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4258745890326616887}
-  m_Enabled: 1
-  serializedVersion: 11
-  m_Type: 2
-  m_Color: {r: 0.6156863, g: 0.09411766, b: 0.4156863, a: 1}
-  m_Intensity: 4
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ForceVisible: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_LightUnit: 1
-  m_LuxAtDistance: 1
-  m_EnableSpotReflector: 1
 --- !u!114 &-7308974185953475185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,51 +319,6 @@ MonoBehaviour:
   isShieldUsable: 1
   isGasZoneInstanciated: 0
   isInvincibilityStillRunning: 1
---- !u!23 &-3029899080149813867
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4258745890326616887}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: d84ac76eeb4dec94ea36d05d1b95eb77, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &5061307912571909727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,10 +640,5 @@ PrefabInstance:
 --- !u!4 &2764510033517122737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8264898629230030434, guid: 296e899757f03704585392cae1937566, type: 3}
-  m_PrefabInstance: {fileID: 6120201377136573139}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &2900715337036956485 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8984183740822026646, guid: 296e899757f03704585392cae1937566, type: 3}
   m_PrefabInstance: {fileID: 6120201377136573139}
   m_PrefabAsset: {fileID: 0}

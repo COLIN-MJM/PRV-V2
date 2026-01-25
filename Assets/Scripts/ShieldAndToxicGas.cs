@@ -7,7 +7,7 @@ public class ShieldAndToxicGas : MonoBehaviour
     public float speedMultWhenQuickEscaping = 1.2f;
     public float timerMaxQuickEscaping = 2f;
     public GameObject toxicGas;
-    private Light light;
+    // private Light light;
     public EntityIdentity entityID;
 
     
@@ -22,7 +22,7 @@ public class ShieldAndToxicGas : MonoBehaviour
     {
         entityID = GetComponent<EntityIdentity>();
         nativeSpeed = entityID.nativeSpeed;
-        light = GetComponent<Light>();
+        // light = GetComponent<Light>();
     }
 
     private void Update()
@@ -31,7 +31,7 @@ public class ShieldAndToxicGas : MonoBehaviour
         {
             if (!isShieldUsable)
             {
-                light.enabled = false;
+                // light.enabled = false;
                 if (!isGasZoneInstanciated)
                 {
                     Instantiate(toxicGas, transform.position, Quaternion.identity);
@@ -49,10 +49,10 @@ public class ShieldAndToxicGas : MonoBehaviour
                     t = 0;
                 }
             }
-            else
-            {
-                light.enabled = true;
-            }
+            // else
+            // {
+                // light.enabled = true;
+            // }
         }
         
         
