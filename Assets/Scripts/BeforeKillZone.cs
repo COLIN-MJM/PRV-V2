@@ -16,8 +16,6 @@ public class BeforeKillZone : MonoBehaviour
 
         if (time <= 0)
         {
-            //logique
-
             Instantiate(killZone, transform.position, transform.rotation);
             
             Destroy(gameObject);

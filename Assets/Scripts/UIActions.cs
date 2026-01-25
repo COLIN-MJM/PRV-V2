@@ -35,7 +35,7 @@ public class UIActions : MonoBehaviour
             childMatList[i] = actualChild.GetComponent<MeshRenderer>().materials[1];
         }
         selfColor = childMatList[0].GetColor("_Outline_Color");
-        Debug.Log(selfColor);
+        // Debug.Log(selfColor);
     }
 
     // Update is called once per frame

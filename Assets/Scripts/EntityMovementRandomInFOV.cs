@@ -22,6 +22,10 @@ public class EntityMovementRandomInFOV : MonoBehaviour
     private Vector3 randomDir;
 
     private Animator animator;
+    // public ParticleSystem particle;
+    // public ParticleSystem fearParticle;
+    // public ParticleSystem Particle;
+    
     
     // Variables de vérification d'avoidance des murs
     private Vector3 refVector = Vector3.zero;
@@ -69,6 +73,7 @@ public class EntityMovementRandomInFOV : MonoBehaviour
                     RandomMovement(1f);
                     animator.SetFloat("animSpeedMult", 1f);
                     
+                    
                     // Ray ray = new Ray(transform.position, transform.forward);
                     // RaycastHit hit;
                     // Debug.DrawRay(transform.position, transform.forward);
@@ -95,33 +100,42 @@ public class EntityMovementRandomInFOV : MonoBehaviour
                 case State.Chasing:
                     StateCheckedMovement(entityID.speedModifierWhenChasing);
                     animator.SetFloat("animSpeedMult", entityID.speedModifierWhenChasing);
+
+                    
                     break;
                 case State.Fleeing:
                     StateCheckedMovement(entityID.speedModifierWhenFleeing);
                     animator.SetFloat("animSpeedMult", entityID.speedModifierWhenFleeing);
+
                     break;
                 case State.Fatigued:
                     RandomMovement(entityID.speedModifierWhenFatigued);
                     animator.SetFloat("animSpeedMult", entityID.speedModifierWhenFatigued);
                     break;
+                
                 case State.Fighting:
                     //todo
                     break;
+                
                 case State.Reproducing:
                     //todo
                     break;
+                
                 case State.Interacting:
                     StateCheckedMovement(1f);
-                    animator.SetFloat("animSpeedMult", 1f);     // ICI pas sur
+                    animator.SetFloat("animSpeedMult", 1f);
                     break;
+                
                 case State.Consuming:
                     rb.linearVelocity = Vector3.zero;
                     animator.SetFloat("animSpeedMult", 0.2f);
                     break;
+                
                 case State.Afraid:
                     StateCheckedMovement(entityID.speedModifierWhenFleeing);
                     animator.SetFloat("animSpeedMult", entityID.speedModifierWhenFleeing);
                     break;
+                
                 default:
                     RandomMovement(1f);
                     animator.SetFloat("animSpeedMult", 1f);

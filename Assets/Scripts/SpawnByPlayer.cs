@@ -4,6 +4,7 @@ using FMODUnity;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Random = System.Random;
 
 public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
 {
@@ -187,7 +188,9 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
             if (currentChoice.name == "Food" && foodCount > 0)
             {
                 foodCount--;
-                Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);
+                float test = UnityEngine.Random.Range(0f, 360f) ;
+                Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.Euler(0, test, 0));
+                // Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);
             }
             else if (currentChoice.name == "Alcool" && zoneCount > 0)
             {
