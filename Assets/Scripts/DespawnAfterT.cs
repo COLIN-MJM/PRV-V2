@@ -11,5 +11,12 @@ public class DespawnAfterT : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (t <= 2)
+        {
+            float toScale = (t / 2);
+            transform.localScale = new Vector3(toScale, toScale, toScale);
+        }
+        
     }
 }
