@@ -9,7 +9,7 @@ public class EggBoxScript : MonoBehaviour
 
     public int eggNumeralType;
     private int eggCount;
-    private float caca;
+
     private Transform box;
     private MeshRenderer egg1;
     private MeshRenderer egg2;
@@ -21,8 +21,6 @@ public class EggBoxScript : MonoBehaviour
         box = transform.GetChild(0);
         egg1 = box.GetChild(1).GetComponent<MeshRenderer>();
         egg2 = box.GetChild(2).GetComponent<MeshRenderer>();
-        
-        // Debug.Log(box + " " + egg1 + " " + egg2);
     }
 
     
