@@ -24,13 +24,18 @@ public class OutOfTheEncyclopedieReturn : MonoBehaviour
         
         if (VerifyClickingOutside())
         {
-            book.SetActive(false); 
-            encyclopedieSelecter.isOpened = false;
-            masterVCA.setVolume(1f);
-            eventEmitter.SetParameter("EncyclopedieSounds", 1);
+            GoBack();
         }
     }
-    
+
+    public void GoBack()
+    {
+        book.SetActive(false); 
+        encyclopedieSelecter.isOpened = false;
+        masterVCA.setVolume(1f);
+        eventEmitter.SetParameter("EncyclopedieSounds", 1);
+    }
+
     private bool VerifyHovering()
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
