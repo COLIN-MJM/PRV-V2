@@ -21,25 +21,29 @@ public class KillZoneEnter : MonoBehaviour
         if (other.gameObject.CompareTag("KillZone"))
         {
             killZoneScript = other.gameObject.GetComponent<TimerBeforeDestroy>();
-            killZoneScript.touchedEntities++;
+            
             if (entityID.species != Species.S2)
             {
                 entityCount.CountUpdate(entityID, -1);
+                killZoneScript.touchedEntities++;
                 Destroy(gameObject);
             }
             else if (entityID.species == Species.S2 && GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlOne)
             {
                 entityCount.CountUpdate(entityID, -1);
+                killZoneScript.touchedEntities++;
                 Destroy(gameObject);
             }
             else if (entityID.species == Species.S2 && GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlTwo)
             {
                 entityCount.CountUpdate(entityID, -2);
+                killZoneScript.touchedEntities += 2;
                 Destroy(gameObject);
             }
             else if (entityID.species == Species.S2 && GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlThree)
             {
                 entityCount.CountUpdate(entityID, -4);
+                killZoneScript.touchedEntities += 4;
                 Destroy(gameObject);
             }
         }

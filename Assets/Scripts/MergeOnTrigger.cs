@@ -34,6 +34,15 @@ public class MergeOnTrigger : MonoBehaviour
         stateChecker = GetComponent<StateChecker>();
         
         entityID = GetComponent<EntityIdentity>();
+
+        if (currentLevel == Level.LvlTwo)
+        {
+            entityCount.dyingEnXCount -= 2;
+        }
+        else if (currentLevel == Level.LvlThree)
+        {
+            entityCount.dyingEnXCount -= 4;
+        }
     }
 
     private void Update()
