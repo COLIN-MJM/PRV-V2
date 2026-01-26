@@ -12,7 +12,6 @@ public class TimerBeforeDestroy : MonoBehaviour
 
     void Start()
     {
-        eventEmitter = GetComponent<StudioEventEmitter>();
         collider = GetComponent<Collider>();
     }
 
