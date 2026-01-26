@@ -41,7 +41,7 @@ public class TimerBeforeDestroy : MonoBehaviour
         
         if (timer <= 0.3f)
         {
-            float toScale = 0.1f + (timer / 0.3f);
+            float toScale = ((timer / 0.3f)*4);
             transform.localScale = new Vector3(toScale, toScale, toScale);
         }
         
