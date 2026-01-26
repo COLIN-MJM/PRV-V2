@@ -1,24 +1,30 @@
+using FMODUnity;
 using UnityEngine;
 
 public class EncyclopedieSelecter : MonoBehaviour
 {
     private Camera cam;
     private Collider collider;
+    private StudioEventEmitter eventEmitter;
     [SerializeField] private GameObject book;
     public bool isOpened = false;
     void Start()
     {
         cam = Camera.main;
         collider = GetComponent<BoxCollider>();
+        eventEmitter = GetComponent<StudioEventEmitter>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        eventEmitter.SetParameter("EncyclopedieSounds", 0);
+        
         if (VerifyClicking())
         {
             book.SetActive(true); 
             isOpened = true;
+            eventEmitter.SetParameter("EncyclopedieSounds", 1);
         }
     }
     
@@ -29,7 +35,7 @@ public class EncyclopedieSelecter : MonoBehaviour
         if (groundPlane.Raycast(ray, out float enter))
         {
             Vector3 hitPoint = ray.GetPoint(enter);
-            if (collider.bounds.Contains(new Vector3 (hitPoint.x, collider.bounds.max.y, hitPoint.z)))
+            if (collider.bounds.Contains(new Vector3 (hitPoint.x, collider.bounds.max.y, hitPoint.z)) && !isOpened)
             {
                 return true;
             }

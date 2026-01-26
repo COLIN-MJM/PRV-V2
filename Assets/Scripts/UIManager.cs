@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public GameObject gm;
     public InputReader inputReader;
     public StudioEventEmitter eventEmitterSelection;
+    [SerializeField] private EncyclopedieSelecter encyclopedieSelecter;
     
     public List<GameObject> buttons;
     private int lastlyClickedButton = 0;
@@ -40,15 +41,18 @@ public class UIManager : MonoBehaviour
 
     private void ChangeSelectionByWheel(int i)
     {
-        int newSelect = i + inputReader.Mousewheel;
-        if (newSelect > buttons.Count - 1)
+        if (!encyclopedieSelecter.isOpened)
         {
-            newSelect = 0;
+            int newSelect = i + inputReader.Mousewheel;
+            if (newSelect > buttons.Count - 1)
+            {
+                newSelect = 0;
+            }
+            else if (newSelect < 0)
+            {
+                newSelect = buttons.Count - 1;
+            }
+            buttons[newSelect].GetComponent<UIActions>().isSelected = true;
         }
-        else if (newSelect < 0)
-        {
-            newSelect = buttons.Count - 1;
-        }
-        buttons[newSelect].GetComponent<UIActions>().isSelected = true;
     }
 }

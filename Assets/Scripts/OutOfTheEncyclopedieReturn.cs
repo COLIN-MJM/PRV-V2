@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class OutOfTheEncyclopedieReturn : MonoBehaviour
@@ -6,6 +7,7 @@ public class OutOfTheEncyclopedieReturn : MonoBehaviour
     private Collider collider;
     [SerializeField] private GameObject book;
     [SerializeField] private EncyclopedieSelecter encyclopedieSelecter;
+    [SerializeField] private StudioEventEmitter eventEmitter;
     void Start()
     {
         cam = Camera.main;
@@ -15,10 +17,13 @@ public class OutOfTheEncyclopedieReturn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        eventEmitter.SetParameter("EncyclopedieSounds", 0);
+        
         if (VerifyClickingOutside())
         {
             book.SetActive(false); 
             encyclopedieSelecter.isOpened = false;
+            eventEmitter.SetParameter("EncyclopedieSounds", 1);
         }
     }
     
