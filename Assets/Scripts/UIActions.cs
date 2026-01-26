@@ -14,6 +14,8 @@ public class UIActions : MonoBehaviour
     public bool isSelected = false;
     private SpawnByPlayer spawnByPlayer;
     private bool isHighlighted = false;
+    [SerializeField] private EncyclopedieSelecter encyclopedieSelecter;
+    private bool encyclopediaIsOpened = false;
     
     private Transform fbx;
     private Material[] childMatList;
@@ -41,6 +43,8 @@ public class UIActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        encyclopediaIsOpened = encyclopedieSelecter.isOpened;
+        
         if (VerifyClicking())
         {
             isSelected = true;
@@ -101,7 +105,7 @@ public class UIActions : MonoBehaviour
         if (groundPlane.Raycast(ray, out float enter))
         {
             Vector3 hitPoint = ray.GetPoint(enter);
-            if (collider.bounds.Contains(new Vector3 (hitPoint.x, collider.bounds.max.y, hitPoint.z)))
+            if (collider.bounds.Contains(new Vector3 (hitPoint.x, collider.bounds.max.y, hitPoint.z)) && !encyclopediaIsOpened)
             {
                 return true;
             }
