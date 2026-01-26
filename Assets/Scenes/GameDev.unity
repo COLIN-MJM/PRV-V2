@@ -2457,6 +2457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 696758851}
   - component: {fileID: 696758852}
+  - component: {fileID: 696758853}
   m_Layer: 5
   m_Name: Volume
   m_TagString: Untagged
@@ -2531,12 +2532,38 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2069320074}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 2
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 696758853}
+        m_TargetAssemblyTypeName: VolumeSlider, Assembly-CSharp
+        m_MethodName: ChangeVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &696758853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696758850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca03407793e6cf49b79255d4b6e2623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalVolumeManager: {fileID: 1255855955}
+  slider: {fileID: 696758852}
 --- !u!1 &700015457 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8289487155859267003, guid: dd17503c111e7884292f1dc7139c1005, type: 3}
@@ -3961,6 +3988,7 @@ GameObject:
   - component: {fileID: 1255855952}
   - component: {fileID: 1255855953}
   - component: {fileID: 1255855954}
+  - component: {fileID: 1255855955}
   m_Layer: 0
   m_Name: GM
   m_TagString: GM
@@ -4114,6 +4142,21 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &1255855955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255855944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7151ac0b36b9bdc49a58a5d24a886426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  encyclopedieSelecter: {fileID: 1445103296}
+  volumeBeforeEncyclopedie: 0
+  actualVolume: 0
 --- !u!1001 &1343761421
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 
@@ -8,11 +9,14 @@ public class EncyclopedieSelecter : MonoBehaviour
     private StudioEventEmitter eventEmitter;
     [SerializeField] private GameObject book;
     public bool isOpened = false;
+    private VCA masterVCA;
+    
     void Start()
     {
         cam = Camera.main;
         collider = GetComponent<BoxCollider>();
         eventEmitter = GetComponent<StudioEventEmitter>();
+        masterVCA = RuntimeManager.GetVCA("VCA:/Master");
     }
 
     // Update is called once per frame
@@ -24,6 +28,7 @@ public class EncyclopedieSelecter : MonoBehaviour
         {
             book.SetActive(true); 
             isOpened = true;
+            masterVCA.setVolume(0.2f);
             eventEmitter.SetParameter("EncyclopedieSounds", 1);
         }
     }
