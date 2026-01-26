@@ -16,7 +16,7 @@ public class VolumeSlider : MonoBehaviour
         masterVCA = RuntimeManager.GetVCA("VCA:/Master");
         float value;
         masterVCA.getVolume(out value);
-        slider.value = value;
+        slider.value = value * 5;
     }
 
     public void ChangeVolume(float value)

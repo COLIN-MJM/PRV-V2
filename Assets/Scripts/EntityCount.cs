@@ -108,7 +108,7 @@ public class EntityCount : MonoBehaviour
             toxiCountText.text = toxiCount.ToString();
         }
 
-        if (value < 0)
+        if (value == -1)
         {
             if (objectEntityID.species == Species.S1)
             {

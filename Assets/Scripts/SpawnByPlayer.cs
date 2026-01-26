@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using FMODUnity;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -56,6 +57,14 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
     private int lowEntityCount = 15;
     private int minEntityCount = 7;
     public bool debugText;
+    
+    [Header("Texts à update")] 
+    [SerializeField] private TMP_Text sugarTotalCountText;
+    [SerializeField] private TMP_Text scarecrowsTotalCountText;
+    [SerializeField] private TMP_Text alcoholTotalCountText;
+    private int sugarTotalCount = 0;
+    private int scarecrowsTotalCount = 0;
+    private int alcoholTotalCount = 0;
 
     void Awake()
     {
@@ -117,6 +126,10 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
     
     private void Update()
     {
+        sugarTotalCountText.text = sugarTotalCount.ToString();
+        scarecrowsTotalCountText.text = scarecrowsTotalCount.ToString();
+        alcoholTotalCountText.text = alcoholTotalCount.ToString();
+        
         currentChoice = choices[choiceIndex];
 
         if (debugText)
@@ -188,6 +201,7 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
             if (currentChoice.name == "Food" && foodCount > 0)
             {
                 foodCount--;
+                sugarTotalCount++;
                 float test = UnityEngine.Random.Range(0f, 360f) ;
                 Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.Euler(0, test, 0));
                 // Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);
@@ -195,6 +209,7 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
             else if (currentChoice.name == "Alcool" && zoneCount > 0)
             {
                 zoneCount--;
+                alcoholTotalCount++;
                 Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);
             }
             else if (currentChoice.name == "Eggs Species1" && eggOneCount > 0)
@@ -219,6 +234,7 @@ public class SpawnByPlayer : MonoBehaviour, IPointerClickHandler
             }
             else if (currentChoice.name == "Scarecrow")
             {
+                scarecrowsTotalCount++;
                 Instantiate(currentChoice, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);
             }
             else

@@ -33,7 +33,7 @@ public class OutOfTheEncyclopedieReturn : MonoBehaviour
         book.SetActive(false); 
         encyclopedieSelecter.isOpened = false;
         masterVCA.setVolume(1f);
-        eventEmitter.SetParameter("EncyclopedieSounds", 1);
+        eventEmitter.SetParameter("EncyclopedieSounds", 2);
     }
 
     private bool VerifyHovering()

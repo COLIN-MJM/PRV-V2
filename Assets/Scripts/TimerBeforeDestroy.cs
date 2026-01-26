@@ -7,12 +7,18 @@ public class TimerBeforeDestroy : MonoBehaviour
     public StudioEventEmitter eventEmitter;
     public float timer;
     public int touchedEntities = 0;
+    private int touchedEntitiesClamped = 0;
     private bool alreadyTouched = false;
     private Collider collider;
+
+    private GameObject gm;
+    private PlayerKillCount pkc;
 
     void Start()
     {
         collider = GetComponent<Collider>();
+        gm = GameObject.FindGameObjectWithTag("GM");
+        pkc = gm.GetComponent<PlayerKillCount>();
     }
 
     void Update()
@@ -22,15 +28,18 @@ public class TimerBeforeDestroy : MonoBehaviour
         if (timer <= 0f)
         {
             Destroy(gameObject);
+            pkc.killCount += touchedEntities;
         }
         
         if (timer <= 0.4 && !alreadyTouched)
         {
-            if (touchedEntities > 4)
+            touchedEntitiesClamped = touchedEntities;
+            
+            if (touchedEntitiesClamped > 4)
             {
-                touchedEntities = 4;
+                touchedEntitiesClamped = 4;
             }
-            eventEmitter.SetParameter("AlcoholState", touchedEntities);
+            eventEmitter.SetParameter("AlcoholState", touchedEntitiesClamped);
             alreadyTouched = true;
         }
         
