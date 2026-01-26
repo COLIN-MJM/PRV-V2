@@ -27,8 +27,8 @@ public class TimerBeforeDestroy : MonoBehaviour
 
         if (timer <= 0f)
         {
-            Destroy(gameObject);
             pkc.killCount += touchedEntities;
+            Destroy(gameObject);
         }
         
         if (timer <= 0.4 && !alreadyTouched)
