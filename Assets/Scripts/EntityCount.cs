@@ -80,6 +80,14 @@ public class EntityCount : MonoBehaviour
             toxiCount = 0;
         }
         
+        vanilliCountText.text = vanilliCount.ToString();
+        enXCountText.text = enXCount.ToString();
+        holoCountText.text = holoCount.ToString();
+        toxiCountText.text = toxiCount.ToString();
+        vanilliDeathText.text = dyingVanilliCount.ToString();
+        enXDeathText.text = dyingEnXCount.ToString();
+        holoDeathText.text = dyingHoloCount.ToString();
+        toxiDeathText.text = dyingToxiCount.ToString();
     }
 
     public void CountUpdate(EntityIdentity objectEntityID, int value)
@@ -90,22 +98,18 @@ public class EntityCount : MonoBehaviour
         if (objectEntityID.species == Species.S1)
         {
             VanilliCountMod(value);
-            vanilliCountText.text = vanilliCount.ToString();
         }
         else if (objectEntityID.species == Species.S2)
         {
             EnXCountMod(value);
-            enXCountText.text = enXCount.ToString();
         } 
         else if (objectEntityID.species == Species.S3)
         {
             HoloCountMod(value);
-            holoCountText.text = holoCount.ToString();
         }
         else if (objectEntityID.species == Species.S6)
         {
             ToxiCountMod(value);
-            toxiCountText.text = toxiCount.ToString();
         }
 
         if (value < 0)
@@ -113,22 +117,18 @@ public class EntityCount : MonoBehaviour
             if (objectEntityID.species == Species.S1)
             {
                 dyingVanilliCount -= value;
-                vanilliDeathText.text = dyingVanilliCount.ToString();
             }
             else if (objectEntityID.species == Species.S2)
             {
                 dyingEnXCount -= value;
-                enXDeathText.text = dyingEnXCount.ToString();
             } 
             else if (objectEntityID.species == Species.S3)
             {
                 dyingHoloCount -= value;
-                holoDeathText.text = dyingHoloCount.ToString();
             }
             else if (objectEntityID.species == Species.S6)
             {
                 dyingToxiCount -= value;
-                toxiDeathText.text = dyingToxiCount.ToString();
             }
         }
     }

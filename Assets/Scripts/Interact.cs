@@ -110,11 +110,13 @@ public class Interact : MonoBehaviour
         if (entity.GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlThree )
         {
             entityCount.CountUpdate(entity.GetComponent<EntityIdentity>(), -4);
+            entityCount.dyingEnXCount -= 4;
             SplitInFour(entity);
         }
         else if (entity.GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlTwo)
         {
             entityCount.CountUpdate(entity.GetComponent<EntityIdentity>(), -2);
+            entityCount.dyingEnXCount -= 2;
             SplitInTwo(entity);
         }
         else if (entity.GetComponent<MergeOnTrigger>().currentLevel == MergeOnTrigger.Level.LvlOne && entity.GetComponent<MergeOnTrigger>().invincibilityT <= 0)
