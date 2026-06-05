@@ -30,7 +30,12 @@ public enum Season
         Summer,
         Autumn,
         Winter
-    }    
-        
+    }
+
+public enum Language
+{
+    English,
+    French
+}
     
     

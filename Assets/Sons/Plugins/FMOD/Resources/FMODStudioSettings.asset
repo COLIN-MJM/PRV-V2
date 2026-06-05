@@ -610,7 +610,7 @@ MonoBehaviour:
   HasSourceProject: 0
   HasPlatforms: 0
   sourceProjectPath: 
-  sourceBankPath: ../3D PRV/Sound Design/PRV
+  sourceBankPath: Assets/Sons/Banks/PRV
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
